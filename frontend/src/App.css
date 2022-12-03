@@ -2,7 +2,15 @@
   font-family: 'Chilanka';
 }
 
-#inputID::placeholder {
+input {
+  color: white
+}
+input::placeholder {
   color: #ffff;
   opacity: 5;
+}
+
+input:focus {
+  border: 1px solid transparent;
+  outline: none;
 }
