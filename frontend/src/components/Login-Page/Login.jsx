@@ -1,10 +1,9 @@
 import { React, useState } from "react";
-import Typewriter from "typewriter-effect";
 import { useLogin } from "../../hooks/useLogin";
 import "../../App.css";
+import "./style.css"
 
-// logo
-import Logo from "../../assets/images/white-logo.png";
+import { AnimationPage } from "../../assets/AnimationPage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,67 +13,72 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    window.location.replace("http://localhost:3000/safespace");
-
+    if (!error) {
+      window.open("http://localhost:3000/home-1", "_self");
+    }
   };
 
   return (
-    <div className="h-screen bg-gradient-to-r from-[#FA77FF] to-[#6454FF] container flex flex-col justify-center items-center">
-      <img src={Logo} alt="Logo" />
-      <p className="font-loader font-bold text-xl pt-10 text-white">
-        <Typewriter
-          options={{
-            strings: ["Hey! I’m Dr.SAAM", "You’re Welcome!"],
-            autoStart: true,
-            loop: true,
-          }}
-        />
-      </p>
-      <p className="w-full text-base font-loader text-center p-10 text-gray-100 pt-4">
-        Remember our conversations are private & anonymous. Provide your details
-        to get logged in
-      </p>
-      <div className="lg:pt-8">
-        <form onSubmit={handleSubmit}>
-          {error && (
-            <div className="text-red-600 text-center font-loader text-lg font-semibold">
-              {error}
-            </div>
-          )}
-          <div className="grid grid-cols-2 gap-4">
-            <input
-              placeholder="email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              className="lg:w-96 border-transparent rounded-md h-8 bg-[#C683E8] p-5"
-            />
+    <AnimationPage>
+      <div className="h-screen container flex flex-col justify-center items-center">
+        <span className="text-center font-semibold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
+          Hello Friend!
+        </span>
+        <span className="text-center mx-16 my-5 text-gray-500">
+          We are here to help you de-stress and be anxiety free. Get signed in
+          to begin!
+        </span>
+        <div>
+          <form onSubmit={handleSubmit}>
+            {error && (
+              <div className="text-red-600 text-center font-loader text-lg font-semibold">
+                {error}
+              </div>
+            )}
 
-            <input
-              placeholder="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              className="rounded-md border-transparent h-8 bg-[#C683E8] p-5"
-            />
-          </div>
-          <button
-            disabled={isLoading}
-            className="mt-10 ml-10 md:ml-44 lg:ml-44 text-center text-white font-loader lg:w-1/2 w-5/6 h-10 rounded-md bg-white"
-          >
-            <div>
-              <p className="text-[#6454FF]">Sign in</p>
+            <div className="flex flex-col">
+              <label className="pl-2 pb-2 text-gray-500">Email Address</label>
+              <input
+                placeholder="Provide your login email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                className="w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+              />
             </div>
-          </button>
-        </form>
+            <div className="flex flex-col">
+              <label className="pt-5 pl-2 pb-2 text-gray-500">Password</label>
+              <input
+                placeholder="provide your login password"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                className="w-96 lg:w-full text-light text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+              />
+            </div>
+            <button
+              disabled={isLoading}
+              className="mt-10 text-center text-white font-loader w-96 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]"
+            >
+              <div>
+                <p className="text-wh">Sign in</p>
+              </div>
+            </button>
+          </form>
+        </div>
+        <a href="/signup">
+          <p className="w-full text-base font-loader text-center text-gray-500 pt-4">
+            Forgot your password?
+          </p>
+        </a>
+        <a href="/signup">
+          <p className="w-full text-base font-loader text-center text-gray-500 pt-2">
+            Don't have an account?{" "}
+            <span className="text-[#1800FF]">Signup</span>
+          </p>
+        </a>
       </div>
-
-      <a href="/signup">
-        <p className="w-full text-base font-loader text-center text-gray-100 pt-4">
-          Not yet a member? Create an account now!
-        </p>
-      </a>
-    </div>
+    </AnimationPage>
   );
 };
 

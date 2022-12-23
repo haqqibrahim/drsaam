@@ -4,8 +4,23 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 // logo
 import Logo from "../../assets/images/logo.png";
 
-const NoCheckup = () => {
+const Connect = () => {
   const { user } = useAuthContext();
+  const uid = user.uid;
+  async function getFriend(e) {
+    e.preventDefault();
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ uid }),
+    };
+    const response = await fetch("/api/myfriend/getmyfriend", requestOptions);
+    if (response.ok) {
+      console.log("We good");
+    } else {
+      console.log("Nope");
+    }
+  }
   return (
     <div className="container flex flex-col justify-center items-center pt-60">
       <img src={Logo} alt="logo" />
@@ -17,7 +32,10 @@ const NoCheckup = () => {
         Click the button to connect with a{" "}
         <span className="font-bold">MyFriend</span>
       </p>
-      <button className="mt-10 text-center text-white font-loader w-2/3 h-10 rounded-md bg-gradient-to-r from-[#FA77FF] to-[#6454FF]">
+      <button
+        onClick={getFriend}
+        className="mt-10 text-center text-white font-loader w-2/3 h-10 rounded-md bg-gradient-to-r from-[#FA77FF] to-[#6454FF]"
+      >
         <a href="/">
           <div>
             <p>MyFriend</p>
@@ -28,4 +46,4 @@ const NoCheckup = () => {
   );
 };
 
-export default NoCheckup;
+export default Connect;

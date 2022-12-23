@@ -1,16 +1,9 @@
-.font-loader {
-  font-family: 'Chilanka';
+body {
+  font-family: 'Poppins', sans-serif;
 }
 
-input {
-  color: white
-}
 input::placeholder {
-  color: #ffff;
+  color: gray;
   opacity: 5;
 }
 
-input:focus {
-  border: 1px solid transparent;
-  outline: none;
-}
