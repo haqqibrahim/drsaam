@@ -1,10 +1,13 @@
 import React from "react";
+import {useNavigate} from "react-router-dom"
+ 
 import { AnimationPage } from "../../assets/AnimationPage";
 
 const WelcomeTwo = () => {
+  const navigate = useNavigate()
   const redirect = () => {
     setTimeout(function () {
-      window.location = "http://localhost:3000/welcome-3";
+      navigate("/welcome-3");
     }, 4000);
   };
   return (

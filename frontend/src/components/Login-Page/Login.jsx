@@ -1,11 +1,14 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useLogin } from "../../hooks/useLogin";
 import "../../App.css";
-import "./style.css"
+import "./style.css";
 
 import { AnimationPage } from "../../assets/AnimationPage";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
@@ -13,9 +16,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    if (!error) {
-      window.open("http://localhost:3000/home-1", "_self");
-    }
+    if (error != null) {
+      console.log(error);
+    } 
   };
 
   return (
@@ -35,7 +38,6 @@ const Login = () => {
                 {error}
               </div>
             )}
-
             <div className="flex flex-col">
               <label className="pl-2 pb-2 text-gray-500">Email Address</label>
               <input
@@ -61,22 +63,22 @@ const Login = () => {
               className="mt-10 text-center text-white font-loader w-96 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]"
             >
               <div>
-                <p className="text-wh">Sign in</p>
+                <p className="text-white">Sign in</p>
               </div>
             </button>
           </form>
         </div>
-        <a href="/signup">
+        <div onClick={() => navigate("/signup")}>
           <p className="w-full text-base font-loader text-center text-gray-500 pt-4">
             Forgot your password?
           </p>
-        </a>
-        <a href="/signup">
+        </div>
+        <div onClick={() => navigate("/signup")}>
           <p className="w-full text-base font-loader text-center text-gray-500 pt-2">
             Don't have an account?{" "}
             <span className="text-[#1800FF]">Signup</span>
           </p>
-        </a>
+        </div>
       </div>
     </AnimationPage>
   );

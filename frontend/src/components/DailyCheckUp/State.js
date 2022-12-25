@@ -1,5 +1,5 @@
 import { createGlobalState } from 'react-hooks-global-state';
 
-export const { useGlobalState } = createGlobalState({
-  count: 0,
+export const { setGlobalState,useGlobalState } = createGlobalState({
+  score: 0,
 });

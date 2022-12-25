@@ -28,7 +28,7 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
     e.preventDefault();
     prevStep();
   };
-  const [update] = useGlobalState("count");
+  const [value,update] = useGlobalState("score");
   return (
     <AnimationPage>
       <LinearProgress color="inherit" variant="determinate" value={80} />

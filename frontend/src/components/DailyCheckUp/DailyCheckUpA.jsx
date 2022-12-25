@@ -16,13 +16,13 @@ import {
   BsFillEmojiLaughingFill,BsFillEmojiSunglassesFill,BsFillEmojiAngryFill
 } from "react-icons/bs";
 
-const DailyCheckUpA = ({ nextStep, prevStep }) => {
+const DailyCheckUpA = ({ nextStep }) => {
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
   };
 
-  const [update] = useGlobalState("count");
+  const [value,update] = useGlobalState("score");
   return (
     <AnimationPage>
       <LinearProgress color="inherit" variant="determinate" value={20} />
@@ -33,6 +33,7 @@ const DailyCheckUpA = ({ nextStep, prevStep }) => {
         <div className="h-screen container bg-slate-200 flex flex-col justify-center items-center">
           <div className="flex space-x-10">
             <span>How do you feel today?</span>
+            
             <div className="">
               {" "}
               <BsArrowRightCircle

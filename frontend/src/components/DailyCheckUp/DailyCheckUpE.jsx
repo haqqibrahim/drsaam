@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import { AnimationPage } from "../../assets/AnimationPage";
 import LinearProgress from "@mui/material/LinearProgress";
 import "./style.css";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { useGlobalState } from "./State";
+import { Api } from "./Api";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const DailyCheckUpE = ({ prevStep }) => {
+  const { user } = useAuthContext();
+  const email = user.email;
+  const [cause, setCause] = useState("");
+  const [how, setHow] = useState("");
+  const [value] = useGlobalState("score");
+
+  const navigate = useNavigate();
+
   const Previous = (e) => {
     e.preventDefault();
     prevStep();
+  };
+
+  const submit = () => {
+    Api(value, cause, how, email);
+    navigate("/home-1");
   };
 
   return (
@@ -42,6 +59,8 @@ const DailyCheckUpE = ({ prevStep }) => {
               type="text"
               name=""
               id=""
+              value={how}
+              onChange={(e) => setHow(e.target.value)}
               placeholder="Let's know the cause"
               className="text-left pl-3"
             />
@@ -57,10 +76,19 @@ const DailyCheckUpE = ({ prevStep }) => {
               type="text"
               name=""
               id=""
+              value={cause}
+              onChange={(e) => setCause(e.target.value)}
               placeholder="Let's know how"
               className="text-left pl-3"
             />
           </div>
+          <button
+            onClick={submit}
+            className="mt-5 bg-black text-white rounded-full"
+            style={{ width: "200px", height: "50px" }}
+          >
+            Proceed
+          </button>
         </div>
       </Stack>
     </AnimationPage>

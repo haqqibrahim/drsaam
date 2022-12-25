@@ -1,13 +1,15 @@
 import React from "react";
-
+import {useNavigate} from "react-router-dom"
+ 
 import Logo from "../../assets/images/logo.png";
 import OmariLogo from "../../assets/images/mini.png";
 import { AnimationPage } from "../../assets/AnimationPage";
 
 const Preloader = () => {
+  const navigate = useNavigate()
   const redirect = () => {
     setTimeout(function () {
-      window.location = "http://localhost:3000/welcome-1";
+     navigate("/welcome-1");
     }, 4000);
   };
   return (

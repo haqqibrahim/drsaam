@@ -1,11 +1,14 @@
 import { React, useState } from "react";
 
 import { useSignup } from "../../hooks/useSignup";
+import {useNavigate} from "react-router-dom"
+ 
 import { AnimationPage } from "../../assets/AnimationPage";
 
 import "../../App.css";
 
 const Signup = () => {
+  const navigate = useNavigate()
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -15,9 +18,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(username, email, phone, password);
-    if (!error) {
-      window.open("http://localhost:3000/home-1", "_self");
-    }
+    if (error != null) {
+      console.log(error);
+    } 
   };
 
   return (
@@ -91,12 +94,12 @@ const Signup = () => {
             </button>
           </form>
         </div>
-        <a href="/login">
+        <div onClick={() => navigate("/login")}>
           <p className="w-full text-base font-loader text-center text-gray-500 pt-2">
             Alrady have an account?{" "}
             <span className="text-[#1800FF]">Signin</span>
           </p>
-        </a>
+        </div>
       </div>
     </AnimationPage>
 

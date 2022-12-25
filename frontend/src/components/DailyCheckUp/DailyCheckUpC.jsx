@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useGlobalState } from "./State";
 const DailyCheckUpC = ({ nextStep, prevStep }) => {
-  const [update] = useGlobalState("count");
+  const [value,update] = useGlobalState("score");
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
