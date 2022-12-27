@@ -22,7 +22,7 @@ const HomeOne = () => {
         <span className="font-semibold text-center text-transparent text-xl bg-clip-text bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
           {day()}
         </span>
-        <button className="mt-5 text-center text-white font-loader w-96 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
+        <button className="mt-10 text-center ml-2 md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
           <div onClick={() => navigate("/home-2")}>
             <p className="text-wh">Let’s get started</p>
           </div>

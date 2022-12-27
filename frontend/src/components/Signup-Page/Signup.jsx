@@ -33,13 +33,14 @@ const Signup = () => {
           We are here to help you de-stress and be anxiety free. Note that your
           data is kept private. Sign up to begin!
         </span>
-        <div>
-          <form onSubmit={handleSubmit}>
-            {error && (
-              <div className="text-red-600 text-center font-loader text-lg font-semibold">
+        {error && (
+              <div className="text-red-600 text-center font-loader text-lg font-semibold px-10">
                 {error}
               </div>
             )}
+        <div >
+          <form onSubmit={handleSubmit} className="p-5">
+           
 
             <div className="flex flex-col">
               <label className="pl-2 pb-2 text-gray-500">Email Address</label>
@@ -48,7 +49,7 @@ const Signup = () => {
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className="w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
             <div className="flex flex-col">
@@ -58,7 +59,7 @@ const Signup = () => {
                 type="text"
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
-                className="w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
             <div className="flex flex-col">
@@ -70,7 +71,7 @@ const Signup = () => {
                 type="number"
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
-                className="w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
             <div className="flex flex-col">
@@ -80,13 +81,13 @@ const Signup = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="w-96 lg:w-full text-light text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="lg:w-full w-80 md:w-96 text-light text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
 
             <button
               disabled={isLoading}
-              className="mt-10 text-center text-white font-loader w-96 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]"
+              className="mt-10 text-center  md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]"
             >
               <div>
                 <p className="text-wh">Sign up</p>
