@@ -12,16 +12,20 @@ const createToken = (_id) => {
 
 // Submit Checkup
 const checkUp = async (req, res) => {
-  const { score, cause, how,user } = req.body;
+  const { checkupA, checkupB, checkupC, checkupD, cause, how, user } = req.body;
 
   try {
     const checkup = new Checkup({
-      score,
+      checkupA,
+      checkupB,
+      checkupC,
+      checkupD,
       cause,
       how,
-      user
+      user,
     });
     await checkup.save();
+    console.log(checkup);
     res.status(200).json({ checkup });
   } catch (error) {
     console.log(error);
@@ -34,7 +38,6 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-  
     const user = await User.login(email, password);
 
     // create a token

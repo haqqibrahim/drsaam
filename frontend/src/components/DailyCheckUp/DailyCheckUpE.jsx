@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { AnimationPage } from "../../assets/AnimationPage";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -8,13 +9,36 @@ import { useGlobalState } from "./State";
 import { Api } from "./Api";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { TiThumbsOk } from "react-icons/ti";
+
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+};
 
 const DailyCheckUpE = ({ prevStep }) => {
   const { user } = useAuthContext();
   const email = user.email;
   const [cause, setCause] = useState("");
   const [how, setHow] = useState("");
-  const [value] = useGlobalState("score");
+
+  const [value, update] = useGlobalState("checkUp");
+  const checkupA = value.checkupA
+  const checkupB = value.checkupB
+  const checkupC = value.checkupC
+  const checkupD = value.checkupD
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const navigate = useNavigate();
 
@@ -24,9 +48,11 @@ const DailyCheckUpE = ({ prevStep }) => {
   };
 
   const submit = () => {
-    Api(value, cause, how, email);
-    navigate("/home-1");
+    Api(checkupA,checkupB, checkupC, checkupD, cause, how, email);
+    handleOpen()
   };
+
+ 
 
   return (
     <AnimationPage>
@@ -35,7 +61,7 @@ const DailyCheckUpE = ({ prevStep }) => {
         direction={{ xs: "row", sm: "column" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <div className="h-screen container bg-[#FF8D6A] flex flex-col justify-center items-center">
+        <div className="h-screen container bg-[#FFC0CB] flex flex-col justify-center items-center">
           <div className="flex space-x-10 p-5">
             <div className="">
               {" "}
@@ -90,6 +116,29 @@ const DailyCheckUpE = ({ prevStep }) => {
             Proceed
           </button>
         </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+
+            <div className="container flex flex-col justify-center items-center">
+              <span className="text-center">Checkup Completed</span>
+              <TiThumbsOk
+                className="fill-[#FFCC36] mt-5"
+                style={{ width: "50px", height: "50px" }}
+              />
+              <button onClick={() => navigate("/home-1")}
+                className="mt-5 bg-black text-white rounded-full"
+                style={{ width: "200px", height: "50px" }}
+              >
+                Home
+              </button>
+            </div>
+          </Box>
+        </Modal>
       </Stack>
     </AnimationPage>
   );

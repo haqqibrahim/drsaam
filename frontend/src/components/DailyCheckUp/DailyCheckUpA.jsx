@@ -13,7 +13,9 @@ import {
   BsEmojiFrownFill,
   BsEmojiDizzyFill,
   BsFillEmojiSmileFill,
-  BsFillEmojiLaughingFill,BsFillEmojiSunglassesFill,BsFillEmojiAngryFill
+  BsFillEmojiLaughingFill,
+  BsFillEmojiSunglassesFill,
+  BsFillEmojiAngryFill,
 } from "react-icons/bs";
 
 const DailyCheckUpA = ({ nextStep }) => {
@@ -22,7 +24,10 @@ const DailyCheckUpA = ({ nextStep }) => {
     nextStep();
   };
 
-  const [value,update] = useGlobalState("score");
+  const [value, update] = useGlobalState("checkUp");
+  const updating = (checkupA) => {
+    update((p) => ({ ...p, checkupA }));
+  }
   return (
     <AnimationPage>
       <LinearProgress color="inherit" variant="determinate" value={20} />
@@ -33,7 +38,7 @@ const DailyCheckUpA = ({ nextStep }) => {
         <div className="h-screen container bg-slate-200 flex flex-col justify-center items-center">
           <div className="flex space-x-10">
             <span>How do you feel today?</span>
-            
+
             <div className="">
               {" "}
               <BsArrowRightCircle
@@ -43,14 +48,12 @@ const DailyCheckUpA = ({ nextStep }) => {
             </div>
           </div>
           <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
-
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               name="radio-buttons-group"
             >
               <div
-                onClick={() => update((v) => v + 1)}
+                onClick={() =>updating("sad")}
                 className="mt-5 h-20 pl-5 flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex-none">
@@ -68,7 +71,7 @@ const DailyCheckUpA = ({ nextStep }) => {
                 </div>
               </div>
               <div
-                onClick={() => update((v) => v + 2)}
+                onClick={() => updating("tired")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
@@ -84,7 +87,7 @@ const DailyCheckUpA = ({ nextStep }) => {
                 </div>{" "}
               </div>
               <div
-                onClick={() => update((v) => v + 3)}
+                onClick={() => updating("okay")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
@@ -100,7 +103,7 @@ const DailyCheckUpA = ({ nextStep }) => {
                 </div>{" "}
               </div>
               <div
-                onClick={() => update((v) => v + 4)}
+                onClick={() => updating("Happy")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
@@ -116,23 +119,23 @@ const DailyCheckUpA = ({ nextStep }) => {
                 </div>{" "}
               </div>
               <div
-                onClick={() => update((v) => v + 5)}
+                onClick={() => updating("excited")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
-                    <FormControlLabel
-                      value="5"
-                      control={<Radio />}
-                      label="Excited"
-                    />
-                    <BsFillEmojiSunglassesFill
-                      className="fill-[#FFCC36] "
-                      style={{ width: "25px", height: "25px" }}
-                    />
-                  </div>
+                  <FormControlLabel
+                    value="5"
+                    control={<Radio />}
+                    label="Excited"
+                  />
+                  <BsFillEmojiSunglassesFill
+                    className="fill-[#FFCC36] "
+                    style={{ width: "25px", height: "25px" }}
+                  />
+                </div>
               </div>
               <div
-                onClick={() => update((v) => v + 6)}
+                onClick={() => updating("angry")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">

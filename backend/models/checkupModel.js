@@ -3,8 +3,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const checkupSchema = new Schema({
-  score: {
-    type: Number,
+  checkupA: {
+    type: String,
+  },
+  checkupB: {
+    type: String
+  },
+  checkupC: {
+    type: String
+  },
+  checkupD: {
+    type: String
   },
   cause: {
     type: String,

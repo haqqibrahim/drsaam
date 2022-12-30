@@ -47,7 +47,7 @@ const Login = () => {
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className="w-80 mx-2 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="w-80 mx-2 text-sm text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
             <div className="flex flex-col">
@@ -57,7 +57,7 @@ const Login = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className=" mx-2 lg:w-full w-80 md:w-96 text-light text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className=" mx-2 lg:w-full text-sm w-80 md:w-96 text-light text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
             <button

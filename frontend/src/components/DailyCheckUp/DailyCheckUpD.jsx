@@ -8,16 +8,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import {
-  BsArrowRightCircle,
-  BsEmojiFrownFill,
-  BsEmojiDizzyFill,
-  BsFillEmojiSmileFill,
-  BsFillEmojiLaughingFill,
-  BsFillEmojiSunglassesFill,
-  BsFillEmojiAngryFill,
-  BsArrowLeftCircle,
-} from "react-icons/bs";
+import { BsArrowRightCircle, BsArrowLeftCircle } from "react-icons/bs";
 
 const DailyCheckUpD = ({ nextStep, prevStep }) => {
   const Continue = (e) => {
@@ -28,7 +19,10 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
     e.preventDefault();
     prevStep();
   };
-  const [value,update] = useGlobalState("score");
+  const [value, update] = useGlobalState("checkUp");
+  const updating = (checkupD) => {
+    update((p) => ({ ...p, checkupD }));
+  }
   return (
     <AnimationPage>
       <LinearProgress color="inherit" variant="determinate" value={80} />
@@ -45,7 +39,9 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
                 style={{ width: "25px", height: "25px" }}
               />
             </div>
-            <span className="text-center">Rate how your day has been so far</span>
+            <span className="text-center">
+              Rate how your day has been so far
+            </span>
             <div className="">
               {" "}
               <BsArrowRightCircle
@@ -62,7 +58,7 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
               name="radio-buttons-group"
             >
               <div
-                onClick={() => update((v) => v + 1)}
+                onClick={() => updating("good")}
                 className="mt-5 h-20 pl-5 flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex-none">
@@ -70,33 +66,21 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
                     <FormControlLabel
                       value="1"
                       control={<Radio />}
-                      label="Sad"
-                    />
-                    <BsEmojiFrownFill
-                      className="fill-[#FFCC36] "
-                      style={{ width: "25px", height: "25px" }}
+                      label="good"
                     />
                   </div>
                 </div>
               </div>
               <div
-                onClick={() => update((v) => v + 2)}
+                onClick={() => updating("bad")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
-                  <FormControlLabel
-                    value="2"
-                    control={<Radio />}
-                    label="Tired"
-                  />
-                  <BsEmojiDizzyFill
-                    className="fill-[#FFCC36] "
-                    style={{ width: "25px", height: "25px" }}
-                  />
+                  <FormControlLabel value="2" control={<Radio />} label="Bad" />
                 </div>{" "}
               </div>
               <div
-                onClick={() => update((v) => v + 3)}
+                onClick={() => updating("okay")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
@@ -105,57 +89,41 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
                     control={<Radio />}
                     label="Okay"
                   />
-                  <BsFillEmojiSmileFill
-                    className="fill-[#FFCC36] "
-                    style={{ width: "25px", height: "25px" }}
-                  />
                 </div>{" "}
               </div>
               <div
-                onClick={() => update((v) => v + 4)}
+                onClick={() => updating("overwhelming")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
                   <FormControlLabel
                     value="4"
                     control={<Radio />}
-                    label="Happy"
-                  />
-                  <BsFillEmojiLaughingFill
-                    className="fill-[#FFCC36] "
-                    style={{ width: "25px", height: "25px" }}
+                    label="Overwhelming"
                   />
                 </div>{" "}
               </div>
               <div
-                onClick={() => update((v) => v + 5)}
+                onClick={() => updating("terrible")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
                   <FormControlLabel
                     value="5"
                     control={<Radio />}
-                    label="Excited"
-                  />
-                  <BsFillEmojiSunglassesFill
-                    className="fill-[#FFCC36] "
-                    style={{ width: "25px", height: "25px" }}
+                    label="Terrible"
                   />
                 </div>
               </div>
               <div
-                onClick={() => update((v) => v + 6)}
+                onClick={() => updating("stressful")}
                 className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
               >
                 <div className="flex justify-center items-center">
                   <FormControlLabel
                     value="6"
                     control={<Radio />}
-                    label="Angry"
-                  />
-                  <BsFillEmojiAngryFill
-                    className="fill-[#FFCC36] "
-                    style={{ width: "25px", height: "25px" }}
+                    label="Stressful"
                   />
                 </div>{" "}
               </div>

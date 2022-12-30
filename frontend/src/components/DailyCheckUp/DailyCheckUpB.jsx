@@ -11,7 +11,6 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useGlobalState } from "./State";
 const DailyCheckUpB = ({ nextStep, prevStep }) => {
-  const [value,update] = useGlobalState("score");
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -20,6 +19,11 @@ const DailyCheckUpB = ({ nextStep, prevStep }) => {
     e.preventDefault();
     prevStep();
   };
+  
+  const [value, update] = useGlobalState("checkUp");
+  const updating = (checkupB) => {
+    update((p) => ({ ...p, checkupB }));
+  }
   return (
     <AnimationPage>
       <LinearProgress color="inherit" variant="determinate" value={40} />
@@ -42,13 +46,14 @@ const DailyCheckUpB = ({ nextStep, prevStep }) => {
           </div>
         </div>
         <FormControl>
+
           <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
           >
             <div
-              onClick={() => update((v) => v + 1)}
+              onClick={() =>updating("school")}
               className="mt-5 h-20 pl-5 flex items-center w-72 bg-white border-black rounded-lg"
             >
               <div className="flex-none">
@@ -56,52 +61,52 @@ const DailyCheckUpB = ({ nextStep, prevStep }) => {
               </div>
             </div>
             <div
-               onClick={() => update((v) => v + 2)}
+               onClick={() => updating("money")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="2" control={<Radio />} label="Money" />
             </div>
             <div
-              onClick={() => update((v) => v + 3)}
+              onClick={() => updating("roommates")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="3" control={<Radio />} label="Room mates" />
             </div>
             <div
-               onClick={() => update((v) => v + 4)}
+               onClick={() => updating("relationship")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="4" control={<Radio />} label="Relationship" />
             </div>
             <div
-               onClick={() => update((v) => v + 5)}
+               onClick={() => updating("friends")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="5" control={<Radio />} label="Friends" />
             </div>
             <div
-             onClick={() => update((v) => v + 6)}
+             onClick={() => updating("family")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="6" control={<Radio />} label="Family" />
             </div>
             <div
-             onClick={() => update((v) => v + 7)}
+             onClick={() => updating("food")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="6" control={<Radio />} label="Food" />
+              <FormControlLabel value="7" control={<Radio />} label="Food" />
             </div>
             <div
-             onClick={() => update((v) => v + 8)}
+             onClick={() =>updating("health-issues")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="6" control={<Radio />} label="Health Issues" />
+              <FormControlLabel value="8" control={<Radio />} label="Health Issues" />
             </div>
             <div
-             onClick={() => update((v) => v + 9)}
+             onClick={() => updating("others")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="6" control={<Radio />} label="Others" />
+              <FormControlLabel value="9" control={<Radio />} label="Others" />
             </div>
           </RadioGroup>
         </FormControl>

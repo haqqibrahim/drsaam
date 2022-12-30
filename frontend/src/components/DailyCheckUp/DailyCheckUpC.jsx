@@ -11,7 +11,10 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useGlobalState } from "./State";
 const DailyCheckUpC = ({ nextStep, prevStep }) => {
-  const [value,update] = useGlobalState("score");
+  const [value, update] = useGlobalState("checkUp");
+  const updating = (checkupC) => {
+    update((p) => ({ ...p, checkupC }));
+  };
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -48,7 +51,7 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
             name="radio-buttons-group"
           >
             <div
-              onClick={() => update((v) => v + 1)}
+              onClick={() => updating("1")}
               className="mt-5 h-20 pl-5 flex items-center w-72 bg-white border-black rounded-lg"
             >
               <div className="flex-none">
@@ -56,25 +59,25 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
               </div>
             </div>
             <div
-              onClick={() => update((v) => v + 2)}
+              onClick={() => updating("2")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="2" control={<Radio />} label="2" />
             </div>
             <div
-              onClick={() => update((v) => v + 3)}
+              onClick={() => updating("3")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="3" control={<Radio />} label="3" />
             </div>
             <div
-              onClick={() => update((v) => v + 4)}
+              onClick={() => updating("4")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="4" control={<Radio />} label="4" />
             </div>
             <div
-              onClick={() => update((v) => v + 5)}
+              onClick={() => updating("5")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
               <FormControlLabel value="5" control={<Radio />} label="5" />
