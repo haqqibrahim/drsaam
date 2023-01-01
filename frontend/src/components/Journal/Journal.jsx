@@ -55,9 +55,8 @@ const Journal = () => {
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
         <div className="h-screen container bg-[#FFC0CB] flex flex-col justify-center items-center">
-          <div className="flex space-x-10 p-5">
-            <div className=""> </div>
-            <span className="text-center pr-20">
+          <div className="flex space-x-10 p-10">
+            <span className="text-center p-1">
               Heyyy {username}, welcome to your journal <br />
               <span className="font-bold">
                 (The My Eyes Only for your Thoughts)
@@ -65,7 +64,7 @@ const Journal = () => {
             </span>
           </div>
 
-          <div className="mr-10">
+          <div className="">
             <button
               onClick={handleOpen}
               className="mt-5 bg-black text-white rounded-full"
@@ -89,7 +88,7 @@ const Journal = () => {
                     id="txtArea"
                     rows="10"
                     placeholder="Feel free to express yourself..."
-                    cols="40"
+                    cols="20"
                     className="p-4"
                     onChange={(e) => setJournal(e.target.value)}
                   >
