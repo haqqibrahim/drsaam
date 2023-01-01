@@ -15,6 +15,7 @@ import Signup from "./components/Signup-Page/Signup";
 import HomeOne from "./components/Home-1/HomeOne";
 import HomeTwo from "./components/Home-2/HomeTwo";
 import CheckUp from "./components/DailyCheckUp/CheckUp";
+import Journal from "./components/Journal/Journal";
 function App() {
   const { user } = useAuthContext();
 
@@ -49,6 +50,11 @@ function App() {
           exact
           path="/checkup"
           element={user ? <CheckUp /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          exact
+          path="/journal"
+          element={user ? <Journal />: <Navigate to="/login" />}
         ></Route>
       </Routes>
     </Router>

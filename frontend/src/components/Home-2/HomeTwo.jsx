@@ -28,8 +28,8 @@ const HomeTwo = () => {
             Daily Check Up
           </span>
           <div className="w-40 h-1 bg-zinc-300"></div>
-          <span>
-            <a href="http://localhost:3000/journal">My Journal</a>
+          <span onClick={() => navigate("/journal")}>
+           My Journal
           </span>
         </div>
       </div>

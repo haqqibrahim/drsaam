@@ -21,9 +21,13 @@ const checkupSchema = new Schema({
   how: {
     type: String,
   },
-  datetime: {
+  date: {
     type: Date,
-    default: Date.now,
+    default: new Date().toLocaleDateString()
+  },
+  time: {
+    type: Date,
+    default: new Date().toLocaleTimeString()
   },
   user: {
     type: String
