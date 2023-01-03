@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+var moment = require('moment');
 const Schema = mongoose.Schema;
 
 const checkupSchema = new Schema({
@@ -21,14 +21,11 @@ const checkupSchema = new Schema({
   how: {
     type: String,
   },
-  date: {
-    type: Date,
-    default: new Date().toLocaleDateString()
+  datetime: {
+    type: String,
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
-  time: {
-    type: Date,
-    default: new Date().toLocaleTimeString()
-  },
+
   user: {
     type: String
   }

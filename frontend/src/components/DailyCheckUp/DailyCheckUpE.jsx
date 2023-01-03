@@ -49,6 +49,7 @@ const DailyCheckUpE = ({ prevStep }) => {
 
   const submit = () => {
     Api(checkupA,checkupB, checkupC, checkupD, cause, how, email);
+    console.log(checkupA,checkupB, checkupC, checkupD, cause, how, email)
     handleOpen()
   };
 

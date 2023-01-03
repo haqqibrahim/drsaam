@@ -51,36 +51,36 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
             name="radio-buttons-group"
           >
             <div
-              onClick={() => updating("1")}
+              onClick={() => updating("never")}
               className="mt-5 h-20 pl-5 flex items-center w-72 bg-white border-black rounded-lg"
             >
               <div className="flex-none">
-                <FormControlLabel value="1" control={<Radio />} label="1" />
+                <FormControlLabel value="1" control={<Radio />} label="never" />
               </div>
             </div>
             <div
-              onClick={() => updating("2")}
+              onClick={() => updating("rarely")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="2" control={<Radio />} label="2" />
+              <FormControlLabel value="2" control={<Radio />} label="Rarely" />
             </div>
             <div
-              onClick={() => updating("3")}
+              onClick={() => updating("sometimes")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="3" control={<Radio />} label="3" />
+              <FormControlLabel value="3" control={<Radio />} label="Sometimes" />
             </div>
             <div
-              onClick={() => updating("4")}
+              onClick={() => updating("most times/often")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="4" control={<Radio />} label="4" />
+              <FormControlLabel value="4" control={<Radio />} label="Most times/often" />
             </div>
             <div
-              onClick={() => updating("5")}
+              onClick={() => updating("always")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="5" control={<Radio />} label="5" />
+              <FormControlLabel value="5" control={<Radio />} label="Always" />
             </div>
           </RadioGroup>
         </FormControl>

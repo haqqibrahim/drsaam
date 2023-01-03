@@ -6,13 +6,9 @@ const journalSchema = new Schema({
   email: {
     type: String,
   },
-  date: {
+  datetime: {
     type: Date,
-    default: new Date().toLocaleDateString()
-  },
-  time: {
-    type: String,
-    default: new Date().toLocaleTimeString()
+    default: new Date()
   },
   journal: {
     type: String
