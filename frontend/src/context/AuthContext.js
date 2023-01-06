@@ -1,37 +1,23 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useState, useEffect } from "react";
 
-export const AuthContext = createContext()
-
-export const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return { user: action.payload }
-    case 'LOGOUT':
-      return { user: null }
-    default:
-      return state
-  }
-}
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { 
-    user: null
-  })
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'))
-
-    if (user) {
-      dispatch({ type: 'LOGIN', payload: user }) 
-    }
-  }, [])
-
-  console.log('AuthContext state:', state)
-  
+    const unsub = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => {
+      unsub();
+    };
+  }, []);
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
-      { children }
+    <AuthContext.Provider value={{ currentUser }}>
+      {children}
     </AuthContext.Provider>
-  )
-
-}
+  );
+};

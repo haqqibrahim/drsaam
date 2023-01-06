@@ -1,7 +1,9 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useLogin } from "../../hooks/useLogin";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+
 import "../../App.css";
 import "./style.css";
 
@@ -11,14 +13,16 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error, isLoading } = useLogin();
+  const [err, setErr] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password);
-    if (error != null) {
-      console.log(error);
-    } 
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/home-1");
+    } catch (err) {
+      setErr(true);
+    }
   };
 
   return (
@@ -31,9 +35,9 @@ const Login = () => {
           We are here to help you de-stress and be anxiety free. Get signed in
           to begin!
         </span>
-        {error && (
+        {err && (
               <div className="text-red-600 text-center font-loader text-lg font-semibold">
-                {error}
+                {err}
               </div>
             )}
         <div>
@@ -61,11 +65,10 @@ const Login = () => {
               />
             </div>
             <button
-              disabled={isLoading}
               className="mt-10 text-center ml-2 md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]"
             >
               <div>
-                <p className="text-white">Sign in</p>
+                <p className="text-white">Log in</p>
               </div>
             </button>
           </form>

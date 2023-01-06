@@ -1,26 +1,45 @@
 import { React, useState } from "react";
 
-import { useSignup } from "../../hooks/useSignup";
-import {useNavigate} from "react-router-dom"
- 
+import { useNavigate } from "react-router-dom";
+
 import { AnimationPage } from "../../assets/AnimationPage";
+
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 import "../../App.css";
 
 const Signup = () => {
-  const navigate = useNavigate()
-  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const { signup, error, isLoading } = useSignup();
+  const [err, setErr] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(username, email, phone, password);
-    if (error != null) {
-      console.log(error);
-    } 
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(res);
+      await updateProfile(res.user, {
+        displayName,
+        phoneNumber,
+      });
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        displayName,
+        email,
+        status: "user",
+        phoneNumber,
+      });
+      await setDoc(doc(db, "usersChat", res.user.uid), {});
+      navigate("/home-1");
+    } catch (err) {
+      console.log(err);
+      setErr(true);
+    }
   };
 
   return (
@@ -33,15 +52,13 @@ const Signup = () => {
           We are here to help you de-stress and be anxiety free. Note that your
           data is kept private. Sign up to begin!
         </span>
-        {error && (
-              <div className="text-red-600 text-center font-loader text-lg font-semibold px-10">
-                {error}
-              </div>
-            )}
-        <div >
+        {err && (
+          <div className="text-red-600 text-center font-loader text-lg font-semibold px-10">
+            {err}
+          </div>
+        )}
+        <div>
           <form onSubmit={handleSubmit} className="p-5">
-           
-
             <div className="flex flex-col">
               <label className="pl-2 pb-2 text-gray-500">Email Address</label>
               <input
@@ -57,8 +74,8 @@ const Signup = () => {
               <input
                 placeholder="username"
                 type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
+                onChange={(e) => setDisplayName(e.target.value)}
+                value={displayName}
                 className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
@@ -67,10 +84,10 @@ const Signup = () => {
                 Phone Number
               </label>
               <input
-                placeholder="phone number"
+                placeholder="phoneNumber number"
                 type="number"
-                onChange={(e) => setPhone(e.target.value)}
-                value={phone}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={phoneNumber}
                 className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
               />
             </div>
@@ -85,10 +102,7 @@ const Signup = () => {
               />
             </div>
 
-            <button
-              disabled={isLoading}
-              className="mt-10 text-center  md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]"
-            >
+            <button className="mt-10 text-center  md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
               <div>
                 <p className="text-wh">Sign up</p>
               </div>
@@ -144,10 +158,10 @@ const Signup = () => {
     //           className="lg:w-96 rounded-md h-8 border-transparent bg-[#C683E8] p-5"
     //         />
     //         <input
-    //           placeholder="phone number"
+    //           placeholder="phoneNumber number"
     //           type="number"
-    //           onChange={(e) => setPhone(e.target.value)}
-    //           value={phone}
+    //           onChange={(e) => setPhoneNumber(e.target.value)}
+    //           value={phoneNumber}
     //           className=" rounded-md h-8 bg-[#C683E8] p-5"
     //         />
     //         <input

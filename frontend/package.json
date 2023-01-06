@@ -13,7 +13,10 @@
     "a11y-react-emoji": "^1.2.0",
     "animate.css": "^4.1.1",
     "animate.css-react": "^1.1.0",
+    "dotenv": "^16.0.3",
+    "faker": "^6.6.6",
     "fbjs": "^3.0.4",
+    "firebase": "^9.15.0",
     "framer-motion": "^7.7.2",
     "react": "^18.2.0",
     "react-animations": "^1.0.0",
@@ -26,6 +29,7 @@
     "react-transition-group": "^4.4.5",
     "talkjs": "^0.15.5",
     "typewriter-effect": "^2.19.0",
+    "unique-names-generator": "^4.7.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
