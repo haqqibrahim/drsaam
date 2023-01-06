@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { AnimationPage } from "../../assets/AnimationPage";
 import "./style.css";
 // import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import "animate.css/animate.css";
+import { AuthContext } from "../../context/AuthContext";
 
 import Modal from "@mui/material/Modal";
 
@@ -21,7 +21,7 @@ const style = {
 };
 
 const Journal = () => {
-  const { user } = useAuthContext();
+  const { currentUser } = useContext(AuthContext);
   const username = user.username;
   const email = user.email;
 
@@ -57,7 +57,7 @@ const Journal = () => {
         <div className="h-screen container bg-[#FFC0CB] flex flex-col justify-center items-center">
           <div className="flex space-x-10 p-10">
             <span className="text-center p-1">
-              Heyyy {username}, welcome to your journal <br />
+              Heyyy {currentUser.displayName}, welcome to your journal <br />
               <span className="font-bold">
                 (The My Eyes Only for your Thoughts)
               </span>
