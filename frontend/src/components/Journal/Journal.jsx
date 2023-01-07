@@ -22,9 +22,7 @@ const style = {
 
 const Journal = () => {
   const { currentUser } = useContext(AuthContext);
-  const username = user.username;
-  const email = user.email;
-
+  const email = currentUser.email
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
