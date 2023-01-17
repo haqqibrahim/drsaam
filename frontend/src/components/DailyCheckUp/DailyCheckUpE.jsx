@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { AnimationPage } from "../../assets/AnimationPage";
@@ -10,6 +10,7 @@ import { Api } from "./Api";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { TiThumbsOk } from "react-icons/ti";
+import { AuthContext } from "../../context/AuthContext";
 
 import Modal from "@mui/material/Modal";
 
@@ -25,8 +26,8 @@ const style = {
 };
 
 const DailyCheckUpE = ({ prevStep }) => {
-  const { user } = useAuthContext();
-  const email = user.email;
+  const { currentUser } = useContext(AuthContext);
+  const email = currentUser.email;
   const [cause, setCause] = useState("");
   const [how, setHow] = useState("");
 

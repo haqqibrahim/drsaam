@@ -22,8 +22,8 @@ const checkupSchema = new Schema({
     type: String,
   },
   datetime: {
-    type: String,
-    default: moment().format('MMMM Do YYYY, h:mm:ss a')
+    type: Date,
+    default: new Date().toUTCString()
   },
 
   user: {

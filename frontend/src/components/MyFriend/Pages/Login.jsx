@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -16,19 +16,62 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
+  const [succ, setSucc] = useState(false);
+
+  var a = [
+    "Small",
+    "Blue",
+    "cute",
+    "green",
+    "case",
+    "bloom",
+    "time",
+    "king",
+    "queen",
+    "bug",
+    "atom",
+  ];
+  var b = [
+    "Bear",
+    "cat",
+    "big",
+    "lane",
+    "care",
+    "laya",
+    "quell",
+    "kovacs",
+    "jaegar",
+    "konrad",
+    "kaykay",
+  ];
+
+  var rA = Math.floor(Math.random() * a.length);
+  var rB = Math.floor(Math.random() * b.length);
+  var displayName = a[rA] + b[rB];
+  console.log(displayName);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log(res)
-      await setDoc(doc(db, "myfriend", res.user.uid), {
-        status: "myfriend",
-      });
+      console.log(res);
+      setSucc(true);
+      setErr("");
+      // await updateProfile(res.user, {
+      //   displayNamey77
+      // });
+      // await setDoc(doc(db, "myfriend", res.user.uid), {
+      //   status: "myfriend",
+      //   displayName,
+      //   uid: res.user.uid
+      // });
+      // await setDoc(doc(db, "usersChat", res.user.uid), {});
       setErr(false);
       navigate("/myfriend");
     } catch (err) {
-      setErr(true);
+      setErr(err.message);
+      setSucc(false);
     }
   };
 
@@ -43,8 +86,13 @@ const SignIn = () => {
           credentials provided to you
         </span>
         {err && (
-          <div className="text-red-600 text-center font-loader text-lg font-semibold">
+          <div className="text-red-600 text-center font-loader text-base font-semibold">
             {err}
+          </div>
+        )}
+        {succ && (
+          <div className="text-green-400 text-center font-loader text-base font-semibold">
+            Login Successful
           </div>
         )}
         <div>

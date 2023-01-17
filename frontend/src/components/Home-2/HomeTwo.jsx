@@ -19,6 +19,7 @@ import {
 import { CgBot } from "react-icons/cg";
 const HomeTwo = () => {
   const { currentUser } = useContext(AuthContext);
+  localStorage.setItem("currentUserId", currentUser.uid)
   const navigate = useNavigate();
   return (
     <AnimationPage>

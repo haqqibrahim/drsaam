@@ -8,7 +8,7 @@ const journalSchema = new Schema({
   },
   datetime: {
     type: Date,
-    default: new Date()
+    default: new Date().toUTCString()
   },
   journal: {
     type: String

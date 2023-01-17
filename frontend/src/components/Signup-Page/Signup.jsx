@@ -17,12 +17,15 @@ const Signup = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
+  const [succ, setSucc] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       console.log(res);
+      setSucc(true);
+      setErr("");
       await updateProfile(res.user, {
         displayName,
         phoneNumber,
@@ -36,9 +39,9 @@ const Signup = () => {
       });
       await setDoc(doc(db, "usersChat", res.user.uid), {});
       navigate("/home-1");
-    } catch (err) {
-      console.log(err);
-      setErr(true);
+    } catch (error) {
+      setErr(error.message);
+      setSucc(false);
     }
   };
 
@@ -52,8 +55,14 @@ const Signup = () => {
           We are here to help you de-stress and be anxiety free. Note that your
           data is kept private. Sign up to begin!
         </span>
+        {succ && (
+          <div className="text-center font-loader text-base font-semibold text-green-400">
+            Login Successful
+          </div>
+        )}
+
         {err && (
-          <div className="text-red-600 text-center font-loader text-lg font-semibold px-10">
+          <div className="text-red-600 text-center font-loader text-base font-semibold">
             {err}
           </div>
         )}
