@@ -47,7 +47,7 @@ const Input = () => {
     setText("");
   }
   return (
-    <div className="w-full justify-center items-center flex flex-col h-[75px] p-1 bg-[#0F1828]">
+    <div className="fixed bottom-0 w-full justify-center items-center flex flex-col h-[75px] p-1 bg-[#0F1828]">
       <div className="flex space-x-6">
         {" "}
         <input

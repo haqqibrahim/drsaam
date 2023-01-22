@@ -26,7 +26,7 @@ import Chat from "./components/MyFriend/Components/Chat";
 import UserProfile from "./components/MyFriend/Components/UserProfile";
 import MyFriendList from "./components/MyFriend/Components/MyFriendList";
 import MyFriendProfile from "./components/MyFriend/Components/MyFriendProfile";
-
+import Bio from "./components/MyFriend/Pages/Bio"
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -85,11 +85,11 @@ function App() {
           }
         ></Route>
         {/* <Route exact path="/myfriend/register" element={<Register />}></Route> */}
-        <Route exact path="/myfriend/login" element={<SignIn />}></Route>
-        <Route exact path="/myfriend" element={<Home />}></Route>
+        <Route exact path="/myfriend" element={<SignIn />}></Route>
+        <Route exact path="/myfriend/home" element={<Home />}></Route>
         <Route exact path="/myfriend/chat" element={<Chat />}></Route>
         <Route exact path="/chat" element={<Chat />}></Route>
-
+        <Route exact path="/myfriend/bio" element={<Bio />}></Route>
         <Route exact path="/user-profile" element={<UserProfile />}></Route>
         <Route
           exact

@@ -1,7 +1,7 @@
 // Model
 const User = require("../models/userModel");
 const Checkup = require("../models/checkupModel");
-const Journal = require("../models/Journal")
+const Journal = require("../models/Journal");
 const jwt = require("jsonwebtoken");
 
 // Create Token function
@@ -12,20 +12,40 @@ const createToken = (_id) => {
 };
 
 // Submit Journal
-const journal = async(req, res) => {
-  const {email, journal} = req.body
+const journal = async (req, res) => {
+  const { email, journal } = req.body;
 
   try {
     const newJournal = new Journal({
-      email, journal
-    })
-    await newJournal.save()
-    console.log(newJournal)
+      email,
+      journal,
+    });
+    await newJournal.save();
+    console.log(newJournal);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Get last 3 Checkup
+const getLastThreeCheckupsByEmail = async (req, res) => {
+  const user = req.body.email;
+
+  try {
+    const checkupCount = await Checkup.countDocuments({ user });
+    if(checkupCount < 1) {
+        res.status(200).json({ message: "No checkup data available for this user"});
+    } else {
+        const checkups = await Checkup.find({user}).sort({createdAt: -1}).limit(3);
+        res.status(200).json({ checkups });
+    }
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: error.message });
   }
 }
+
 
 // Submit Checkup
 const checkUp = async (req, res) => {
@@ -95,4 +115,10 @@ const signupUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, signupUser, checkUp, journal };
+module.exports = {
+  loginUser,
+  signupUser,
+  checkUp,
+  journal,
+  getLastThreeCheckupsByEmail,
+};

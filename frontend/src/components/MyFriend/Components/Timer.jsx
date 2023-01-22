@@ -28,36 +28,26 @@ const Timer = () => {
   const deleteDocs = async () => {
     try {
       // get Document Ref
-      console.log("log 1");
-      const activeRef = doc(db, "Active", currentUser.uid);
-      const combine = localStorage.getItem("combine");
-      const chatsRef = doc(db, "chats", combine);
-      const usersChatRef = doc(db, "usersChat", currentUser.uid);
       const usersRef = doc(db, "users", currentUser.uid);
       const usersSnap = await getDoc(usersRef);
-      console.log("log 2");
-
+      const activeRef = doc(db, "Active", currentUser.uid);
+      // const combine = localStorage.getItem("combine");
+      // const usersChatRef = doc(db, "usersChat", currentUser.uid);
+     
       if (!activeRef) {
         alert("Session Ended");
       }
-      if (!chatsRef) {
-        console.error("No Chats Ref");
-      }
-      if (!usersChatRef) {
-        console.error("No Users Chats Ref");
-      }
-      console.log("log 3");
+     
+      // if (!usersChatRef) {
+      //   console.error("No Users Chats Ref");
+      // }
 
       await deleteDoc(activeRef);
-      await deleteDoc(chatsRef);
-      await updateDoc(usersChatRef, {});
-      console.log("log 4");
+      // await updateDoc(usersChatRef, {});
 
       if (usersSnap.exists()) {
         navigate("/myfriendlist");
-      } else {
-        alert("This Session is Over");
-      }
+      } 
     } catch (e) {
       console.log("Error: ", e);
     }

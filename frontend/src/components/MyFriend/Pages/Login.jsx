@@ -48,14 +48,12 @@ const SignIn = () => {
   var rA = Math.floor(Math.random() * a.length);
   var rB = Math.floor(Math.random() * b.length);
   var displayName = a[rA] + b[rB];
-  console.log(displayName);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log(res);
+      await signInWithEmailAndPassword(auth, email, password);
       setSucc(true);
       setErr("");
       // await updateProfile(res.user, {
@@ -64,11 +62,12 @@ const SignIn = () => {
       // await setDoc(doc(db, "myfriend", res.user.uid), {
       //   status: "myfriend",
       //   displayName,
-      //   uid: res.user.uid
+      //   uid: res.user.uid,
+      //   bio: ""
       // });
       // await setDoc(doc(db, "usersChat", res.user.uid), {});
       setErr(false);
-      navigate("/myfriend");
+      navigate("/myfriend/home");
     } catch (err) {
       setErr(err.message);
       setSucc(false);

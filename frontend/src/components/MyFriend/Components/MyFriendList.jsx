@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AnimationPage } from "../../../assets/AnimationPage";
-
 import { AuthContext } from "../../../context/AuthContext";
 import { ChatContext } from "../../../context/ChatContext";
 
@@ -84,7 +82,6 @@ const MyFriendList = () => {
         : myFriend.uid + currentUser.uid;
     localStorage.setItem("combine", combinedId);
     setCombine(combinedId);
-
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
       if (!res.exists()) {
@@ -102,9 +99,10 @@ const MyFriendList = () => {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUser.displayName,
+            email: currentUser.email
           },
           [combinedId + ".lastMessage"]: {
-            text: "New User Connecion"
+            text: "New User Connecion",
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -112,12 +110,24 @@ const MyFriendList = () => {
           [currentUser.uid + ".userInfo"]: {
             uid: myFriend.uid,
             displayName: myFriend.displayName,
+            bio: myFriend.bio
           },
+         
+          [currentUser.uid + ".date"]: serverTimestamp(),
+        });
+      } else {
+        await setDoc(doc(db, "Active", currentUser.uid), {
+          [currentUser.uid + ".userInfo"]: {
+            uid: myFriend.uid,
+            displayName: myFriend.displayName,
+            bio: myFriend.bio
+          },
+         
           [currentUser.uid + ".date"]: serverTimestamp(),
         });
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 
@@ -148,7 +158,7 @@ const MyFriendList = () => {
         <div className="divide-y divide-slate-700 space-y-8">
           {myFriend && (
             <div
-              onClick={() => handleSelect()}
+              onClick={handleSelect}
               className="mt-2 h-16 w-full  items-center justify-center"
             >
               <div className="pt-2 items-center flex space-x-4">
@@ -162,14 +172,7 @@ const MyFriendList = () => {
                   {" "}
                   <span className="text-white">{myFriend.displayName}</span>
                   <span className="text-slate-300 text-sm max-w-[100%] max-h-[95%]">
-                    I am a software eng, a very good one. I like cars, movies
-                    and money,{" "}
-                    <span
-                      onClick={() => navigate("/myfriendprofile")}
-                      className="text-slate-600"
-                    >
-                      Read more..
-                    </span>
+                    {myFriend.bio}
                   </span>
                 </div>
               </div>
@@ -202,13 +205,7 @@ const MyFriendList = () => {
                   {active[`${currentUser.uid}.userInfo`].displayName}
                 </span>
                 <span className="text-slate-300 text-sm max-w-[100%] max-h-[95%]">
-                  I like cars, money, sports and rest <br />
-                  <span
-                    onClick={() => navigate("/myfriendprofile")}
-                    className="text-slate-600"
-                  >
-                    Read more..
-                  </span>
+                {active[`${currentUser.uid}.userInfo`].bio}
                 </span>
               </div>
             </div>
@@ -219,25 +216,23 @@ const MyFriendList = () => {
   }
 
   return (
-    <AnimationPage>
-      <div className="bg-[#152033] h-screen w-full container p-6 divide-y divide-slate-700">
-        <div className=" pb-5">
-          <div className="justify-between flex">
-            <div>
-              <span className="text-white text-lg">MyFriend</span>
-            </div>
-            <div onClick={() => navigate("/home-1")}>
-              {" "}
-              <AiOutlineHome
-                className="fill-white pb-2"
-                style={{ width: "40px", height: "40px" }}
-              />
-            </div>
+    <div className="bg-[#152033] h-screen w-full container p-6 divide-y divide-slate-700">
+      <div className=" pb-5">
+        <div className="justify-between flex">
+          <div>
+            <span className="text-white text-lg">MyFriend</span>
+          </div>
+          <div onClick={() => navigate("/home-1")}>
+            {" "}
+            <AiOutlineHome
+              className="fill-white pb-2"
+              style={{ width: "40px", height: "40px" }}
+            />
           </div>
         </div>
-        {output}
       </div>
-    </AnimationPage>
+      {output}
+    </div>
   );
 };
 
