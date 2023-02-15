@@ -47,15 +47,15 @@ const Input = () => {
     setText("");
   }
   return (
-    <div className="w-full justify-center items-center flex flex-col h-[75px] p-1 bg-[#0F1828]">
+    <div className="fixed bottom-0 w-full justify-center items-center flex flex-col h-[75px] p-1 bg-[#0F1828]">
       <div className="flex space-x-6">
         {" "}
         <input
           type="text"
           onChange={(e) => setText(e.target.value)}
-          placeholder="Type..."
+          placeholder="Type . . ."
           value={text}
-          className="inputt bg-[#152033] text-white font-light w-[300px] p-2"
+          className="rounded-md inputt bg-[#152033] text-white font-light w-[100%] p-2 pl-4"
         />
          <IoIosSend
          onClick={() => handleSend()}

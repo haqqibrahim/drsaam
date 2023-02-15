@@ -1,4 +1,4 @@
-const initialState = { timeLeft: 60, color: "white" };
+const initialState = { timeLeft: 1800, color: "green" };
 
 const timerReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -30,7 +30,7 @@ const DailyCheckUpA = ({ nextStep }) => {
   }
   return (
     <AnimationPage>
-      <LinearProgress color="inherit" variant="determinate" value={20} />
+      <LinearProgress color="inherit" variant="determinate" value={20} sx={{height: "8px"}}/>
       <Stack
         direction={{ xs: "row", sm: "column" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}

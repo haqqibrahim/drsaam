@@ -3,7 +3,8 @@ body {
 }
 
 input::placeholder {
-  color: gray;
-  opacity: 5;
+  color: rgb(180, 180, 180);
+  opacity: 8;
+  font-size: 13px;
 }
 

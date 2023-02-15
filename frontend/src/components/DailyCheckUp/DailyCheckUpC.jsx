@@ -25,7 +25,7 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
   };
   return (
     <AnimationPage>
-      <LinearProgress color="inherit" variant="determinate" value={50} />
+      <LinearProgress color="inherit" variant="determinate" value={50} sx={{height: "8px"}}/>
       <div className="container h-screen p-5 bg-[#FFC0CB] flex flex-col justify-center items-center">
         <div className="flex space-x-10 p-5">
           <div className="">
@@ -35,7 +35,7 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
               style={{ width: "25px", height: "25px" }}
             />
           </div>
-          <span className="text-center">How often do you feel this way?</span>
+          <span className="text-center">How often have you felt this way in the past 2 weeks?</span>
           <div className="">
             {" "}
             <BsArrowRightCircle
@@ -51,11 +51,11 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
             name="radio-buttons-group"
           >
             <div
-              onClick={() => updating("never")}
+              onClick={() => updating("Everyday")}
               className="mt-5 h-20 pl-5 flex items-center w-72 bg-white border-black rounded-lg"
             >
               <div className="flex-none">
-                <FormControlLabel value="1" control={<Radio />} label="never" />
+                <FormControlLabel value="1" control={<Radio />} label="Everyday" />
               </div>
             </div>
             <div
@@ -71,17 +71,12 @@ const DailyCheckUpC = ({ nextStep, prevStep }) => {
               <FormControlLabel value="3" control={<Radio />} label="Sometimes" />
             </div>
             <div
-              onClick={() => updating("most times/often")}
+              onClick={() => updating("Never")}
               className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
             >
-              <FormControlLabel value="4" control={<Radio />} label="Most times/often" />
+              <FormControlLabel value="4" control={<Radio />} label="Never" />
             </div>
-            <div
-              onClick={() => updating("always")}
-              className="h-20 mt-5 pl-5  flex items-center w-72 bg-white border-black rounded-lg"
-            >
-              <FormControlLabel value="5" control={<Radio />} label="Always" />
-            </div>
+            
           </RadioGroup>
         </FormControl>
       </div>

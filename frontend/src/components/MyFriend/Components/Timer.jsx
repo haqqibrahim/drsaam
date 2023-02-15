@@ -2,8 +2,17 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { db } from "../../../firebase";
-import { doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  getDoc,
+  updateDoc,
+  increment,
+  arrayUnion,
+  Timestamp
+} from "firebase/firestore";
 import { AuthContext } from "../../../context/AuthContext";
+import { v4 as uuid } from "uuid";
 
 const Timer = () => {
   const { currentUser } = useContext(AuthContext);
@@ -14,7 +23,7 @@ const Timer = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (timeLeft === 1) {
-        deleteDocs();
+        timer_end();
         console.log("Done");
         clearInterval(intervalId);
       } else if (timeLeft === 60) {
@@ -25,46 +34,50 @@ const Timer = () => {
     return () => clearInterval(intervalId);
   }, [timeLeft, dispatch]);
 
-  const deleteDocs = async () => {
+  const timer_end = async () => {
     try {
       // get Document Ref
-      console.log("log 1");
-      const activeRef = doc(db, "Active", currentUser.uid);
-      const combine = localStorage.getItem("combine");
-      const chatsRef = doc(db, "chats", combine);
-      const usersChatRef = doc(db, "usersChat", currentUser.uid);
       const usersRef = doc(db, "users", currentUser.uid);
       const usersSnap = await getDoc(usersRef);
-      console.log("log 2");
+      const activeRef = doc(db, "Active", currentUser.uid);
 
       if (!activeRef) {
         alert("Session Ended");
       }
-      if (!chatsRef) {
-        console.error("No Chats Ref");
-      }
-      if (!usersChatRef) {
-        console.error("No Users Chats Ref");
-      }
-      console.log("log 3");
 
       await deleteDoc(activeRef);
-      await deleteDoc(chatsRef);
-      await updateDoc(usersChatRef, {});
-      console.log("log 4");
 
       if (usersSnap.exists()) {
+        const currentDate = new Date().toLocaleDateString();
+        console.log("Yes Coins");
+        await updateDoc(doc(db, "Rio_Coins", currentUser.uid), {
+          coin: arrayUnion({
+            id: uuid(),
+            value: 5,
+            date_acquired: currentDate,
+            server_Time: Timestamp.now(),
+            earned_activity: {
+              activity_name: "MyFriend",
+              activity_time: currentDate,
+            },
+          }),
+        });
+        console.log("Okay")
+        await updateDoc(doc(db, "users", currentUser.uid), {
+          rio_coin: increment(5),
+        });
+        console.log("Mad")
+        localStorage.setItem("friend", true);
         navigate("/myfriendlist");
-      } else {
-        alert("This Session is Over");
       }
+     
     } catch (e) {
       console.log("Error: ", e);
     }
   };
 
   return (
-    <div style={{ color: color }} className="pt-[5px] pl-3">
+    <div style={{ color: color }} className="pt-[3px] pl-3">
       Time left: {Math.floor(timeLeft / 60)}:{timeLeft % 60}
     </div>
   );

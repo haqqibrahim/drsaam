@@ -8,6 +8,7 @@ import "./style.css";
 import Message from "./Message";
 
 const Messages = () => {
+  
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
 
@@ -24,7 +25,7 @@ const Messages = () => {
   return (
     <div className="bg-[#152033] h-full p-1">
       {messages.map((m) => (
-        <Message message={m} key={m.id} />
+        <Message  message={m} key={m.id} />
       ))}
 
     </div>

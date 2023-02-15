@@ -17,7 +17,7 @@ const Message = ({ message }) => {
       <div className="flex flex-row-reverse">
         <div
           ref={ref}
-          className="max-w-[50%] p-3 m-2 rounded-tl-lg rounded-tr-lg rounded-bl-lg  flex flex-col max-h-[80%] bg-[#375FFF]"
+          className="max-w-[70%] p-3 m-2 rounded-tl-lg rounded-tr-lg rounded-bl-lg  flex flex-col max-h-[80%] bg-[#375FFF]"
         >
           <span className="text-white">
           {message["text"]}
@@ -28,9 +28,9 @@ const Message = ({ message }) => {
     );
   } else {
     output = (
-      <div
+      <div 
         ref={ref}
-        className="max-w-[50%] p-3 m-2 rounded-tl-lg rounded-tr-lg rounded-br-lg flex flex-col max-h-[80%] bg-[#0F1828]"
+        className="max-w-[70%] p-3 m-2 rounded-tl-lg rounded-tr-lg rounded-br-lg flex flex-col max-h-[80%] bg-[#0F1828]"
       >
         <span className="text-white">
         {message["text"]}
