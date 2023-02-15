@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import { AiOutlineHome } from "react-icons/ai";
+import { BsFillInfoCircleFill } from "react-icons/bs";
+import Tooltip from "@mui/material/Tooltip";
 
 const Coin = () => {
   const { currentUser } = useContext(AuthContext);
@@ -64,7 +66,7 @@ const Coin = () => {
   };
 
   return (
-    <div className="bg-black h-screen w-full m-0 p-5 self-center items-center relative">
+    <div className="bg-black h-screen w-screen m-0 p-5 self-center items-center relative">
       <div className="divide-y divide-green-700">
         <div className="pb-5 divide-y divide-red-700">
           <div className="justify-between flex">
@@ -84,25 +86,43 @@ const Coin = () => {
           </div>
         </div>
       </div>
-      <div className="text-gray-400">Recent Coin Activity</div>
+      <div className="flex space-x-2">
+        <div className="text-white pt-[2px]">Recent Coin Activity</div>
+        <div className="">
+          <Tooltip
+            placement="bottom"
+            title="Every MyFriend session give you 5 coins, Every successful Login gives you 1 coin, Every checkup you take gives you 2 coins, and for every 10 journal you get 2 coins"
+            arrow
+          >
+            <button>
+              <BsFillInfoCircleFill
+                className="fill-white"
+                style={{ width: "15px", height: "30px" }}
+              />
+            </button>
+          </Tooltip>
+        </div>
+      </div>
       <div className="mt-6">
-        {coinData.map((coin, index) => (
-          <div key={index} className="flex justify-between mt-2">
-            <span className="text-white font-light">
+        {coinData.slice(-10).map((coin, index) => (
+          <div key={index} className="relative flex justify-between mt-[10px]">
+            <span className="text-gray-400 font-light">
               {coin.earned_activity.activity_name}
             </span>
-            <div className="space-x-10">
-              <span className="text-[#6454FF] text-light">
+            <div className=" space-x-10 text-left justify-end items-end">
+              {/* <span className="text-[#6454FF] w-full text-left text-light">
                 {coin.value} coins
+              </span> */}
+              <span className="text-gray-400 w-[20px] text-left">
+                {coin.date_acquired}
               </span>
-              <span className="text-gray-400">{coin.date_acquired}</span>
             </div>
           </div>
         ))}
       </div>
       <div
         onClick={() => navigate("/bot")}
-        className="absolute inset-x-0 bottom-0 pb-6"
+        className="absolute inset-x-0 ml-2 bottom-0 pb-[25%]"
       >
         <Box sx={{ "& > :not(style)": { m: 1 } }}>
           <Fab sx={{ backgroundColor: "#6454FF" }}>

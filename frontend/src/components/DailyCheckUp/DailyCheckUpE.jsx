@@ -100,7 +100,7 @@ const DailyCheckUpE = ({ prevStep }) => {
           </div>
           <div
             className="bg-white flex flex-col mt-5"
-            style={{ width: "350px", height: "100px" }}
+            style={{ width: "350px", height: "120px" }}
           >
             <span className="font-light text-sm text-left p-3">
               What is the biggest change since yesterday?
@@ -117,7 +117,7 @@ const DailyCheckUpE = ({ prevStep }) => {
           </div>
           <div
             className="bg-white flex flex-col mt-5 "
-            style={{ width: "350px", height: "100px" }}
+            style={{ width: "350px", height: "120px" }}
           >
             <span className="font-light text-sm text-left p-3">
               How do you think you can be assisted?

@@ -106,9 +106,9 @@ const Info = () => {
         <img
           src={props.img}
           alt="feature"
-          className="p-3 pt-4"
-          width="300px"
-          height="350px"
+          className="p-1 pt-4"
+          width="550px"
+          height="500px"
         />
       </div>
     );
@@ -160,12 +160,12 @@ const Info = () => {
         <img
           src={Logo}
           alt="Logo"
-          className="p-3 cursor-pointer pt-4 ml-5 h-[82%] w-[20%] lg:w-[10%]"
+          className="p-3 cursor-pointer pt-4 ml-3 h-[80%] w-[22%] lg:w-[10%]"
         />
         <div className="flex space-x-6 p-4">
           <button
             onClick={() => navigate("/bot")}
-            className="lg:pt-4 pt-2 mr-8 bg-inherit text-white font-light"
+            className="lg:pt-4 pt-2 mr-5 bg-inherit text-white font-light"
           >
             Login
           </button>
@@ -178,7 +178,7 @@ const Info = () => {
         </div>
       </div>
       {/* Header */}
-      <div className="relative pb-20 pt-10 w-screen lg:h-[500px] h-screen bg-black flex flex-col justify-center  items-center space-y-10">
+      <div className="relative pb-4 pt-32 w-screen lg:h-[500px] h-screen bg-black flex flex-col justify-center  items-center space-y-10">
         <div>
           <h1 className="lg:leading-[90px] leading-[50px] h-full text-center text-transparent max-h-full lg:text-[74px] text-[35px] bg-clip-text bg-gradient-to-r from-[#FFFFFF]/20 via-[#FA77FF] to-[#6454FF]">
             Empowering Minds, <br /> Enhancing Lives.
@@ -187,17 +187,17 @@ const Info = () => {
         <div>
           <button
             onClick={() => navigate("/bot")}
-            className="hover:bg-white hover:text-black hover:border-0 bg-inherit w-[131px] h-[49px] lg:hidden rounded-full border-2 border-[#F600FF]/40 text-white font-light"
+            className="hover:bg-white hover:text-black hover:border-0 bg-inherit w-[131px] h-[49px] lg:hidden rounded-full border-2 border-white/40 text-white font-light"
           >
             Get Started
           </button>
         </div>
 
-        <div className="lg:hidden animate-bounce pt-24 inset-x-0 bottom-0 pb-6">
+        <div className="lg:hidden animate-bounce pt-32 inset-x-0 bottom-0 pb-6">
           <Box sx={{ "& > :not(style)": { m: 1 } }}>
-            <Fab sx={{ backgroundColor: "black", border: "1px solid #6454FF" }}>
+            <Fab sx={{ backgroundColor: "black", border: "1px solid black" }}>
               <BsArrowDown
-                className="fill-white hover:fill-black"
+                className="fill-gray-500"
                 style={{ width: "20px", height: "40px" }}
               />
             </Fab>
@@ -224,7 +224,7 @@ const Info = () => {
       {/* Features */}
       <span className="mt-20">
         <p className="text-center pt-14 text-[18px]">What DR.SAAM Offers</p>
-        <p className="text-center text-[28px] p-14 bg-clip-text text-transparent bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
+        <p className="text-center text-[24px] p-14 bg-clip-text text-transparent bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
           We offer a suit of features just for you
         </p>
       </span>
@@ -427,6 +427,7 @@ const Info = () => {
           </div>
         </div>
       )}
+
       {ade && (
         <div className="relative lg:pt-24 flex justify-center items-center">
           <Quotes
@@ -458,7 +459,7 @@ const Info = () => {
         </div>
       )}
       {/* Privacy */}
-      <div className="lg:space-x-64 w-full pt-36 lg:flex-row lg:items-start flex flex-col items-center justify-center">
+      <div className="lg:space-x-64 w-full pt-32 lg:flex-row lg:items-start flex flex-col items-center justify-center">
         <div className="items-center lg:items-start lg:flex-start justify-center self-center">
           <img src={Lock} alt="lock" className="w-[133.33px] h-[175px]" />
         </div>
@@ -466,7 +467,7 @@ const Info = () => {
           <p className="font-semibold items-center text-center lg:text-left text-[24px]">
             Truly Private and Secure
           </p>
-          <p className="text-center lg:text-left px-4 text-[#7C7C7C] text-[12px] w-[383px] pt-5">
+          <p className="text-center leading-6 lg:text-left px-4 text-[#7C7C7C] text-[12px] w-[350px] pt-5">
             Your privacy and security are top priorities while you engage with
             Dr.SAAM. Our platform is designed to keep all user information and
             MyFriend sessions confidential and secure, ensuring that you have a
@@ -478,7 +479,7 @@ const Info = () => {
       <div>
         {/* Question */}
         <div className="relative flex justify-center items-center">
-          <div className="mt-[600px] absolute lg:h-[318px] h-[454px] items-center align-center justify-center w-screen bg-gradient-to-r from-black/80 via-black/70 to-black">
+          <div className="mt-[680px] absolute lg:h-[318px] h-[454px] items-center align-center justify-center w-screen bg-gradient-to-r from-black/80 via-black/70 to-black">
             <p className="text-white font-bold text-center text-[20px] px-[100px] lg:px-0  pt-16">
               Have a question? Reach out to us
             </p>

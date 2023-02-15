@@ -111,8 +111,8 @@ const Journal = () => {
         direction={{ xs: "row", sm: "column" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <div className="h-screen relative container bg-blue-100 flex flex-col justify-center items-center">
-          <div className="flex space-x-10 p-10">
+        <div className="h-screen relative container bg-blue-100 flex flex-col  items-center">
+          <div className="flex space-x-10 p-10 pt-64">
             <span className="text-center p-1">
               Heyyy {currentUser.displayName}, welcome to your journal <br />
               <span className="font-bold">
@@ -132,7 +132,7 @@ const Journal = () => {
           </div>
           <div
             onClick={() => navigate("/bot")}
-            className="absolute inset-x-0 bottom-0 pb-6"
+            className="absolute inset-x-0 bottom-0 pb-[23%]"
           >
             <Box sx={{ "& > :not(style)": { m: 1 } }}>
               <Fab sx={{ backgroundColor: "black" }}>

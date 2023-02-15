@@ -82,7 +82,7 @@ const Login = () => {
   return (
     <AnimationPage>
       <div className="h-screen container flex flex-col justify-center items-center">
-        <span className="text-center font-semibold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-[#000000]/50 to-[#000000]">
+        <span className="-mt-20 text-center font-semibold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-[#000000]/50 to-[#000000]">
           Hello Friend!
         </span>
         <span className="text-center mx-10 px-10 my-5 text-gray-400">

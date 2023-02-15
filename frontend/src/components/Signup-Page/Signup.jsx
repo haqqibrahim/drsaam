@@ -68,7 +68,7 @@ const Signup = () => {
 
   return (
     <AnimationPage>
-      <div className="h-screen container flex flex-col justify-center items-center">
+      <div className=" h-screen container flex flex-col justify-center items-center">
         <span className="text-center font-semibold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-[#000000]/50 to-[#000000]">
           Hello Friend!
         </span>
