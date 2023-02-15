@@ -7,6 +7,7 @@ import {
   Routes,
   Route,
   Navigate,
+  
 } from "react-router-dom";
 import Preloader from "./components/Preloeade/Preloader";
 import WelcomeOne from "./components/Welcome-1/WelcomeOne";
@@ -26,8 +27,13 @@ import Chat from "./components/MyFriend/Components/Chat";
 import UserProfile from "./components/MyFriend/Components/UserProfile";
 import MyFriendList from "./components/MyFriend/Components/MyFriendList";
 import MyFriendProfile from "./components/MyFriend/Components/MyFriendProfile";
-import Bio from "./components/MyFriend/Pages/Bio"
+import Bio from "./components/MyFriend/Pages/Bio";
 import { AuthContext } from "./context/AuthContext";
+import Coin from "./components/Pages/Coin";
+import Info from "./components/Info/Info";
+import Bot from "./Saam/Pages/Bot";
+// import { signOut } from "firebase/auth";
+// import { auth } from "./firebase";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -38,10 +44,13 @@ function App() {
     return children;
   };
 
+
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Preloader />}></Route>
+        <Route exact path="/" element={<Info />}></Route>
+        <Route exact path="/bot" element={<Bot />}></Route>
+        <Route exact path="/loader" element={<Preloader />}></Route>
         <Route exact path="/welcome-1" element={<WelcomeOne />}></Route>
         <Route exact path="/welcome-2" element={<WelcomeTwo />}></Route>
         <Route exact path="/welcome-3" element={<WelcomeThree />}></Route>
@@ -68,6 +77,15 @@ function App() {
         ></Route>
         <Route
           exact
+          path="/coin"
+          element={
+            <ProtectedRoute>
+              <Coin />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          exact
           path="/journal"
           element={
             <ProtectedRoute>
@@ -75,6 +93,7 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
+
         <Route
           exact
           path="/myfriendlist"

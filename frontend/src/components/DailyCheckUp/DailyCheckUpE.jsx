@@ -8,9 +8,18 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 import { useGlobalState } from "./State";
 import { Api } from "./Api";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { TiThumbsOk } from "react-icons/ti";
 import { AuthContext } from "../../context/AuthContext";
+import { v4 as uuid } from "uuid";
+
+import { db } from "../../firebase";
+import {
+  doc,
+  Timestamp,
+  updateDoc,
+  increment,
+  arrayUnion,
+} from "firebase/firestore";
 
 import Modal from "@mui/material/Modal";
 
@@ -32,10 +41,10 @@ const DailyCheckUpE = ({ prevStep }) => {
   const [how, setHow] = useState("");
 
   const [value, update] = useGlobalState("checkUp");
-  const checkupA = value.checkupA
-  const checkupB = value.checkupB
-  const checkupC = value.checkupC
-  const checkupD = value.checkupD
+  const checkupA = value.checkupA;
+  const checkupB = value.checkupB;
+  const checkupC = value.checkupC;
+  const checkupD = value.checkupD;
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -48,17 +57,30 @@ const DailyCheckUpE = ({ prevStep }) => {
     prevStep();
   };
 
-  const submit = () => {
-    Api(checkupA,checkupB, checkupC, checkupD, cause, how, email);
-    console.log(checkupA,checkupB, checkupC, checkupD, cause, how, email)
-    handleOpen()
+  const submit = async () => {
+    Api(checkupA, checkupB, checkupC, checkupD, cause, how, email);
+    const currentDate = new Date().toLocaleDateString();
+    await updateDoc(doc(db, "Rio_Coins", currentUser.uid), {
+      coin: arrayUnion({
+        id: uuid(),
+        value: 1,
+        date_acquired: currentDate,
+        server_Time: Timestamp.now(),
+        earned_activity: {
+          activity_name: "Checkup",
+          activity_time: currentDate,
+        },
+      }),
+    });
+    await updateDoc(doc(db, "users", currentUser.uid), {
+      rio_coin: increment(1),
+    });
+    handleOpen();
   };
-
- 
 
   return (
     <AnimationPage>
-      <LinearProgress color="inherit" variant="determinate" value={100} />
+      <LinearProgress color="inherit" variant="determinate" value={100} sx={{height: "8px"}}/>
       <Stack
         direction={{ xs: "row", sm: "column" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -73,11 +95,11 @@ const DailyCheckUpE = ({ prevStep }) => {
               />
             </div>
             <span className="text-center pr-20">
-              Rate how your day has been so far
+             How do you feel since yesterday?
             </span>
           </div>
           <div
-            className="bg-white flex flex-col"
+            className="bg-white flex flex-col mt-5"
             style={{ width: "350px", height: "100px" }}
           >
             <span className="font-light text-sm text-left p-3">
@@ -94,7 +116,7 @@ const DailyCheckUpE = ({ prevStep }) => {
             />
           </div>
           <div
-            className="bg-white flex flex-col mt-10"
+            className="bg-white flex flex-col mt-5 "
             style={{ width: "350px", height: "100px" }}
           >
             <span className="font-light text-sm text-left p-3">
@@ -113,7 +135,7 @@ const DailyCheckUpE = ({ prevStep }) => {
           <button
             onClick={submit}
             className="mt-5 bg-black text-white rounded-full"
-            style={{ width: "200px", height: "50px" }}
+            style={{ width: "140px", height: "50px" }}
           >
             Proceed
           </button>
@@ -125,14 +147,14 @@ const DailyCheckUpE = ({ prevStep }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-
             <div className="container flex flex-col justify-center items-center">
               <span className="text-center">Checkup Completed</span>
               <TiThumbsOk
                 className="fill-[#FFCC36] mt-5"
                 style={{ width: "50px", height: "50px" }}
               />
-              <button onClick={() => navigate("/home-1")}
+              <button
+                onClick={() => navigate("/bot")}
                 className="mt-5 bg-black text-white rounded-full"
                 style={{ width: "200px", height: "50px" }}
               >

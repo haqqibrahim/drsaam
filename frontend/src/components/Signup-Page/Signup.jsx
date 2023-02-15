@@ -6,9 +6,11 @@ import { AnimationPage } from "../../assets/AnimationPage";
 
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, Timestamp, arrayUnion } from "firebase/firestore";
+import { v4 as uuid } from "uuid";
 
 import "../../App.css";
+import "./style.css"
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -30,15 +32,34 @@ const Signup = () => {
         displayName,
         phoneNumber,
       });
+      const currentDate = new Date().toLocaleDateString();
+      localStorage.setItem("friend", false)
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         displayName,
         email,
         status: "user",
         phoneNumber,
+        login_time: currentDate,
+        rio_coin: 1,
+        journal_count: 0,
       });
       await setDoc(doc(db, "usersChat", res.user.uid), {});
-      navigate("/home-1");
+      await setDoc(doc(db, "Rio_Coins", res.user.uid), {
+        coin: arrayUnion(
+          {
+            id: uuid(),
+            value: 1,
+            date_acquired: currentDate,
+            server_Time: Timestamp.now(),
+            earned_activity: {
+              activity_name: "Login",
+              activity_time:currentDate,
+            },
+           }
+        )
+       });
+      navigate("/bot");
     } catch (error) {
       setErr(error.message);
       setSucc(false);
@@ -48,16 +69,16 @@ const Signup = () => {
   return (
     <AnimationPage>
       <div className="h-screen container flex flex-col justify-center items-center">
-        <span className="text-center font-semibold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
+        <span className="text-center font-semibold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-[#000000]/50 to-[#000000]">
           Hello Friend!
         </span>
-        <span className="text-center mx-16 my-5 text-gray-500">
+        <span className="text-center mx-10 my-5 text-gray-500">
           We are here to help you de-stress and be anxiety free. Note that your
           data is kept private. Sign up to begin!
         </span>
         {succ && (
           <div className="text-center font-loader text-base font-semibold text-green-400">
-            Login Successful
+            Signup Successful
           </div>
         )}
 
@@ -68,50 +89,50 @@ const Signup = () => {
         )}
         <div>
           <form onSubmit={handleSubmit} className="p-5">
-            <div className="flex flex-col">
+            <div className="flex flex-col pb-2">
               <label className="pl-2 pb-2 text-gray-500">Email Address</label>
               <input
                 placeholder="Provide your login email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="mx-2 lg:w-full text-sm pl-4 inputt w-80 md:w-96 text-light text-gray-500 border-2 focus:border-gray-500 border-gray-500 rounded-full bg-white h-8 p-5"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col pb-2">
               <label className="pl-2 pt-2 pb-2 text-gray-500">Username</label>
               <input
-                placeholder="username"
+                placeholder="Username"
                 type="text"
                 onChange={(e) => setDisplayName(e.target.value)}
                 value={displayName}
-                className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="mx-2 lg:w-full text-sm  pl-4 inputt w-80 md:w-96 text-light text-gray-500 border-2 focus:border-gray-500 border-gray-500 rounded-full bg-white h-8 p-5"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col pb-2">
               <label className="pl-2 pt-2 pb-2 text-gray-500">
                 Phone Number
               </label>
               <input
-                placeholder="phoneNumber number"
+                placeholder="Phone Number"
                 type="number"
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 value={phoneNumber}
-                className="lg:w-full w-80 md:w-96 text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="mx-2 lg:w-full text-sm  pl-4 inputt w-80 md:w-96 text-light text-gray-500 border-2 focus:border-gray-500 border-gray-500 rounded-full bg-white h-8 p-5"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col pb-2">
               <label className="pt-2 pl-2 pb-2 text-gray-500">Password</label>
               <input
-                placeholder="provide your login password"
+                placeholder="Provide your login password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="lg:w-full w-80 md:w-96 text-light text-gray-500 border-2 focus:border-indigo-500/100 border-indigo-500/100 rounded-full bg-white h-8 p-5"
+                className="mx-2 lg:w-full text-sm  pl-4 inputt w-80 md:w-96 text-light text-gray-500 border-2 focus:border-gray-500 border-gray-500 rounded-full bg-white h-8 p-5"
               />
             </div>
 
-            <button className="mt-10 text-center  md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-gradient-to-r from-[#F600FF] to-[#1800FF]">
+            <button className="mt-10 text-center  md:w-96 lg:w-full text-white font-loader w-80 h-10 rounded-full bg-[#3A3A3A]">
               <div>
                 <p className="text-wh">Sign up</p>
               </div>
@@ -119,80 +140,14 @@ const Signup = () => {
           </form>
         </div>
         <div onClick={() => navigate("/login")}>
-          <p className="w-full text-base font-loader text-center text-gray-500 pt-2">
+          <p className="cursor-pointer w-full text-sm font-loader text-center text-gray-500 pt-2">
             Alrady have an account?{" "}
-            <span className="text-[#1800FF]">Signin</span>
+            <span className="text-gray-500 font-bold">Signin</span>
           </p>
         </div>
       </div>
     </AnimationPage>
 
-    // <div className="h-screen w-screen bg-gradient-to-r from-[#FA77FF] to-[#6454FF] container flex flex-col justify-center items-center">
-    //   <img src={Logo} alt="Logo" />
-    //   <div>
-    //     <p className="font-loader font-bold text-xl pt-10 text-white">
-    //       <div>
-    //         <Typewriter
-    //           options={{
-    //             strings: ["Hey! I’m Dr.SAAM", "You’re Welcome!"],
-    //             autoStart: true,
-    //             loop: true,
-    //           }}
-    //         />
-    //       </div>
-    //     </p>
-    //   </div>
-    //   <div>
-    //     <p className="w-full text-base font-loader text-center text-gray-100 pt-4">
-    //       Our conversations are private & anonymous. Just provide your <br />{" "}
-    //       email address and password for account ownership
-    //     </p>
-    //   </div>
-    //   <div className=" pt-8">
-    //     {error && <div className="text-red-600 text-center font-loader text-lg font-semibold">{error}</div>}
-    //     <form onSubmit={handleSubmit}>
-    //       <div className="grid grid-cols-2 gap-4">
-    //         <input
-    //           placeholder="username"
-    //           type="text"
-    //           onChange={(e) => setUsername(e.target.value)}
-    //           value={username}
-    //           className="lg:w-96 border-transparent rounded-md h-8 bg-[#C683E8] p-5"
-    //         />
-    //         <input
-    //           placeholder="email"
-    //           type="email"
-    //           onChange={(e) => setEmail(e.target.value)}
-    //           value={email}
-    //           className="lg:w-96 rounded-md h-8 border-transparent bg-[#C683E8] p-5"
-    //         />
-    //         <input
-    //           placeholder="phoneNumber number"
-    //           type="number"
-    //           onChange={(e) => setPhoneNumber(e.target.value)}
-    //           value={phoneNumber}
-    //           className=" rounded-md h-8 bg-[#C683E8] p-5"
-    //         />
-    //         <input
-    //           placeholder="password"
-    //           type="password"
-    //           onChange={(e) => setPassword(e.target.value)}
-    //           value={password}
-    //           className="rounded-md h-8 bg-[#C683E8] p-5"
-    //         />
-    //       </div>
-    //       <button disabled={isLoading} className="ml-10 md:ml-44 lg:ml-44 mt-10 text-center text-white font-loader lg:w-1/2 w-5/6 h-10 rounded-md bg-white">
-    //         <p className="text-[#6454FF]">Sign up</p>
-    //       </button>
-    //     </form>
-    //   </div>
-
-    //   <a href="/login">
-    //     <p className="w-full text-base font-loader text-center text-gray-100 pt-4">
-    //       Already have an account? Sign in
-    //     </p>
-    //   </a>
-    // </div>
   );
 };
 

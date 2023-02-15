@@ -54,7 +54,7 @@ const Chats = () => {
           <div
             key={key}
             onClick={() => handleSelect(chats[key]["userInfo"])}
-            className="mt-4 h-16 w-full  items-center justify-center"
+            className="cursor-pointer mt-4 h-16 w-full  items-center justify-center"
           >
             <div className="pt-2 items-center flex space-x-4">
               <img

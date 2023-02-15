@@ -53,9 +53,9 @@ const Input = () => {
         <input
           type="text"
           onChange={(e) => setText(e.target.value)}
-          placeholder="Type..."
+          placeholder="Type . . ."
           value={text}
-          className="inputt bg-[#152033] text-white font-light w-[300px] p-2"
+          className="rounded-md inputt bg-[#152033] text-white font-light w-[100%] p-2 pl-4"
         />
          <IoIosSend
          onClick={() => handleSend()}
