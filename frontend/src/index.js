@@ -7,6 +7,8 @@ import { ChatContextProvider } from "./context/ChatContext";
 import { Provider } from "react-redux";
 import store from "./Store/store";
 import { Analytics } from "@vercel/analytics/react";
+import reportWebVitals from './reportWebVitals';
+import { sendToVercelAnalytics } from './vitals';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,3 +23,6 @@ root.render(
     </ChatContextProvider>
   </AuthContextProvider>
 );
+
+
+reportWebVitals(sendToVercelAnalytics);
