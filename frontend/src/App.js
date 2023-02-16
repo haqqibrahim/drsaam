@@ -33,8 +33,8 @@ import Info from "./components/Info/Info";
 import Bot from "./Saam/Pages/Bot";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
-import { Analytics } from '@vercel/analytics/react';
 function App() {
+  
   const { currentUser } = useContext(AuthContext);
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -59,7 +59,7 @@ function App() {
     if (loggedInDate) {
       const now = new Date();
       const timeElapsed = now - loggedInDate;
-      const timeRemaining = 1 * 60 * 1000 - timeElapsed; // 3 minutes = 3 * 60 * 1000 ms
+      const timeRemaining = 24 *60 * 60 * 1000 - timeElapsed; // 24 hours = 24 * 60 * 60 * 1000 ms
       if (timeRemaining > 0) {
         timer = setTimeout(() => {
           localStorage.removeItem('loggedInDate');
@@ -149,7 +149,6 @@ function App() {
           element={<MyFriendProfile />}
         ></Route>
       </Routes>
-      <Analytics />
     </Router>
     
   );
