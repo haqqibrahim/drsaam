@@ -1,13 +1,12 @@
 import "./App.css";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext } from "react";
+import { useContext, useEffect,useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-  
 } from "react-router-dom";
 import Preloader from "./components/Preloeade/Preloader";
 import WelcomeOne from "./components/Welcome-1/WelcomeOne";
@@ -32,9 +31,9 @@ import { AuthContext } from "./context/AuthContext";
 import Coin from "./components/Pages/Coin";
 import Info from "./components/Info/Info";
 import Bot from "./Saam/Pages/Bot";
-// import { signOut } from "firebase/auth";
-// import { auth } from "./firebase";
-
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase";
+import { Analytics } from '@vercel/analytics/react';
 function App() {
   const { currentUser } = useContext(AuthContext);
   const ProtectedRoute = ({ children }) => {
@@ -43,8 +42,42 @@ function App() {
     }
     return children;
   };
+  const [loggedInDate, setLoggedInDate] = useState(null);
+  useEffect(() => {
+    const storedDate = localStorage.getItem("loggedInDate");
+    console.log(storedDate)
+    if (storedDate) {
+      setLoggedInDate(new Date(storedDate));
+      console.log(storedDate)
+      console.log(loggedInDate)
+    }
+  }, []);
 
-
+  useEffect(() => {
+    console.log("Ok okok")
+    let timer;
+    if (loggedInDate) {
+      const now = new Date();
+      const timeElapsed = now - loggedInDate;
+      const timeRemaining = 1 * 60 * 1000 - timeElapsed; // 3 minutes = 3 * 60 * 1000 ms
+      if (timeRemaining > 0) {
+        timer = setTimeout(() => {
+          localStorage.removeItem('loggedInDate');
+          setLoggedInDate(null);
+          console.log("You out")
+          signOut(auth)
+          // Log the user out or show a message that they've been automatically logged out
+        }, timeRemaining);
+      } else {
+        localStorage.removeItem('loggedInDate');
+        setLoggedInDate(null);
+        console.log("Outtssss")
+        signOut(auth)
+        // Log the user out or show a message that they've been automatically logged out
+      }
+    }
+    return () => clearTimeout(timer);
+  }, [loggedInDate]);
   return (
     <Router>
       <Routes>
@@ -116,7 +149,9 @@ function App() {
           element={<MyFriendProfile />}
         ></Route>
       </Routes>
+      <Analytics />
     </Router>
+    
   );
 }
 

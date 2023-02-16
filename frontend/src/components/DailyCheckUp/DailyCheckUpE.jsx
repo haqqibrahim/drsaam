@@ -80,7 +80,12 @@ const DailyCheckUpE = ({ prevStep }) => {
 
   return (
     <AnimationPage>
-      <LinearProgress color="inherit" variant="determinate" value={100} sx={{height: "8px"}}/>
+      <LinearProgress
+        color="inherit"
+        variant="determinate"
+        value={100}
+        sx={{ height: "8px" }}
+      />
       <Stack
         direction={{ xs: "row", sm: "column" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -95,7 +100,7 @@ const DailyCheckUpE = ({ prevStep }) => {
               />
             </div>
             <span className="text-center pr-20">
-             How do you feel since yesterday?
+              How do you feel since yesterday?
             </span>
           </div>
           <div
@@ -105,7 +110,8 @@ const DailyCheckUpE = ({ prevStep }) => {
             <span className="font-light text-sm text-left p-3">
               What is the biggest change since yesterday?
             </span>
-            <input
+            <textarea
+              style={{ overflow: "hidden" }}
               type="text"
               name=""
               id=""
@@ -113,7 +119,7 @@ const DailyCheckUpE = ({ prevStep }) => {
               onChange={(e) => setHow(e.target.value)}
               placeholder="Let's know the cause"
               className="text-left pl-3"
-            />
+            ></textarea>
           </div>
           <div
             className="bg-white flex flex-col mt-5 "
@@ -122,7 +128,8 @@ const DailyCheckUpE = ({ prevStep }) => {
             <span className="font-light text-sm text-left p-3">
               How do you think you can be assisted?
             </span>
-            <input
+            <textarea
+              style={{ overflow: "hidden" }}
               type="text"
               name=""
               id=""
@@ -130,7 +137,7 @@ const DailyCheckUpE = ({ prevStep }) => {
               onChange={(e) => setCause(e.target.value)}
               placeholder="Let's know how"
               className="text-left pl-3"
-            />
+            ></textarea>
           </div>
           <button
             onClick={submit}

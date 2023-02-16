@@ -1,5 +1,5 @@
-import React,  { useContext, useState } from "react";
-import "./style.css"
+import React, { useContext, useState } from "react";
+import "./style.css";
 
 import {
   doc,
@@ -15,7 +15,6 @@ import { ChatContext } from "../../../context/ChatContext";
 import { AuthContext } from "../../../context/AuthContext";
 
 import { v4 as uuid } from "uuid";
-
 
 import { IoIosSend } from "react-icons/io";
 const Input = () => {
@@ -45,20 +44,22 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
     setText("");
-  }
+  };
   return (
-    <div className="fixed bottom-0 w-full justify-center items-center flex flex-col h-[75px] p-1 bg-[#0F1828]">
+    <div className="fixed bottom-0 w-screen justify-center items-center flex flex-col max-h-full min-h-[76px] p-1 bg-[#0F1828]">
       <div className="flex space-x-6">
         {" "}
-        <input
+        <textarea
+          // style={{ overflow: "hidden" }}
           type="text"
+         
           onChange={(e) => setText(e.target.value)}
           placeholder="Type . . ."
           value={text}
-          className="rounded-md inputt bg-[#152033] text-white font-light w-[100%] p-2 pl-4"
-        />
-         <IoIosSend
-         onClick={() => handleSend()}
+          className="rounded-md inputt bg-[#152033] text-white font-light max-h-[80%] w-full  p-2 pl-4"
+        ></textarea>
+        <IoIosSend
+          onClick={() => handleSend()}
           className="fill-[#375FFF] mt-2"
           style={{ width: "30px", height: "30px" }}
         />

@@ -55,7 +55,8 @@ const DailyCheckUpB = ({ nextStep, prevStep }) => {
         style={styles.container}
           className="bg-white flex flex-col ml-3 rounded-l-lg rounded-tr-lg "
         >
-          <input
+          <textarea
+          style={{ overflow: "hidden" }}
             type="text"
             name=""
             id=""
@@ -63,7 +64,7 @@ const DailyCheckUpB = ({ nextStep, prevStep }) => {
             onChange={(e) => setVals(e.target.value)}
             placeholder="Let's hear you out..."
             className="text-left p-3 "
-          />
+          ></textarea>
         </div>
       </div>
     </AnimationPage>

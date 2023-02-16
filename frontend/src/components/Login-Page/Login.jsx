@@ -38,6 +38,8 @@ const Login = () => {
         console.log("No coin");
         await setDoc(doc(db, "usersChat", res.user.uid), {});
         localStorage.setItem("id", res.user.uid);
+        const currentDate = new Date();
+        localStorage.setItem('loggedInDate', currentDate);
         setSucc(true);
         setErr(false);
         localStorage.setItem("friend", false)

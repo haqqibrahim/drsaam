@@ -10,7 +10,7 @@ import { doc, setDoc, Timestamp, arrayUnion } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 
 import "../../App.css";
-import "./style.css"
+import "./style.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -33,7 +33,8 @@ const Signup = () => {
         phoneNumber,
       });
       const currentDate = new Date().toLocaleDateString();
-      localStorage.setItem("friend", false)
+      localStorage.setItem("loggedInDate", currentDate);
+      localStorage.setItem("friend", false);
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         displayName,
@@ -46,19 +47,17 @@ const Signup = () => {
       });
       await setDoc(doc(db, "usersChat", res.user.uid), {});
       await setDoc(doc(db, "Rio_Coins", res.user.uid), {
-        coin: arrayUnion(
-          {
-            id: uuid(),
-            value: 1,
-            date_acquired: currentDate,
-            server_Time: Timestamp.now(),
-            earned_activity: {
-              activity_name: "Login",
-              activity_time:currentDate,
-            },
-           }
-        )
-       });
+        coin: arrayUnion({
+          id: uuid(),
+          value: 1,
+          date_acquired: currentDate,
+          server_Time: Timestamp.now(),
+          earned_activity: {
+            activity_name: "Login",
+            activity_time: currentDate,
+          },
+        }),
+      });
       navigate("/bot");
     } catch (error) {
       setErr(error.message);
@@ -147,7 +146,6 @@ const Signup = () => {
         </div>
       </div>
     </AnimationPage>
-
   );
 };
 
