@@ -53,7 +53,7 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const res = await signInWithEmailAndPassword(auth, email, password);
       setSucc(true);
       setErr("");
       await updateProfile(res.user, {
