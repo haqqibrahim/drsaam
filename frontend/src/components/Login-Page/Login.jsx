@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase";
@@ -17,7 +18,6 @@ import "../../App.css";
 import "./style.css";
 
 import { AnimationPage } from "../../assets/AnimationPage";
-import { v4 as uuid } from "uuid";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,9 +37,18 @@ const Login = () => {
       if (loginTime === currentDate) {
         console.log("No coin");
         await setDoc(doc(db, "usersChat", res.user.uid), {});
+        await setDoc(doc(db, "Journal", res.user.uid), {
+          journal: arrayUnion({
+            id: uuid(),
+            title: "Welcome",
+            journal: "Your personal space",
+            server_Time: Timestamp.now(),
+            time: currentDate,
+          }),
+        });
         localStorage.setItem("id", res.user.uid);
-        const currentDate = new Date();
-        localStorage.setItem('loggedInDate', currentDate);
+        const currentDateLogin = new Date();
+        localStorage.setItem('loggedInDate', currentDateLogin);
         setSucc(true);
         setErr(false);
         localStorage.setItem("friend", false)
@@ -69,6 +78,7 @@ const Login = () => {
         console.log("3");
         localStorage.setItem("friend", false)
         await setDoc(doc(db, "usersChat", res.user.uid), {});
+        await setDoc(doc(db, "Journal", res.user.uid), {});
         localStorage.setItem("id", res.user.uid);
         setSucc(true);
         setErr(false);

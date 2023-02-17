@@ -46,6 +46,15 @@ const Signup = () => {
         journal_count: 0,
       });
       await setDoc(doc(db, "usersChat", res.user.uid), {});
+      await setDoc(doc(db, "Journal", res.user.uid), {
+        journal: arrayUnion({
+          id: uuid(),
+          title: "Welcome",
+          journal: "Your personal space",
+          server_Time: Timestamp.now(),
+          time: currentDate,
+        }),
+      });
       await setDoc(doc(db, "Rio_Coins", res.user.uid), {
         coin: arrayUnion({
           id: uuid(),
