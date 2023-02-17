@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { RiAddLine } from "react-icons/ri";
 import { db } from "../../firebase";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -84,18 +85,17 @@ const Recent = () => {
           <div key={index}>
             <div
               onClick={() => handleOpen(data)}
-              className="cursor-pointer w-[96%] mx-2 h-18 bg-white mt-8 p-4 rounded-md"
+              className="cursor-pointer w-[92%] mx-auto h-18 bg-white mt-2 p-4 rounded-md"
             >
-              <div className="text-black font-semibold">{data.title}</div>
+              <div className="text-black font-medium text-[14px]">{data.title}</div>
               <div className="flex space-x-2 justify-between pt-1">
                 {" "}
-                
-                <span className="text-gray-500 font-light">
+                <span className="text-gray-500 font-light text-[13px]">
                   {data.journal.length > 28
                     ? `${data.journal.slice(0, 28)}...`
                     : data.journal}
                 </span>
-                <span className="text-gray-500 font-light font-sm">
+                <span className="text-gray-500 font-light text-[10px]">
                   {data.time}
                 </span>
               </div>
@@ -108,34 +108,28 @@ const Recent = () => {
             >
               <Box sx={style}>
                 <div className="container flex flex-col justify-center items-center rounded-md">
-                  <form className="container flex flex-col justify-center items-center">
-                    <div>
-                      <textarea
-                        type="text"
-                        placeholder="Title"
-                        row="1"
-                        col="1"
-                        className="text-md font-semibold"
-                        onChange={(e) => setTitle(e.target.value)}
-                      >
-                        {title}
-                      </textarea>
-                    </div>
-                    <div>
-                      <textarea
-                        // id="txtArea"
-                        rows="9"
-                        placeholder="Feel free to express yourself..."
-                        cols="22"
-                        className="mr-6 font-light"
-                        onChange={(e) => setJournal(e.target.value)}
-                      >
-                        {journal}
-                      </textarea>
-                    </div>
+                  <form className="container flex flex-col justify-center items-start">
+                    <textarea
+                      type="text"
+                      placeholder="Title"
+                      className="w-[80%] h-[40px]  text-lg font-semibold text-left "
+                      onChange={(e) => setTitle(e.target.value)}
+                    >
+                      {title}
+                    </textarea>
+                    <textarea
+                      // id="txtArea"
+                      rows="9"
+                      placeholder="Feel free to express yourself..."
+                      cols="20"
+                      className="min-w-[80%] max-w-[60%] font-light"
+                      onChange={(e) => setJournal(e.target.value)}
+                    >
+                      {journal}
+                    </textarea>
                     <button
                       onClick={submit}
-                      className="cursor-pointer mt-5 bg-black text-white rounded-full"
+                      className="cursor-pointer mx-auto mt-5 bg-black text-white rounded-full"
                       style={{ width: "150px", height: "40px" }}
                     >
                       Submit
@@ -146,6 +140,15 @@ const Recent = () => {
             </Modal>
           </div>
         ))}
+      <button className="flex space-x-1 items-center text-[13px] text-gray-500 cursor-pointer mx-auto mt-4 rounded-full py-[11px] px-[11px] bg-gray-100 ">
+        {/* <span>Add</span> */}
+      <RiAddLine
+          onClick={handleOpen}
+          className="fill-gray-500 cursor-pointer mx-auto"
+          style={{ width: "20px", height: "20px" }}
+        />
+      </button>
+      
     </>
   );
 };

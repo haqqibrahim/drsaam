@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { MdOutlineAddCircle } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase";
@@ -62,7 +61,6 @@ const Navbar = () => {
   };
   const coin = async () => {
     console.log("Coin");
-    alert("Journal Saved!");
     const usersRef = doc(db, "users", currentUser.uid);
     const usersSnap = await getDoc(usersRef);
     const journalCount = usersSnap.data().journal_count;
@@ -101,13 +99,9 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className="bg-black/10 w-screen h-16 flex p-3 items-center justify-between">
+      <div className="bg-transparent w-screen h-16 flex p-3 items-center justify-center">
         <p className="text-black text-[18px] font-semibold">Journal</p>
-        <MdOutlineAddCircle
-          onClick={handleOpen}
-          className="fill-black cursor-pointer"
-          style={{ width: "30px", height: "30px" }}
-        />
+        
       </div>
       <Modal
         open={open}
@@ -118,23 +112,23 @@ const Navbar = () => {
         <Box sx={style}>
           <div className="container flex flex-col justify-center items-center rounded-md">
             <form className="container flex flex-col justify-center items-center">
-              <div>
+              <div className="">
                 <input
                   type="text"
                   placeholder="Title"
-                  className="text-lg ml-6 font-semibold text-left"
+                  className="w-[80%] text-lg font-semibold text-left "
                   // style={{ fontSize: '24px' }} 
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
-              <div>
+              <div className="">
                 <textarea
                   // id="txtArea"
                   rows="9"
                   placeholder="Feel free to express yourself..."
                   cols="19"
 
-                  className="mt-5 mr-6 font-light"
+                  className="mt-5 ml-5 font-light"
                   onChange={(e) => setJournal(e.target.value)}
                 >
                   {journal}
