@@ -66,7 +66,7 @@ const DailyCheckUpD = ({ nextStep, prevStep }) => {
                     <FormControlLabel
                       value="1"
                       control={<Radio />}
-                      label="good"
+                      label="Good"
                     />
                   </div>
                 </div>

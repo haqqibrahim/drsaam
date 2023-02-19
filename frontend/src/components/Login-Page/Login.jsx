@@ -69,6 +69,15 @@ const Login = () => {
              }
           )
         });
+        await setDoc(doc(db, "Journal", res.user.uid), {
+          journal: arrayUnion({
+            id: uuid(),
+            title: "Welcome",
+            journal: "Your personal space",
+            server_Time: Timestamp.now(),
+            time: currentDate,
+          }),
+        });
         console.log("2");
         localStorage.setItem("friend", false)
         await updateDoc(doc(db, "users", res.user.uid), {
