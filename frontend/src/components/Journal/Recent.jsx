@@ -11,6 +11,7 @@ import {
   onSnapshot,
   arrayUnion,
   Timestamp,
+  increment,
   deleteDoc,
   getDoc,
 } from "firebase/firestore";
