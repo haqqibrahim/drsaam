@@ -53,20 +53,19 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      // const res = 
-      await signInWithEmailAndPassword(auth, email, password);
+      const res = await signInWithEmailAndPassword(auth, email, password);
       setSucc(true);
       setErr("");
-      // await updateProfile(res.user, {
-      //   displayName
-      // });
-      // await setDoc(doc(db, "myfriend", res.user.uid), {
-      //   status: "myfriend",
-      //   displayName,
-      //   uid: res.user.uid,
-      //   bio: ""
-      // });
-      // await setDoc(doc(db, "usersChat", res.user.uid), {});
+      await updateProfile(res.user, {
+        displayName
+      });
+      await setDoc(doc(db, "myfriend", res.user.uid), {
+        status: "myfriend",
+        displayName,
+        uid: res.user.uid,
+        bio: ""
+      });
+      await setDoc(doc(db, "usersChat", res.user.uid), {});
       setErr(false);
       navigate("/myfriend/home");
     } catch (err) {
