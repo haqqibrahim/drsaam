@@ -87,7 +87,6 @@ const Login = () => {
         console.log("3");
         localStorage.setItem("friend", false)
         await setDoc(doc(db, "usersChat", res.user.uid), {});
-        await setDoc(doc(db, "Journal", res.user.uid), {});
         localStorage.setItem("id", res.user.uid);
         setSucc(true);
         setErr(false);
