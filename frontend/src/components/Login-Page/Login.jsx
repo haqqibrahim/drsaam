@@ -37,15 +37,15 @@ const Login = () => {
       if (loginTime === currentDate) {
         console.log("No coin");
         await setDoc(doc(db, "usersChat", res.user.uid), {});
-        await setDoc(doc(db, "Journal", res.user.uid), {
-          journal: arrayUnion({
-            id: uuid(),
-            title: "Welcome",
-            journal: "Your personal space",
-            server_Time: Timestamp.now(),
-            time: currentDate,
-          }),
-        });
+        // await setDoc(doc(db, "Journal", res.user.uid), {
+        //   journal: arrayUnion({
+        //     id: uuid(),
+        //     title: "Welcome",
+        //     journal: "Your personal space",
+        //     server_Time: Timestamp.now(),
+        //     time: currentDate,
+        //   }),
+        // });
         localStorage.setItem("id", res.user.uid);
         const currentDateLogin = new Date();
         localStorage.setItem('loggedInDate', currentDateLogin);
@@ -69,15 +69,15 @@ const Login = () => {
              }
           )
         });
-        await setDoc(doc(db, "Journal", res.user.uid), {
-          journal: arrayUnion({
-            id: uuid(),
-            title: "Welcome",
-            journal: "Your personal space",
-            server_Time: Timestamp.now(),
-            time: currentDate,
-          }),
-        });
+        // await setDoc(doc(db, "Journal", res.user.uid), {
+        //   journal: arrayUnion({
+        //     id: uuid(),
+        //     title: "Welcome",
+        //     journal: "Your personal space",
+        //     server_Time: Timestamp.now(),
+        //     time: currentDate,
+        //   }),
+        // });
         console.log("2");
         localStorage.setItem("friend", false)
         await updateDoc(doc(db, "users", res.user.uid), {
