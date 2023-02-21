@@ -12,6 +12,8 @@ import { v4 as uuid } from "uuid";
 import "../../App.css";
 import "./style.css";
 
+//This component contains the Signup page of Dr. SAAM
+
 const Signup = () => {
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState("");
@@ -149,8 +151,8 @@ const Signup = () => {
         </div>
         <div onClick={() => navigate("/login")}>
           <p className="cursor-pointer w-full text-sm font-loader text-center text-gray-500 pt-2">
-            Alrady have an account?{" "}
-            <span className="text-gray-500 font-bold">Signin</span>
+            Already have an account?{" "}
+            <span className="text-gray-500 font-bold">Sign in</span>
           </p>
         </div>
       </div>
