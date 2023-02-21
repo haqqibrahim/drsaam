@@ -21,6 +21,6 @@ export const db = getFirestore()
 const analytics = getAnalytics(app);
 logEvent(analytics, 'select_content', {
   content_type: 'image',
-  content_id: 'P12453',
+  content_id: 'P12454',
   items: [{ name: 'Kittens' }]
 });
