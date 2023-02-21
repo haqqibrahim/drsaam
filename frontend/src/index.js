@@ -9,6 +9,7 @@ import store from "./Store/store";
 import { Analytics } from "@vercel/analytics/react";
 import reportWebVitals from './reportWebVitals';
 import { sendToVercelAnalytics } from './vitals';
+import { Notifications } from 'react-push-notification';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +17,8 @@ root.render(
     <ChatContextProvider>
       <Provider store={store}>
         <React.StrictMode>
+        <Notifications />
+
           <App />
           <Analytics />
         </React.StrictMode>

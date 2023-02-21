@@ -88,6 +88,14 @@ const MyFriendList = () => {
       if (!res.exists()) {
         // create a chat in chats collection
         await setDoc(doc(db, "chats", combinedId), { message: [] });
+        //Notifcation
+        console.log(combinedId)
+        await setDoc(doc(db, "Notification", combinedId), { 
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
+          msg: "",
+          time: ""
+         });
         // create user chats
         await updateDoc(doc(db, "usersChat", currentUser.uid), {
           [combinedId + ".userInfo"]: {
@@ -117,6 +125,12 @@ const MyFriendList = () => {
           [currentUser.uid + ".date"]: serverTimestamp(),
         });
       } else {
+        await setDoc(doc(db, "Notification", combinedId), { 
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
+          msg: "",
+          time: ""
+         });
         await setDoc(doc(db, "Active", currentUser.uid), {
           [currentUser.uid + ".userInfo"]: {
             uid: myFriend.uid,
@@ -167,7 +181,7 @@ const MyFriendList = () => {
             </span>
             <div
               onClick={() => getFriend()}
-              className="w-full mb-5 text-[14px] h-10 bg-white text-center p-2 text-black text-base rounded-md mt-8 items-center"
+              className="cursor-pointer w-full mb-5 text-[14px] h-10 bg-white text-center p-2 text-black text-base rounded-md mt-8 items-center"
             >
               Get a new MyFriend
             </div>

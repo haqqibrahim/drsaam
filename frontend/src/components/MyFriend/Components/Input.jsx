@@ -5,6 +5,7 @@ import {
   doc,
   updateDoc,
   arrayUnion,
+  setDoc,
   Timestamp,
   serverTimestamp,
 } from "firebase/firestore";
@@ -43,6 +44,13 @@ const Input = () => {
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
+    await setDoc(doc(db, "Notification", data.chatId), { 
+      uid: currentUser.uid,
+      displayName: currentUser.displayName,
+      msg: text,
+      time: Timestamp.now(),
+     });
+   
     setText("");
   };
   return (
