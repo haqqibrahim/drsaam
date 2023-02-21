@@ -253,7 +253,15 @@ const MyFriendList = () => {
           </div> */}
         </div>
       </div>
-      {output}
+      <div className="pt-5">
+        <div
+          onClick={() => getFriend()}
+          className="w-full pointer-events-none text-center p-2 text-white text-base rounded-md mt-3 items-center"
+        >
+         
+         We currently facing a downtime, the AI is at it's capacity!
+        </div>
+      </div>
       <div
         onClick={() => navigate("/bot")}
         className="absolute inset-x-0 bottom-0 pb-6"
