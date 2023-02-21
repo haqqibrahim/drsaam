@@ -19,8 +19,4 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth()
 export const db = getFirestore()
 const analytics = getAnalytics(app);
-logEvent(analytics, 'select_content', {
-  content_type: 'image',
-  content_id: 'P12454',
-  items: [{ name: 'Kittens' }]
-});
+logEvent(analytics, 'notification_received');
