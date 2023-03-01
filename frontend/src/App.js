@@ -1,47 +1,40 @@
 import "./App.css";
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext, useEffect,useState } from "react";
+import { useEffect,useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
+  // Navigate,
 } from "react-router-dom";
-import Preloader from "./components/Preloeade/Preloader";
-import WelcomeOne from "./components/Welcome-1/WelcomeOne";
-import WelcomeTwo from "./components/Welcome-2/WelcomeTwo";
-import WelcomeThree from "./components/Welcome-3/WelcomeThree";
-import Login from "./components/Login-Page/Login";
-import Signup from "./components/Signup-Page/Signup";
-// import HomeOne from "./components/Home-1/HomeOne";
-import HomeTwo from "./components/Home-2/HomeTwo";
-import CheckUp from "./components/DailyCheckUp/CheckUp";
-import Journal from "./components/Journal/Journal";
 
-// import Register from "./components/MyFriend/Pages/Register";
-import SignIn from "./components/MyFriend/Pages/Login";
-import Home from "./components/MyFriend/Pages/Home";
-import Chat from "./components/MyFriend/Components/Chat";
-import UserProfile from "./components/MyFriend/Components/UserProfile";
-import MyFriendList from "./components/MyFriend/Components/MyFriendList";
-import MyFriendProfile from "./components/MyFriend/Components/MyFriendProfile";
-import Bio from "./components/MyFriend/Pages/Bio";
-import { AuthContext } from "./context/AuthContext";
-import Coin from "./components/Pages/Coin";
-import Info from "./components/Info/Info";
-import Bot from "./Saam/Pages/Bot";
+// Contexts
+// import { AuthContext } from "./context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
+
+// Pages
+import Info from "./Pages/Info";
+import Welcome from "./Pages/Welcome"
+import Login from "./Pages/Login"
+import Login2 from "./Pages/Login2"
+import ForgetPassword from "./Pages/ForgetPassword"
+import ResetPasswordMessage from "./Pages/ResetPasswordMessage"
+import ResetPassword from "./Pages/ResetPassword"
+import ResetDone from "./Pages/ResetDone"
+import Signup from "./Pages/Signup"
+import EmailVerification from "./Pages/EmailVerification"
+import SignupProfile from "./Pages/SignupProfile"
+import Preloader from "./Pages/Preloader"
 function App() {
   
-  const { currentUser } = useContext(AuthContext);
-  const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
-    return children;
-  };
+  // const { currentUser } = useContext(AuthContext);
+  // const ProtectedRoute = ({ children }) => {
+  //   if (!currentUser) {
+  //     return <Navigate to="/Welcome" />;
+  //   }
+  //   return children;
+  // };
   const [loggedInDate, setLoggedInDate] = useState(null);
   useEffect(() => {
     const storedDate = localStorage.getItem("loggedInDate");
@@ -82,72 +75,17 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Info />}></Route>
-        <Route exact path="/bot" element={<Bot />}></Route>
-        <Route exact path="/loader" element={<Preloader />}></Route>
-        <Route exact path="/welcome-1" element={<WelcomeOne />}></Route>
-        <Route exact path="/welcome-2" element={<WelcomeTwo />}></Route>
-        <Route exact path="/welcome-3" element={<WelcomeThree />}></Route>
-        <Route exact path="/login" element={<Login />}></Route>
+       <Route exact path="/Welcome" element={<Welcome />}></Route>
+       <Route exact path="/login" element={<Login />}></Route>
+       <Route exact path="/login2" element={<Login2 />}></Route>
+       <Route exact path="/forgetpassword" element={<ForgetPassword />}></Route>
+       <Route exact path="/resetpasswordmessage" element={<ResetPasswordMessage />}></Route>
+        <Route exact path="/resetpassword" element={<ResetPassword />}></Route>
+        <Route exact path="/resetdone" element={<ResetDone />}></Route>
         <Route exact path="/signup" element={<Signup />}></Route>
-
-        <Route
-          exact
-          path="/home-1"
-          element={
-            <ProtectedRoute>
-              <HomeTwo />
-            </ProtectedRoute>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/checkup"
-          element={
-            <ProtectedRoute>
-              <CheckUp />
-            </ProtectedRoute>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/coin"
-          element={
-            <ProtectedRoute>
-              <Coin />
-            </ProtectedRoute>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/journal"
-          element={
-            <ProtectedRoute>
-              <Journal />
-            </ProtectedRoute>
-          }
-        ></Route>
-
-        <Route
-          exact
-          path="/myfriendlist"
-          element={
-            <ProtectedRoute>
-              <MyFriendList />
-            </ProtectedRoute>
-          }
-        ></Route>
-        {/* <Route exact path="/myfriend/register" element={<Register />}></Route> */}
-        <Route exact path="/myfriend" element={<SignIn />}></Route>
-        <Route exact path="/myfriend/home" element={<Home />}></Route>
-        <Route exact path="/myfriend/chat" element={<Chat />}></Route>
-        <Route exact path="/chat" element={<Chat />}></Route>
-        <Route exact path="/myfriend/bio" element={<Bio />}></Route>
-        <Route exact path="/user-profile" element={<UserProfile />}></Route>
-        <Route
-          exact
-          path="/myfriendprofile"
-          element={<MyFriendProfile />}
-        ></Route>
+        <Route exact path="/emailverification" element={<EmailVerification />}></Route>
+        <Route exact path="/signup-profile" element={<SignupProfile />}></Route>
+        <Route exact path="/preloader" element={<Preloader />}></Route>
       </Routes>
     </Router>
     

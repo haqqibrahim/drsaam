@@ -2,9 +2,7 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-input::placeholder {
-  color: rgb(180, 180, 180);
-  opacity: 8;
-  font-size: 13px;
+textarea:focus, input:focus{
+  outline: none;
 }
 
