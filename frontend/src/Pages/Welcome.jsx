@@ -25,11 +25,11 @@ const Welcome = () => {
         <p className="text-center text-[#3A3A3A] text-[24px] font-semibold leading-9">
           Hey Friend!
         </p>
-        <p className="pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] mx-auto w-[280px] h-[84px]">
+        <p className="pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] mx-auto w-[350px] h-[84px]">
           I’m SAAM. Please log in to your account. Your journey towards better
           mental health begins here.
         </p>
-        <div className="flex flex-col gap-2.5 pt-[30px]">
+        <div className="flex flex-col gap-2.5 pt-[30px] w-[350px]">
           <button
             onClick={handleLoginClick}
             className="w-[90%] mx-auto h-[53px] text-white bg-[#3A3A3A] rounded-full "

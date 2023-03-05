@@ -1,10 +1,12 @@
 // Import necessary modules
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db} from "../firebase";
+
 // Define Login component
 const Login2 = () => {
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const Login2 = () => {
       await signInWithEmailAndPassword(auth, email, password).then(
         (userCredentials) => {
           console.log(userCredentials.user);
+        
           if (!userCredentials.user.emailVerified) {
             setSucc(false);
             setErr(
@@ -45,7 +48,8 @@ const Login2 = () => {
             console.log(user);
             setSucc(true);
             setErr("");
-            navigate("/preloader", { state: { message: "preparing" } });
+          setDoc(doc(db, "chats", user.uid), { message: [] });
+            navigate("/preloader", { state: { message: "prepare" } });
           }
         }
       );
