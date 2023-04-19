@@ -5,7 +5,7 @@
 html {
   /* firefox scroll styling */
   scrollbar-width: thin !important;
-  scrollbar-color: #0381f9 #cecece !important;
+  scrollbar-color: #848484 #cecece !important;
 }
 
 ::-webkit-scrollbar {
@@ -17,5 +17,5 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #0381f9;
+  background-color: #848484;
 }
