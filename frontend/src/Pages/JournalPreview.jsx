@@ -39,7 +39,7 @@ const JournalPreview = () => {
   return (
     <div className="relative bg-[#3A3A3A66]/40 w-full h-full max-h-full flex flex-col">
       <span className="flex flex-col mx-auto mt-4">
-        <p className="text-center mx-auto w-[146px] h-[52px] text-white font-semibold leading-[21px] text-[14px]">
+        <p className="text-center mx-auto w-[146px] h-[52px] text-white font-medium leading-[21px] text-[14px]">
           {data.time}
         </p>
       </span>

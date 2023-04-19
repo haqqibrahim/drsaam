@@ -32,7 +32,7 @@ const Journal = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative bg-[#3A3A3A66]/40 w-screen h-screen flex flex-col">
+    <div>
       <div className="w-[387px] h-[120px] rounded-[100px] bg-[#3A3A3A] flex mx-auto mt-[20px]">
         <span className="flex space-x-3 mx-auto">
           <img
@@ -95,7 +95,7 @@ const Journal = () => {
                     />
                   )}
                   <span className="flex flex-col">
-                    <p className="text-white/80 w-[200px] h-[18px] font-light leading-[18px] text-[12px] mt-[14px]">
+                    <p className="text-white/80 w-[205px] h-[18px] font-light leading-[18px] text-[12px] mt-[14px]">
                       {data.time}
                     </p>
                     <p className="text-white w-[287px] text-left h-[24px] font-medium leading-[24px] text-[16px] mt-[8px]">

@@ -61,7 +61,7 @@ const Review = () => {
         </span>
       </div>
       <div className="flex flex-col m-auto">
-        <span className="w-[339px] flex m-auto">
+        <span className="w-[339px] flex m-auto space-x-3">
           <span
             onClick={ext}
             className={
@@ -142,8 +142,8 @@ const Review = () => {
           <span className="m-auto flex space-x-5">
             Send{" "}
             <BiSend
-              className="fill-white cursor-pointer"
-              style={{ width: "24px", height: "24px" }}
+              className="fill-white cursor-pointer my-auto"
+              style={{ width: "18px", height: "18px" }}
             />
           </span>
         </button>

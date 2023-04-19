@@ -24,7 +24,7 @@ const Login = () => {
         <p className="text-center text-[#3A3A3A] text-[24px] font-semibold leading-9">
           Welcome back friend!
         </p>
-        <p className="pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]">
+        <p className="mx-auto pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[90%] h-[84px]">
           Let’s get you logged in again. You are one step away to a better
           mental health.
         </p>
@@ -45,7 +45,7 @@ const Login = () => {
         </div>
         <p
           onClick={() => navigate("/signup")}
-          className="pt-[15px] cursor-pointer text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]"
+          className="mx-auto pt-[15px] cursor-pointer text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]"
         >
           Don’t have an account? <span className="font-bold">Sign up</span>
         </p>

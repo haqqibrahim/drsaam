@@ -20,7 +20,11 @@ const JournalNew = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-
+    if(journal.length === 0) {
+      setErr("Empty journl can't be submitted");
+      setSucc(false);
+    } else {
+      
     const options = {
       weekday: "long",
       year: "numeric",
@@ -55,23 +59,24 @@ const JournalNew = () => {
       setErr(error.message);
       setSucc(false);
     }
+    }
   };
   return (
     <div className=" bg-[#3A3A3A66]/40 w-screen h-screen flex flex-col">
       <div className="w-[391px] flex flex-col h-[802px] my-[20px] bg-white rounded-[24px] m-auto">
         {succ && (
-          <div className="mx-auto mt-2 text-center text-[14px] leading-7 font-nomral w-[350px] font-semibold text-green-400">
+          <div className="mx-auto pt-10 text-center text-[14px] leading-7 font-nomral w-[350px] font-semibold text-green-400">
             Journal Saved
           </div>
         )}
 
         {err && (
-          <div className="mx-auto mt-2 text-red-600 text-[14px] text-center leading-5 font-nomral w-[350px] ">
+          <div className="mx-auto pt-10 text-red-600 text-[14px] text-center leading-5 font-nomral w-[350px] ">
             {err}
           </div>
         )}
-        <div className="flex flex-col mx-auto pt-1">
-          <p className="w-[79px] h-[21px] leading-[21px] text-[14px] mx-auto font-normal lg:pt-[60px]  pt-[30px]">
+        <div className="flex flex-col mx-auto">
+          <p className="w-[79px] h-[21px] leading-[21px] text-[14px] mx-auto font-normal lg:pt-[60px]  pt-[20px]">
             Source Tag
           </p>
           <input

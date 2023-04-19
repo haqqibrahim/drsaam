@@ -67,7 +67,7 @@ const Login2 = () => {
         <p className="text-center text-[#3A3A3A] text-[24px] font-semibold leading-9">
           Welcome back friend!
         </p>
-        <p className="pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]">
+        <p className="pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[90%] mx-auto h-[84px]">
           Let’s get you logged in again. You are one step away to a better
           mental health.
         </p>
@@ -100,7 +100,7 @@ const Login2 = () => {
               Edit
             </p>
           </span>
-          <span className="relative mx-auto  w-[90%] rounded-full bg-[#EEEEEE]">
+          <span className="relative mx-auto w-[90%] rounded-full bg-[#EEEEEE]">
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -110,7 +110,7 @@ const Login2 = () => {
               className="focus:border-[#EEEEEE] mx-auto  text-[#3A3A3A] text-[13px] leading-5 bg-[#EEEEEE] w-[85%] h-[53px] rounded-full p-4"
             />
             <span
-              className="absolute text-right mt-[18px] cursor-pointer"
+              className="absolute text-right mt-[18px] pl-8 cursor-pointer"
               onClick={handleTogglePasswordVisibility}
             >
               {showPassword ? (
@@ -128,7 +128,7 @@ const Login2 = () => {
           </span>{" "}
           <p
             onClick={() => navigate("/forgetpassword")}
-            className="mx-auto pl-7 cursor-pointer text-left text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] "
+            className="mr-auto pl-7 cursor-pointer text-left text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] "
           >
             Forgot Password
           </p>
@@ -151,7 +151,7 @@ const Login2 = () => {
         </form>
         <p
           onClick={() => navigate("/signup")}
-          className="pt-[15px] cursor-pointer text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]"
+          className="mx-auto pt-[15px] cursor-pointer text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]"
         >
           Don’t have an account? <span className="font-bold">Sign up</span>
         </p>

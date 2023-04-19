@@ -30,7 +30,7 @@ import Saam from "./Pages/Saam";
 import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
 import Review from "./Pages/Review";
-import Journal from "./Pages/Journal";
+import Journal from "./Pages/JournalBg";
 import JournalNew from "./Pages/JournalNew";
 import JournalPreview from "./Pages/JournalPreview";
 import JournalEdit from "./Pages/JournalEdit";

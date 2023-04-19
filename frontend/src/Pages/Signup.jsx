@@ -102,7 +102,7 @@ const Signup = () => {
         <p className="text-center text-[#3A3A3A] text-[24px] font-semibold leading-9">
           Create your account
         </p>
-        <p className="pt-[10px] text-[#3A3A3A]  text-center text-[14px] leading-7 font-nomral w-[350px] h-[84px]">
+        <p className="pt-[10px] text-[#3A3A3A]  text-center text-[14px] leading-7 font-nomral w-[90%] mx-auto h-[84px]">
           Looks like you are new here. Let’s set things up! Please not that
           email verification is required for signup as a security measure.
         </p>
@@ -178,10 +178,10 @@ const Signup = () => {
               </span>
             </span>
             <span
-              onClick={() => navigate("/forgetpassword")}
-              className="mx-auto pl-7 relative space-x-2 cursor-pointer text-left text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] "
+             
+              className="mr-auto ml-12 relative space-x-2 cursor-pointer  w-[90%] "
             >
-              <span>Terms and Condition</span>
+              <span className="text-left text-[14px] leading-7 font-nomral text-[#3A3A3A]">Terms and Condition</span>
               <input
                 type="checkbox"
                 required
@@ -208,7 +208,7 @@ const Signup = () => {
         </div>
         <p
           onClick={() => navigate("/login")}
-          className="pt-[15px] cursor-pointer text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]"
+          className="pt-[15px] mx-auto cursor-pointer text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] h-[84px]"
         >
           Already have an account? <span className="font-bold">Login</span>
         </p>
