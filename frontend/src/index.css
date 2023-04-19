@@ -2,3 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  /* firefox scroll styling */
+  scrollbar-width: thin !important;
+  scrollbar-color: #0381f9 #cecece !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #cecece;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0381f9;
+}
