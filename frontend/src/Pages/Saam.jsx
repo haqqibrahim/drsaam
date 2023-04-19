@@ -6,10 +6,9 @@ const Saam = () => {
   return (
     <div className="h-screen flex relative">
       <Header />
-      <div className="pb-[75px] pt-[80px] flex mx-auto">
+      <div className="pt-[80px] pb-[80px] flex m-auto">
         <Messages />
       </div>
-        {" "}
       
        <Footer />
   
