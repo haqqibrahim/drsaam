@@ -4,6 +4,7 @@ import Cool from "../assets/images/cool.png";
 import Normal from "../assets/images/normal.png";
 import Sad from "../assets/images/sad.png";
 import Bad from "../assets/images/bad.png";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/AuthContext";
 import { db } from "../firebase";
@@ -13,6 +14,7 @@ import { v4 as uuid } from "uuid";
 const JournalNew = () => {
   const { currentUser } = useContext(AuthContext);
   const [source, setSource] = useState("");
+  const navigate = useNavigate();
   const [emoji, setEmoji] = useState("");
   const [journal, setJnls] = useState("");
   const [err, setErr] = useState("");
@@ -21,7 +23,7 @@ const JournalNew = () => {
   const submit = async (e) => {
     e.preventDefault();
     if(journal.length === 0) {
-      setErr("Empty journl can't be submitted");
+      setErr("Empty journal can't be submitted");
       setSucc(false);
     } else {
       
@@ -55,6 +57,7 @@ const JournalNew = () => {
       setSucc(true);
       setSource("");
       setJnls("");
+      navigate("/saam")
     } catch (error) {
       setErr(error.message);
       setSucc(false);
@@ -62,7 +65,7 @@ const JournalNew = () => {
     }
   };
   return (
-    <div className=" bg-[#3A3A3A66]/40 w-screen h-screen flex flex-col">
+    <div className=" bg-[#3A3A3A66]/40  flex flex-col">
       <div className="w-[330px] flex flex-col h-[802px] my-[20px] bg-white rounded-[24px] m-auto">
         {succ && (
           <div className="mx-auto pt-10 text-center text-[14px] leading-7 font-nomral w-[350px] font-semibold text-green-400">

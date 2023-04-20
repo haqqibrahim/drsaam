@@ -16,7 +16,7 @@ app.use(cors())
 
 // routes
 app.get("/", (req,res) => {
-  res.send("Hello World")
+  res.send("Hello Saam")
 })
 
 app.use("/saam", SaamRoute)

@@ -110,7 +110,7 @@ const Login2 = () => {
               className="focus:border-[#EEEEEE] mx-auto  text-[#3A3A3A] text-[13px] leading-5 bg-[#EEEEEE] w-[85%] h-[53px] rounded-full p-4"
             />
             <span
-              className="absolute text-right mt-[18px] pl-8 cursor-pointer"
+              className="absolute text-right mt-[18px] pl-1 cursor-pointer"
               onClick={handleTogglePasswordVisibility}
             >
               {showPassword ? (

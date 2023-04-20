@@ -15,12 +15,12 @@ const Home = () => {
         </p>
         <span
           onClick={() => navigate("/menu")}
-          className="cursor-pointer w-[70px] mt-[10px] mr-0  lg:mr-[10px] h-[70px]  flex rounded-full  border-8 border-[#FFC0CB]"
+          className="cursor-pointer w-[70px]  mt-[10px] mr-0  lg:mr-[10px] h-[70px]  flex rounded-full  border-8 border-[#FFC0CB]"
         >
           <FaGripLines className="fill-gray-500 m-auto " />
         </span>
       </div>
-      <div className="m-auto  relative w-[330px] lg:w-[616px] flex h-[166px] bg-[#FFC0CB] rounded-3xl">
+      <div className="m-auto  relative w-[330px] lg:w-[590px]  flex h-[166px] bg-[#FFC0CB] rounded-3xl">
         <div className=" flex flex-col m-auto">
           <span className="w-[301px] lg:w-[559px] h-[58px] lg:h-[63px] flex rounded-[100px] bg-white/50 m-auto">
             <IoPinSharp

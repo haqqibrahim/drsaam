@@ -33,7 +33,7 @@ const Journal = () => {
 
   return (
     <div className="relative bg-[#3A3A3A66]/40 w-screen mx-auto h-screen flex flex-col ">
-      <div className="w-[95%] md:w-[50%] lg:w-[50%] h-[120px] rounded-[100px] bg-[#3A3A3A] flex mx-auto mt-[20px]">
+      <div className="sm:w-[95%] md:w-[10%] lg:w-[25%] h-[120px] rounded-[100px] bg-[#3A3A3A] flex mx-auto mt-[20px]">
         <span className="flex space-x-3 mx-auto">
           <img
             src={Hand}

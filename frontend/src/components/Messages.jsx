@@ -2,19 +2,16 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
-import { setLoading } from '../Action/action';
 const Messages = (props) => {
   const ref = useRef();
   const { currentUser } = useContext(AuthContext);
 
   const [messages, setMessages] = useState([]);
-  useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", currentUser.uid), (doc) => {
       doc.exists() && setMessages(doc.data().message);
-      console.log(messages)
+      console.log(`Aray of the message ${messages}`)
     });
 
     
@@ -23,6 +20,9 @@ const Messages = (props) => {
       unSub();
     };
   }, [currentUser.uid]);
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <div className="h-[100%] flex w-screen lg:w-[100%]  p-1 flex-col mx-auto">
