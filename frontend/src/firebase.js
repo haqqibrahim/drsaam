@@ -6,14 +6,14 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCRaqiCaHUZwPc0zHmMhqFIG9YpUojseaE",
-    authDomain: "dr-saam.firebaseapp.com",
-    projectId: "dr-saam",
-    storageBucket: "dr-saam.appspot.com",
-    messagingSenderId: "21926595256",
-    appId: "1:21926595256:web:a041935f1fecddc408424d",
-    measurementId: "G-BR25TVH7MN"
-  }
+  apiKey: "AIzaSyBozBJbH2GeKlLgSZhOOvt6z6KCh1yt5eA",
+  authDomain: "saam-b212a.firebaseapp.com",
+  projectId: "saam-b212a",
+  storageBucket: "saam-b212a.appspot.com",
+  messagingSenderId: "467301577444",
+  appId: "1:467301577444:web:5e86880dab6879691372f1",
+  measurementId: "G-P30B7K94RJ"
+}
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth()

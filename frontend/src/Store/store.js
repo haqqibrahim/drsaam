@@ -1,10 +1,19 @@
-import { createStore,combineReducers } from "redux";
-import timerReducer from "../Reducer/timeReducer";
+// store.js
+import { createStore } from 'redux';
 
-const store = createStore(
-  combineReducers({
-    timer: timerReducer,
-  })
-);
+const initialState = {
+  isLoading: false,
+};
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case 'SET_LOADING':
+      return { ...state, isLoading: action.isLoading };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer);
 
 export default store;

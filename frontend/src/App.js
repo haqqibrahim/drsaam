@@ -1,78 +1,80 @@
 import "./App.css";
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext, useEffect,useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import Preloader from "./components/Preloeade/Preloader";
-import WelcomeOne from "./components/Welcome-1/WelcomeOne";
-import WelcomeTwo from "./components/Welcome-2/WelcomeTwo";
-import WelcomeThree from "./components/Welcome-3/WelcomeThree";
-import Login from "./components/Login-Page/Login";
-import Signup from "./components/Signup-Page/Signup";
-// import HomeOne from "./components/Home-1/HomeOne";
-import HomeTwo from "./components/Home-2/HomeTwo";
-import CheckUp from "./components/DailyCheckUp/CheckUp";
-import Journal from "./components/Journal/Journal";
 
-// import Register from "./components/MyFriend/Pages/Register";
-import SignIn from "./components/MyFriend/Pages/Login";
-import Home from "./components/MyFriend/Pages/Home";
-import Chat from "./components/MyFriend/Components/Chat";
-import UserProfile from "./components/MyFriend/Components/UserProfile";
-import MyFriendList from "./components/MyFriend/Components/MyFriendList";
-import MyFriendProfile from "./components/MyFriend/Components/MyFriendProfile";
-import Bio from "./components/MyFriend/Pages/Bio";
+// Contexts
 import { AuthContext } from "./context/AuthContext";
-import Coin from "./components/Pages/Coin";
-import Info from "./components/Info/Info";
-import Bot from "./Saam/Pages/Bot";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
+
+// Pages
+import Info from "./Pages/Info";
+import Welcome from "./Pages/Welcome";
+import Login from "./Pages/Login";
+import Login2 from "./Pages/Login2";
+import ForgetPassword from "./Pages/ForgetPassword";
+import ResetPasswordMessage from "./Pages/ResetPasswordMessage";
+import ResetPassword from "./Pages/ResetPassword";
+import ResetDone from "./Pages/ResetDone";
+import Signup from "./Pages/Signup";
+import EmailVerification from "./Pages/EmailVerification";
+import SignupProfile from "./Pages/SignupProfile";
+import Preloader from "./Pages/Preloader";
+import Saam from "./Pages/Saam";
+import Home from "./Pages/Home";
+import Menu from "./Pages/Menu";
+import Review from "./Pages/Review";
+import Journal from "./Pages/JournalBg";
+import JournalNew from "./Pages/JournalNew";
+import JournalPreview from "./Pages/JournalPreview";
+import JournalEdit from "./Pages/JournalEdit";
+import Profile from "./Pages/Profile";
+
 function App() {
-  
   const { currentUser } = useContext(AuthContext);
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/Welcome" />;
     }
     return children;
   };
   const [loggedInDate, setLoggedInDate] = useState(null);
   useEffect(() => {
     const storedDate = localStorage.getItem("loggedInDate");
-    console.log(storedDate)
+    console.log(storedDate);
     if (storedDate) {
       setLoggedInDate(new Date(storedDate));
-      console.log(storedDate)
-      console.log(loggedInDate)
+      console.log(storedDate);
+      console.log(loggedInDate);
     }
   }, []);
 
   useEffect(() => {
-    console.log("Ok okok")
+    console.log("Ok okok");
     let timer;
     if (loggedInDate) {
       const now = new Date();
       const timeElapsed = now - loggedInDate;
-      const timeRemaining = 24 *60 * 60 * 1000 - timeElapsed; // 24 hours = 24 * 60 * 60 * 1000 ms
+      const timeRemaining = 24 * 60 * 60 * 1000 - timeElapsed; // 24 hours = 24 * 60 * 60 * 1000 ms
       if (timeRemaining > 0) {
         timer = setTimeout(() => {
-          localStorage.removeItem('loggedInDate');
+          localStorage.removeItem("loggedInDate");
           setLoggedInDate(null);
-          console.log("You out")
-          signOut(auth)
+          console.log("You out");
+          signOut(auth);
           // Log the user out or show a message that they've been automatically logged out
         }, timeRemaining);
       } else {
-        localStorage.removeItem('loggedInDate');
+        localStorage.removeItem("loggedInDate");
         setLoggedInDate(null);
-        console.log("Outtssss")
-        signOut(auth)
+        console.log("Outtssss");
+        signOut(auth);
         // Log the user out or show a message that they've been automatically logged out
       }
     }
@@ -82,38 +84,62 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Info />}></Route>
-        <Route exact path="/bot" element={<Bot />}></Route>
-        <Route exact path="/loader" element={<Preloader />}></Route>
-        <Route exact path="/welcome-1" element={<WelcomeOne />}></Route>
-        <Route exact path="/welcome-2" element={<WelcomeTwo />}></Route>
-        <Route exact path="/welcome-3" element={<WelcomeThree />}></Route>
+        <Route exact path="/Welcome" element={<Welcome />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/login2" element={<Login2 />}></Route>
+        <Route
+          exact
+          path="/forgetpassword"
+          element={<ForgetPassword />}
+        ></Route>
+        <Route
+          exact
+          path="/resetpasswordmessage"
+          element={<ResetPasswordMessage />}
+        ></Route>
+        <Route exact path="/resetpassword" element={<ResetPassword />}></Route>
+        <Route exact path="/resetdone" element={<ResetDone />}></Route>
         <Route exact path="/signup" element={<Signup />}></Route>
-
         <Route
           exact
-          path="/home-1"
+          path="/emailverification"
+          element={<EmailVerification />}
+        ></Route>
+        <Route exact path="/signup-profile" element={<SignupProfile />}></Route>
+        <Route exact path="/preloader" element={<Preloader />}></Route>
+        <Route
+          exact
+          path="/saam"
           element={
             <ProtectedRoute>
-              <HomeTwo />
+              <Saam />
             </ProtectedRoute>
           }
         ></Route>
         <Route
           exact
-          path="/checkup"
+          path="/home"
           element={
             <ProtectedRoute>
-              <CheckUp />
+              <Home />
             </ProtectedRoute>
           }
         ></Route>
         <Route
           exact
-          path="/coin"
+          path="/menu"
           element={
             <ProtectedRoute>
-              <Coin />
+              <Menu />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/review"
+          element={
+            <ProtectedRoute>
+              <Review />
             </ProtectedRoute>
           }
         ></Route>
@@ -126,31 +152,44 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
-
         <Route
           exact
-          path="/myfriendlist"
+          path="/journalnew"
           element={
             <ProtectedRoute>
-              <MyFriendList />
+              <JournalNew />
             </ProtectedRoute>
           }
         ></Route>
-        {/* <Route exact path="/myfriend/register" element={<Register />}></Route> */}
-        <Route exact path="/myfriend" element={<SignIn />}></Route>
-        <Route exact path="/myfriend/home" element={<Home />}></Route>
-        <Route exact path="/myfriend/chat" element={<Chat />}></Route>
-        <Route exact path="/chat" element={<Chat />}></Route>
-        <Route exact path="/myfriend/bio" element={<Bio />}></Route>
-        <Route exact path="/user-profile" element={<UserProfile />}></Route>
         <Route
           exact
-          path="/myfriendprofile"
-          element={<MyFriendProfile />}
+          path="/journalpreview"
+          element={
+            <ProtectedRoute>
+              <JournalPreview />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/journaledit"
+          element={
+            <ProtectedRoute>
+              <JournalEdit />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
         ></Route>
       </Routes>
     </Router>
-    
   );
 }
 
