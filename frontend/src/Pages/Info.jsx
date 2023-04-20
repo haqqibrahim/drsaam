@@ -74,10 +74,10 @@ const Info = () => {
           </Link>
         </header>
 
-        <h2 className='text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-clip-text text-transparent w-[734px] font-normal text-[74px] leading-[100px] bg-[linear-gradient(100.26deg,rgba(255,255,255,0.2)_3.12%,rgba(255,255,255,0.5)_27.6%,#FA77FF_50.52%,#6454FF_80.21%)] phones:font-medium phones:text-[10vw] phones:leading-[78px] phones:w-[90vw] xs-phones:leading-[60px]'>
+        <h2 className='text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-clip-text text-transparent w-[734px] font-normal text-[74px] leading-[100px] bg-[linear-gradient(100.26deg,rgba(255,255,255,0.2)_3.12%,rgba(255,255,255,0.5)_27.6%,#FA77FF_50.52%,#6454FF_80.21%)] phones:font-medium phones:text-[10vw] phones:leading-[78px] phones:w-[100vw] xs-phones:leading-[60px]'>
           Empowering minds, Enhancing lives.
           <Link
-            to='/login'
+            to='/welcome'
             className='font-semibold text-[14px] leading-[21px] py-[10px] px-[25px] text-white border-2 border-[rgba(255,255,255,0.4)] rounded-[25px] mx-auto hidden phones:block max-w-fit xs-phones:mt-5 transition-all duration-500 hover:bg-white hover:text-black'
           >
             Get Started

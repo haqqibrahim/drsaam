@@ -27,3 +27,7 @@ html {
 .x-scroll::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+.x-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.02);
+}

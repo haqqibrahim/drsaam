@@ -2,7 +2,7 @@ const ArrowUp = ({ extraStyles }) => (
   <button
     style={extraStyles}
     onClick={() => window.scrollTo(0, 0)}
-    className='grid place-items-center mx-auto mt-10 -rotate-180 rounded-[50%] w-10 h-10 bg-[#848484] text-white outline-0'
+    className='grid place-items-center mx-auto mt-16 -rotate-180 rounded-[50%] w-10 h-10 bg-[#848484] text-white outline-0'
   >
     <svg width='20' height='40' viewBox='0 0 20 40' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <g clipPath='url(#clip0_1037_146)'>
