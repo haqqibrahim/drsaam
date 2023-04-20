@@ -61,7 +61,7 @@ const Footer = (props) => {
   }, [currentUser.uid]);
 
   const handleSubmit = () => {
-    fetch("http://localhost:5000/saam", {
+    fetch("https://murmuring-gorge-56642.herokuapp.com//saam", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
