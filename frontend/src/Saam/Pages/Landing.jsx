@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import lockImage from '../../assets/svgs/lock.svg';
-import openQuote from '../../assets/svgs/open-quote.svg';
-import closeQuote from '../../assets/svgs/close-quote.svg';
+import lockImage from '../assets/svgs/lock.svg';
+import openQuote from '../assets/svgs/open-quote.svg';
+import closeQuote from '../assets/svgs/close-quote.svg';
 
-import ArrowUp from '../Components/ArrowUp';
+import ArrowUp from '../components/ArrowUp';
 
 const Landing = () => {
   const [subSection, setSubSection] = useState('Journal');
@@ -74,7 +74,7 @@ const Landing = () => {
           </Link>
         </header>
 
-        <h2 className='text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-clip-text text-transparent w-[734px] font-normal text-[74px] leading-[100px] bg-[linear-gradient(100.26deg,rgba(255,255,255,0.2)_3.12%,rgba(255,255,255,0.5)_27.6%,#FA77FF_50.52%,#6454FF_80.21%)] phones:font-medium phones:text-[37px] phones:leading-[78px] phones:w-[90vw] xs-phones:text-[10vw] xs-phones:leading-[60px]'>
+        <h2 className='text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-clip-text text-transparent w-[734px] font-normal text-[74px] leading-[100px] bg-[linear-gradient(100.26deg,rgba(255,255,255,0.2)_3.12%,rgba(255,255,255,0.5)_27.6%,#FA77FF_50.52%,#6454FF_80.21%)] phones:font-medium phones:text-[10vw] phones:leading-[78px] phones:w-[90vw] xs-phones:leading-[60px]'>
           Empowering minds, Enhancing lives.
           <Link
             to='/login'
@@ -84,7 +84,7 @@ const Landing = () => {
           </Link>
         </h2>
 
-        <div className='bg-[url(./assets/svgs/arrow-down.svg)] w-5 h-10 bg-no-repeat bg-center absolute top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2 hidden phones:block' />
+        <div className='bg-[url(./assets/svgs/arrow-down.svg)] animate-bounce w-5 h-10 bg-no-repeat bg-center absolute top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2 hidden phones:block' />
       </section>
 
       <section className='py-[177px] overflow-x-hidden bg-[#f5f5f7] phones:rounded-[25px] phones:mt-[140px] phones:py-[60px] phones:px-[58px]'>
@@ -101,13 +101,13 @@ const Landing = () => {
           Saam offer these collaborative features because it care about your mental wellbeing
         </p>
 
-        <div className='bg-[#121212] relative mt-[146px] rounded-[25px] pt-[50px] pb-[135px] phones:mt-[140px] phones:px-[30px] phones:pt-[30px] phones:pb-[68px]'>
-          <header className='flex items-center justify-center gap-x-[5%] gap-y-1 xs-phones:flex-col'>
+        <div className='bg-[#121212] relative mt-[146px] rounded-[25px] p-[50px_0_135px] phones:mt-[140px] phones:p-[30px_30px_68px]'>
+          <header className='x-scroll flex items-center justify-center gap-x-[5%] gap-y-1 overflow-auto xs-phones:pb-4 xs-phones:justify-start'>
             {buttonTexts.map(buttonText => (
               <button
                 key={buttonText}
                 onClick={() => setSubSection(buttonText)}
-                className={`font-medium whitespace-nowrap text-[24px] py-5 px-10 leading-9 rounded-[100px] transition-all duration-500 phones:rounded-[50px] phones:text-[16px] phones:leading-6 phones:py-[10px] phones:px-[18px] ${
+                className={`font-medium whitespace-nowrap flex-shrink-0 text-[24px] py-5 px-10 leading-9 rounded-[100px] transition-all duration-500 phones:rounded-[50px] phones:text-[16px] phones:leading-6 phones:py-[10px] phones:px-[18px] ${
                   subSection === buttonText
                     ? 'text-[#3a3a3a] bg-white'
                     : 'text-[#9e9e9e] bg-transparent'
@@ -131,7 +131,7 @@ const Landing = () => {
         <div className='bg-[rgba(18,18,18,0.8)] rounded-[25px] text-center mx-auto mt-[140px] w-[70%] grid grid-cols-[21px_minmax(0,1fr)_21px] grid-rows-[30px_auto_45px] px-[3%] pt-24 pb-[115px] phones:mt-[100px] phones:w-full'>
           <img src={openQuote} alt='' className='self-end' />
           <img src={closeQuote} alt='' className='col-start-3 self-end' />
-          <p className='font-semibold text-[24px] leading-9 text-white col-start-1 col-end-4'>
+          <p className='font-semibold text-[24px] leading-9 text-white col-start-1 col-end-4 xs-phones:text-[22px]'>
             Take care of your mind and soul, it's the only place you have to live
           </p>
           <small className='col-start-1 col-end-4 font-normal text-[16px] leading-6 text-[#7c7c7c] self-end phones:mt-[30px]'>
