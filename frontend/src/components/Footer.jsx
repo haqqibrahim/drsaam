@@ -106,15 +106,15 @@ const Footer = (props) => {
     };
   return (
     <div className=" inset-x-0  bottom-0 fixed bg-white w-screen h-fit">
-      <div className=" space-x-1  rounded-[100px]   w-[90%] flex m-auto h-[80px] bg-[#CBE0E6] p-1">
-        <div className="h-[60px] ml-[0.5%] cursor-pointer flex w-[60px] rounded-[100px] bg-white my-auto">
+      <div className=" space-x-1  rounded-[100px]   w-[90%] flex m-auto h-[69px] bg-[#CBE0E6] p-1">
+        <div className="h-[55px] ml-[0.5%] cursor-pointer flex w-[60px] rounded-[100px] bg-white my-auto">
           <TbSmartHome
             onClick={() => navigate("/journal")}
             className="fill-white m-auto"
             style={{ width: "24px", height: "20px" }}
           />
         </div>
-        <div className="h-[60px] relative flex lg:w-[93.5%] w-[90%] rounded-[100px] bg-white my-auto">
+        <div className="h-[60px] relative flex lg:w-[93.5%] mr-[0.8rem] w-[90%] rounded-[100px] bg-white my-auto">
           <IoPinSharp
             className="fill-[#3A3A3A] m-auto absolute inset-y-0 left-0 ml-2"
             style={{ width: "24px", height: "20px" }}
@@ -125,7 +125,7 @@ const Footer = (props) => {
             value={text}
             onKeyDown={handleKeyPress}
             placeholder="How can I help you?"
-            className="w-[80%] pr-5 lg:w-[95%] m-auto leading-[22.5px]  placeholder:leading-[22.5px] text-[15px] placeholder:text-[15px] font-normal placeholder:font-normal text-[#3A3A3A]"
+            className="w-[80%] pr-5 lg:w-[95%] pl-[0.4rem] m-auto leading-[22.5px]  placeholder:leading-[22.5px] text-[15px] placeholder:text-[15px] font-normal placeholder:font-normal text-[#3A3A3A]"
           />
           <BiSend
             onClick={send}

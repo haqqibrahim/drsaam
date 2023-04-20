@@ -32,8 +32,8 @@ const Journal = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <div className="w-[387px] h-[120px] rounded-[100px] bg-[#3A3A3A] flex mx-auto mt-[20px]">
+    <div className="relative bg-[#3A3A3A66]/40 w-screen mx-auto h-screen flex flex-col ">
+      <div className="w-[95%] md:w-[50%] lg:w-[50%] h-[120px] rounded-[100px] bg-[#3A3A3A] flex mx-auto mt-[20px]">
         <span className="flex space-x-3 mx-auto">
           <img
             src={Hand}
@@ -44,7 +44,7 @@ const Journal = () => {
             <p className="text-white w-[111px] h-[24px] font-medium leading-6 text-[16px] mt-[14px]">
               Journal notes
             </p>
-            <p className="text-white/80 w-[272px] text-left h-[63px] font-medium leading-[21px] text-[14px]">
+            <p className="text-white/80 w-[230px] mr-[20px] text-left h-[50px] font-medium leading-[21px] text-[12px]">
               Tap on a <span className="text-white">journal note</span> to read
               or edit it’s contents or Tap on your{" "}
               <span className="text-white">emoji tag</span> to begin a
@@ -53,62 +53,65 @@ const Journal = () => {
           </span>
         </span>
       </div>
-      <div className="mt-[40px] gap-y-[10px] flex flex-col">
-        {jnls.slice(-4).reverse().map((data, index) => {
-          let emoji;
-          switch (data.emoji) {
-            case "Hand":
-              emoji = Hand;
-              break;
-            case "Terrific":
-              emoji = Terrific;
-              break;
-            case "Happy":
-              emoji = Happy;
-              break;
-            case "Neutral":
-              emoji = Neutral;
-              break;
-            case "Sad":
-              emoji = Sad;
-              break;
-            case "Awful":
-              emoji = Awful;
-              break;
-            default:
-              emoji = null;
-          }
-          return (
-            <div key={index}>
-              <div className="w-[387px] h-[78px] rounded-[100px] bg-[#3A3A3A] flex mx-auto">
-                <span
-                  onClick={() =>
-                    navigate("/journalpreview", { state: { message: data } })
-                  }
-                  className="cursor-pointer flex space-x-3 mx-auto"
-                >
-                  {emoji && (
-                    <img
-                      src={emoji}
-                      alt={data.emoji}
-                      className="w-[50p] h-[50px] m-auto"
-                    />
-                  )}
-                  <span className="flex flex-col">
-                    <p className="text-white/80 w-[205px] h-[18px] font-light leading-[18px] text-[12px] mt-[14px]">
-                      {data.time}
-                    </p>
-                    <p className="text-white w-[287px] text-left h-[24px] font-medium leading-[24px] text-[16px] mt-[8px]">
-                      {data.journal.length > 28
-                        ? `${data.journal.slice(0, 28)}...`
-                        : data.journal}
-                    </p>
+      <div className="mt-[40px] gap-y-[10px] flex flex-col mx-auto">
+        {jnls
+          .slice(-4)
+          .reverse()
+          .map((data, index) => {
+            let emoji;
+            switch (data.emoji) {
+              case "Hand":
+                emoji = Hand;
+                break;
+              case "Terrific":
+                emoji = Terrific;
+                break;
+              case "Happy":
+                emoji = Happy;
+                break;
+              case "Neutral":
+                emoji = Neutral;
+                break;
+              case "Sad":
+                emoji = Sad;
+                break;
+              case "Awful":
+                emoji = Awful;
+                break;
+              default:
+                emoji = null;
+            }
+            return (
+              <div key={index}>
+                <div className="w-[330px] h-[78px] rounded-[100px] bg-[#3A3A3A] flex mx-auto">
+                  <span
+                    onClick={() =>
+                      navigate("/journalpreview", { state: { message: data } })
+                    }
+                    className="cursor-pointer flex space-x-3 mx-auto"
+                  >
+                    {emoji && (
+                      <img
+                        src={emoji}
+                        alt={data.emoji}
+                        className="w-[40p] h-[40px] m-auto pl-2"
+                      />
+                    )}
+                    <span className="flex flex-col">
+                      <p className="text-white/80 w-[205px] h-[18px] font-light leading-[18px] text-[12px] mt-[4px]">
+                        {data.time}
+                      </p>
+                      <p className="text-white w-[240px] text-left h-[24px] font-medium leading-[24px] text-[14px] mt-[8px]">
+                        {data.journal.length > 28
+                          ? `${data.journal.slice(0, 28)}...`
+                          : data.journal}
+                      </p>
+                    </span>
                   </span>
-                </span>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       <div className="space-y-2 absolute inset-x-0 bottom-0 mb-[21px]">
         <span

@@ -63,7 +63,7 @@ const JournalNew = () => {
   };
   return (
     <div className=" bg-[#3A3A3A66]/40 w-screen h-screen flex flex-col">
-      <div className="w-[391px] flex flex-col h-[802px] my-[20px] bg-white rounded-[24px] m-auto">
+      <div className="w-[330px] flex flex-col h-[802px] my-[20px] bg-white rounded-[24px] m-auto">
         {succ && (
           <div className="mx-auto pt-10 text-center text-[14px] leading-7 font-nomral w-[350px] font-semibold text-green-400">
             Journal Saved
@@ -80,7 +80,7 @@ const JournalNew = () => {
             Source Tag
           </p>
           <input
-            className="p-4 placeholder:text-[#3A3A3A] text-[#3A3A3A] font-normal placeholder:font-normal leading-[24px] placeholder:leading-[24px] text-[14px] placeholder:text-[14px] w-[353px] mt-[30px] h-[61px] rounded-[24px] bg-[#E5E5E5]"
+            className="p-4 placeholder:text-[#3A3A3A]/60 text-[#3A3A3A] font-normal placeholder:font-normal leading-[24px] placeholder:leading-[24px] text-[14px] placeholder:text-[12px] w-[300px] mt-[30px] h-[61px] rounded-[24px] bg-[#E5E5E5]"
             type="text"
             required
             value={source}
@@ -92,7 +92,7 @@ const JournalNew = () => {
           <p className="w-[150px] h-[21px] leading-[21px] text-[14px] mx-auto font-normal  pt-[30px]">
             Emoji rating: {emoji}
           </p>
-          <span className="p-2 flex placeholder:text-[#3A3A3A] text-[#3A3A3A] font-normal placeholder:font-normal leading-[24px] placeholder:leading-[24px] text-[14px] placeholder:text-[14px] w-[353px] mt-[30px] h-[61px] rounded-[24px] bg-[#E5E5E5]">
+          <span className="p-2 flex placeholder:text-[#3A3A3A]/60 text-[#3A3A3A] font-normal placeholder:font-normal leading-[24px] placeholder:leading-[24px] text-[14px] placeholder:text-[12px] w-[300px] mt-[30px] h-[61px] rounded-[24px] bg-[#E5E5E5]">
             <button
               onClick={() => setEmoji("Terrific")}
               className="mx-auto focus:border flex focus:border-black focus:rounded-md focus:w-[50px] focus:h-[50px]"
@@ -150,7 +150,7 @@ const JournalNew = () => {
             Journal note
           </p>
           <textarea
-            className="p-4 text-left placeholder:text-[#3A3A3A] text-[#3A3A3A] font-normal placeholder:font-normal leading-[26px] placeholder:leading-[26px] text-[14px] placeholder:text-[14px] w-[350px] mt-[30px] h-[200px] rounded-[24px] bg-[#E5E5E5]"
+            className="p-4 text-left placeholder:text-[#3A3A3A]/60 text-[#3A3A3A] font-normal placeholder:font-normal leading-[26px] placeholder:leading-[26px] text-[14px] placeholder:text-[12px] w-[300px] mt-[30px] h-[200px] rounded-[24px] bg-[#E5E5E5]"
             type="text"
             required
             value={journal}
