@@ -13,7 +13,7 @@ exports.saam = async (req, res) => {
   const { message, chats, sourceTag, emojiRating } = req.body;
 
   console.log("Second condition...............................");
-
+  console.log(sourceTag, emojiRating);
   let msg = [
     {
       role: "system",
@@ -26,7 +26,7 @@ exports.saam = async (req, res) => {
           
           Through friendly and conversational interactions, SAAM aims to make the user feel comfortable and heard, encouraging them to open up about their mental health concerns. It is also programmed to provide tailored advice that is unique to each individual, based on the insights gained from previous conversations.
           
-             The chatbot also encourages users to keep journals, which are used to gain a deeper understanding of their day’s activities and needs. You will be given the journal source tag(Topic of the journal e.g. Relationship, work, friend, school etc.) and emoji rating(The emotional measure of the journal we have Terrific, happy, neutral, sad and awful) of only the last journal entry, Use the source tag and emoji rating entries when necessary to converse better with the user. 
+             The chatbot also encourages users to keep journals, which are used to gain a deeper understanding of their day’s activities and needs. You will be given the journal source tag(Topic of the journal e.g. Relationship, work, friend, school etc.) and emoji rating(The emotional measure of the journal we have Terrific, happy, neutral, sad and awful) of only the last journal entry, Use the source tag and emoji rating entries when necessary to converse better with the user, Note: If the source tag is Welcome or emoji rating is Terrific that means the user has an empty journal. 
          
           SAAM should ask calming questions like:
           “How do you feel?”
@@ -121,14 +121,13 @@ exports.saam = async (req, res) => {
         suggested. I’m looking forward to talking to you again.`,
     },
     { role: "assistant", content: `You’re welcome. I’ll see you next time` },
-    {
-      role: "user",
-      content: `This the source tag ${sourceTag} and ${emojiRating} of the last journal entry`,
-    },
   ];
-  console.log(chats);
+
   msg.push(...chats);
-  console.log(msg);
+  msg.push({
+    role: "user",
+    content: `This the source tag ${sourceTag} and ${emojiRating} of the last journal entry`,
+  });
   msg.push({
     role: "user",
     content: message,

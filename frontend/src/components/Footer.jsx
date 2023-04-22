@@ -51,7 +51,7 @@ const Footer = () => {
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "Memory", currentUser.uid), (doc) => {
       doc.exists() && setMessages(doc.data().memory);
-      console.log(messages)
+      console.log(messages);
     });
     const unSub2 = onSnapshot(doc(db, "Journal", currentUser.uid), (doc) => {
       doc.exists() && setJnl(doc.data().journal);
@@ -61,12 +61,10 @@ const Footer = () => {
     return () => {
       unSub2();
       unSub();
-    
     };
   }, [currentUser.uid]);
 
   const handleSubmit = () => {
- 
     fetch("https://murmuring-gorge-56642.herokuapp.com/saam", {
       method: "POST",
       headers: {
@@ -74,9 +72,9 @@ const Footer = () => {
       },
       body: JSON.stringify({
         message: text,
-        chats:messages,
-        sourceTag: jnl[0].source,
-        emojiRating: jnl[0].emoji,
+        chats: messages,
+        sourceTag: jnl[jnl.length - 1].source,
+        emojiRating: jnl[jnl.length - 1].emoji,
       }),
     })
       .then((res) => res.json())
@@ -118,7 +116,7 @@ const Footer = () => {
           date: Timestamp.now(),
         }),
       });
-     
+
       setText("");
       handleSubmit();
     }

@@ -71,13 +71,13 @@ const Login2 = () => {
         </p>
 
         {succ && (
-          <div className="text-center text-[14px] leading-7 font-nomral w-[350px] h-[84px] font-semibold text-green-400">
+          <div className="text-center mx-auto text-[14px] leading-7 font-nomral w-[350px] h-[84px] font-semibold text-green-400">
             Login Successful
           </div>
         )}
 
         {err && (
-          <div className="text-red-600 text-[14px] text-center leading-7 font-nomral w-[350px] h-[84px]d">
+          <div className="text-red-600 text-[14px] mx-auto text-center leading-7 font-nomral w-[350px] h-[84px]d">
             {err}
           </div>
         )}

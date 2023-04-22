@@ -109,13 +109,13 @@ const Signup = () => {
           email verification is required for signup as a security measure.
         </p>
         {succ && (
-          <div className="pt-2 text-center text-[14px] leading-7 font-nomral w-[350px] h-[84px] font-semibold text-green-400">
+          <div className="mx-auto pt-2 text-center text-[14px] leading-7 font-nomral w-[350px] h-[84px] font-semibold text-green-400">
             Signup Successful
           </div>
         )}
 
         {err && (
-          <div className="pt-2 text-red-600 text-[14px] text-center leading-7 font-nomral w-[350px] h-[84px]d">
+          <div className="pt-2 mx-auto text-red-600 text-[14px] text-center leading-7 font-nomral w-[350px] h-[84px]d">
             {err}
           </div>
         )}
