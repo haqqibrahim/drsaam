@@ -56,6 +56,8 @@ const Signup = () => {
               DOB: "",
             });
             setDoc(doc(db, "chats", user.uid), { message: [] });
+            setDoc(doc(db, "Memory", user.uid), { memory: [] });
+
             const options = {
               weekday: "long",
               year: "numeric",
