@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useRef,useContext, useState, useEffect } from "react";
 import { TbSmartHome } from "react-icons/tb";
 import { BiSend } from "react-icons/bi";
 import { IoPinSharp } from "react-icons/io5";
@@ -121,6 +121,15 @@ const Footer = () => {
       handleSubmit();
     }
   };
+  const inputElement = useRef(null);
+
+useEffect(() => {
+  inputElement.current.onfocus = () => {
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+  };
+});
+
   return (
     <div className="fixed inset-x-0  bottom-0 bg-white w-screen h-fit">
       <div className=" space-x-1  rounded-[100px]   w-[90%] flex m-auto h-[69px] bg-[#CBE0E6] p-1">
@@ -140,6 +149,7 @@ const Footer = () => {
             type="text"
             onChange={(e) => setText(e.target.value)}
             value={text}
+            ref={inputElement}
             onKeyDown={handleKeyPress}
             placeholder="How can I help you?"
             className="w-[80%] pr-5 lg:w-[95%] pl-[0.4rem] m-auto leading-[22.5px]  placeholder:leading-[22.5px] text-[15px] placeholder:text-[15px] font-normal placeholder:font-normal text-[#3A3A3A]"
