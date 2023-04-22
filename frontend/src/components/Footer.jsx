@@ -122,7 +122,7 @@ const Footer = () => {
     }
   };
   return (
-    <div className=" inset-x-0  bottom-0 fixed bg-white w-screen h-fit">
+    <div className="fixed inset-x-0  bottom-0 bg-white w-screen h-fit">
       <div className=" space-x-1  rounded-[100px]   w-[90%] flex m-auto h-[69px] bg-[#CBE0E6] p-1">
         <div className="h-[55px] ml-[0.5%] cursor-pointer flex w-[60px] rounded-[100px] bg-white my-auto">
           <TbSmartHome

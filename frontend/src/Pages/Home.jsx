@@ -8,7 +8,7 @@ const Home = () => {
   //   navigate("/preloader", { state: { message: "prepare" } });
 
   return (
-    <div className="w-screen h-screen fixed flex flex-col">
+    <div className="w-screen h-screen flex flex-col">
       <div className="justify-between items-center h-[60px] p-2 pt-10 w-full flex bg-white">
         <p className="w-[72px] h-[28px] ml-[20px] lg:ml-[40px] text-[#3A3A3A] font-bold leading-7">
           Saam
