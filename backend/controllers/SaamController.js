@@ -122,12 +122,12 @@ exports.saam = async (req, res) => {
     },
     { role: "assistant", content: `You’re welcome. I’ll see you next time` },
   ];
-
-  msg.push(...chats);
   msg.push({
     role: "user",
-    content: `This the source tag ${sourceTag} and ${emojiRating} of the last journal entry`,
+    content: `This the source tag ${sourceTag} and emoji rating ${emojiRating} of the last journal entry`,
   });
+  msg.push(...chats);
+
   msg.push({
     role: "user",
     content: message,
