@@ -8,7 +8,7 @@ const SaamRoute = require('./routes/saam')
 
 // express app
 const app = express()
-
+app.set("port", PORT)
 // middleware
 app.use(express.json())
 app.use(cors())
@@ -16,7 +16,7 @@ app.use(cors())
 
 // routes
 app.get("/", (req,res) => {
-  res.send("Hello Saam")
+  res.send("Hello Saam my AI")
 })
 
 app.use("/saam", SaamRoute)
