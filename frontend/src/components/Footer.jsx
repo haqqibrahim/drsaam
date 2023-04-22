@@ -125,7 +125,7 @@ const Footer = () => {
 
 useEffect(() => {
   inputElement.current.onfocus = () => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   };
 });
