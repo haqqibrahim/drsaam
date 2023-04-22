@@ -139,7 +139,7 @@ useEffect(() => {
             style={{ width: "24px", height: "20px" }}
           />
         </div>
-        <div className="h-[60px] relative flex lg:w-[93.5%] mr-[0.8rem] w-[90%] rounded-[100px] bg-white my-auto">
+        <div className="h-[60px] mb-1 relative flex lg:w-[93.5%] mr-[0.8rem] w-[90%] rounded-[100px] bg-white my-auto">
           <IoPinSharp
             className="fill-[#3A3A3A] m-auto absolute inset-y-0 left-0 ml-2"
             style={{ width: "24px", height: "20px" }}
