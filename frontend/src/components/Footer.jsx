@@ -1,4 +1,4 @@
-import React, { useRef,useContext, useState, useEffect } from "react";
+import React, { useRef, useContext, useState, useEffect } from "react";
 import { TbSmartHome } from "react-icons/tb";
 import { BiSend } from "react-icons/bi";
 import { IoPinSharp } from "react-icons/io5";
@@ -10,6 +10,7 @@ import {
   Timestamp,
   onSnapshot,
 } from "firebase/firestore";
+import mixpanel from "mixpanel-browser";
 
 import { db } from "../firebase";
 
@@ -18,12 +19,17 @@ import { AuthContext } from "../context/AuthContext";
 import { v4 as uuid } from "uuid";
 
 const Footer = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const [text, setText] = useState("");
 
   const send = async (e) => {
     e.preventDefault();
+    mixpanel.track("Saam Engagement")
     let content = text;
     let role = "user";
     await updateDoc(doc(db, "Memory", currentUser.uid), {
@@ -65,6 +71,7 @@ const Footer = () => {
   }, [currentUser.uid]);
 
   const handleSubmit = () => {
+    mixpanel.track("SAAM api call")
     fetch("https://murmuring-gorge-56642.herokuapp.com/saam", {
       method: "POST",
       headers: {
@@ -99,6 +106,7 @@ const Footer = () => {
   };
   const handleKeyPress = async (event) => {
     if (event.key === "Enter") {
+      mixpanel.track("Saam Engagement")
       // submit the form or input
       let content = text;
       let role = "user";
@@ -123,18 +131,21 @@ const Footer = () => {
   };
   const inputElement = useRef(null);
 
-useEffect(() => {
-  inputElement.current.onfocus = () => {
-    window.scrollTo(0, document.body.scrollHeight);
+  useEffect(() => {
+    inputElement.current.onfocus = () => {
+      window.scrollTo(0, document.body.scrollHeight);
+    };
+  });
+  const jnls = () => {
+    mixpanel.track("Saam to Journal");
+    navigate("/journal");
   };
-});
-
   return (
     <div className="fixed inset-x-0  bottom-0 bg-white w-screen h-fit">
       <div className=" space-x-1  rounded-[100px]   w-[90%] flex m-auto h-[69px] bg-[#CBE0E6] p-1">
         <div className="h-[55px] ml-[0.5%] cursor-pointer flex w-[60px] rounded-[100px] bg-white my-auto">
           <TbSmartHome
-            onClick={() => navigate("/journal")}
+            onClick={jnls}
             className="fill-white m-auto"
             style={{ width: "24px", height: "20px" }}
           />

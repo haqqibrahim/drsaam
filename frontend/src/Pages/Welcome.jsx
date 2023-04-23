@@ -1,20 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import mixpanel from 'mixpanel-browser';
 // Define the Welcome component using an arrow function
 const Welcome = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", { debug: true, ignore_dnt: true });
+
   // Declare a variable 'navigate' using the 'useNavigate' hook from the 'react-router-dom' library
   const navigate = useNavigate();
 
   // Define a function to handle the click event on the login button
   const handleLoginClick = () => {
     // Use the 'navigate' function to go to the '/login' URL
+    mixpanel.track("Get started - Login")
     navigate("/login");
   };
 
   // Define a function to handle the click event on the sign up button
   const handleSignUpClick = () => {
     // Use the 'navigate' function to go to the '/signup' URL
+    mixpanel.track("Get started - Signup")
     navigate("/signup");
   };
 

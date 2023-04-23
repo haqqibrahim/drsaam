@@ -7,11 +7,16 @@ import Bad from "../assets/images/bad.png";
 import { AuthContext } from "../context/AuthContext";
 import { v4 as uuid } from "uuid";
 import { IoCloseOutline } from "react-icons/io5";
+import mixpanel from "mixpanel-browser";
 
 import { useLocation,useNavigate } from "react-router";
 import { db } from "../firebase";
 import { doc, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 const JournalEdit = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation();
@@ -69,9 +74,11 @@ const JournalEdit = () => {
           journal: jnlsArray,
         };
         await updateDoc(jnlRef, updatedData);
+        mixpanel.track("Journal update/edit Saved")
         setErr("");
         setSucc(true);
         setJournal("");
+        navigate("/journal")
       } else {
         alert("There is an error");
       }
@@ -81,6 +88,10 @@ const JournalEdit = () => {
       setSucc(false);
     }
   };
+  const back = () => {
+   navigate("/journal")
+   mixpanel.track("No changes made to journal")
+  }
   return (
     <div className=" bg-[#3A3A3A66]/40 w-screen h-screen flex flex-col">
       <div className="w-[391px] flex flex-col h-[802px] my-[20px] bg-white rounded-[24px] m-auto">
@@ -184,7 +195,7 @@ const JournalEdit = () => {
           Save
         </button>
         <span
-          onClick={() => navigate("/journal")}
+          onClick={back}
           className="mx-auto mt-2 cursor-pointer text-white w-[40px] h-[40px] bg-[#3A3A3A] flex rounded-full"
         >
           <IoCloseOutline

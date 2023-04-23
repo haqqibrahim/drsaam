@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { auth,db } from "../firebase";
 import { updateProfile } from "firebase/auth";
+import mixpanel from "mixpanel-browser";
 import { updateDoc, doc } from "firebase/firestore";
 const SignupProfile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -28,6 +29,11 @@ const SignupProfile = () => {
       displayName: nickname,
       phoneNumber
     })
+    mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+      debug: true,
+      ignore_dnt: true,
+    });
+    mixpanel.track("Profile setup")
     navigate("/preloader", { state: { message: "creating" } });
   };
   return (

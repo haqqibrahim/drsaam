@@ -7,8 +7,13 @@ import Happy from "../assets/images/normal.png";
 import Neutral from "../assets/images/mid.png";
 import Sad from "../assets/images/sad.png";
 import Awful from "../assets/images/bad.png";
+import mixpanel from "mixpanel-browser";
 
 const JournalPreview = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,6 +41,18 @@ const JournalPreview = () => {
     default:
       emoji = null;
   }
+  const edit = (data) => {
+    navigate("/journaledit", { state: { message: data } });
+    mixpanel.track("Edit a journal");
+  };
+  const saam = () => {
+    navigate("/saam");
+    mixpanel.track("Talk about it");
+  };
+  const back = () => {
+    navigate(-1);
+    mixpanel.track("Back to journal");
+  };
   return (
     <div className="relative bg-[#3A3A3A66]/40 w-full h-full max-h-full flex flex-col">
       <span className="flex flex-col mx-auto mt-4">
@@ -64,20 +81,20 @@ const JournalPreview = () => {
           </span>
         </span>
         <span
-          onClick={() => navigate("/journaledit", { state: { message: data } })}
+          onClick={() => edit(data)}
           className="cursor-pointer mx-auto text-[#3A3A3A] mt-5 leading-[21px] text-[14px] w-[75px] h-[45px] rounded-[24px] bg-[#E5E5E5] p-3 text-center"
         >
           Edit
         </span>
         <span
-          onClick={() => navigate("/saam")}
+          onClick={saam}
           className="mx-auto cursor-pointer text-white mt-10 leading-[21px] text-[14px] w-[134px] h-[45px] rounded-[24px] bg-[#3A3A3A] p-3 text-center"
         >
           Talk about it
         </span>
       </div>
       <span
-        onClick={() => navigate(-1)}
+        onClick={back}
         className="absolute top-0 right-0 mt-4 mr-5 cursor-pointer text-white w-[40px] h-[40px] bg-[#3A3A3A] flex rounded-full"
       >
         <IoCloseOutline

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import mixpanel from "mixpanel-browser";
 
 import lockImage from '../assets/svgs/lock.svg';
 import openQuote from '../assets/svgs/open-quote.svg';
@@ -8,6 +9,7 @@ import closeQuote from '../assets/svgs/close-quote.svg';
 import ArrowUp from '../components/ArrowUp';
 
 const Info = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", { debug: true, ignore_dnt: true });
   const [subSection, setSubSection] = useState('Journal');
   const buttonTexts = ['Journal', 'AI friend', 'Integration'];
   const divContents = [
@@ -66,7 +68,7 @@ const Info = () => {
       <section className='overflow-x-hidden bg-black h-screen relative phones:relative phones:-mx-[23px] phones:px-5'>
         <header className='py-5 px-[30px] flex justify-between phones:px-0 phones:py-[30px]'>
           <div className='bg-[url(./assets/pngs/logo-text.png)] bg-no-repeat bg-center bg-contain w-24 h-[45px] phones:w-[76px] phones:h-[35px]' />
-          <Link
+          <Link onClick={() => mixpanel.track("Info - Get start")}
             to='/welcome'
             className='font-semibold text-[14px] leading-[21px] py-[10px] px-[25px] text-white border-2 border-[rgba(255,255,255,0.4)] rounded-[25px] phones:hidden transition-all duration-500 hover:bg-white hover:text-black'
           >
@@ -76,7 +78,7 @@ const Info = () => {
 
         <h2 className='text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-clip-text text-transparent w-[734px] font-normal text-[74px] leading-[100px] bg-[linear-gradient(100.26deg,rgba(255,255,255,0.2)_3.12%,rgba(255,255,255,0.5)_27.6%,#FA77FF_50.52%,#6454FF_80.21%)] phones:font-medium phones:text-[10vw] phones:leading-[78px] phones:w-[100vw] xs-phones:leading-[60px]'>
           Empowering minds, Enhancing lives.
-          <Link
+          <Link onClick={() => mixpanel.track("Info - Get start")}
             to='/welcome'
             className='font-semibold text-[14px] leading-[21px] py-[10px] px-[25px] text-white border-2 border-[rgba(255,255,255,0.4)] rounded-[25px] mx-auto hidden phones:block max-w-fit xs-phones:mt-5 transition-all duration-500 hover:bg-white hover:text-black'
           >
@@ -161,19 +163,19 @@ const Info = () => {
           Got a question? Reach out to us
         </h4>
         <div className='flex justify-between mt-[100px] phones:mt-[80px]'>
-          <Link
+          <Link onClick={() => mixpanel.track("Email Clicked")}
             target='_blank'
             rel='noopener noreferrer'
             to='mailto:Info.omari.ai@gmail.com'
             className='bg-[url(./assets/svgs/email.svg)] bg-no-repeat bg-center w-10 h-10'
           />
-          <Link
+          <Link onClick={() => mixpanel.track("Twitter Clicked")}
             target='_blank'
             rel='noopener noreferrer'
             to='https://twitter.com/omariai_hq?s=11&t=QIr0UAc_yq0BYb8Sughz_w'
             className='bg-[url(./assets/svgs/twitter.svg)] bg-no-repeat bg-center w-10 h-10'
           />
-          <Link
+          <Link onClick={() => mixpanel.track("IG Clicked")}
             target='_blank'
             rel='noopener noreferrer'
             to='https://instagram.com/omariai_hq?igshid=YmMyMTA2M2Y='
