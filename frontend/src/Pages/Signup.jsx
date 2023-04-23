@@ -8,8 +8,11 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc, arrayUnion, Timestamp } from "firebase/firestore";
+import mixpanel from 'mixpanel-browser';
 
 const Signup = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", { debug: true, ignore_dnt: true });
+
   const [err, setErr] = useState("");
   const [succ, setSucc] = useState(false);
 
@@ -83,6 +86,10 @@ const Signup = () => {
                 time: `${formattedTime} ${formattedDate}`,
               }),
             });
+            mixpanel.identify(user.uid)
+            mixpanel.track("Signup", {
+              'Verified User' : false
+            })
             setSucc(true);
             setErr("");
             sendEmailVerification(auth.currentUser).then(() => {

@@ -1,11 +1,24 @@
 import React from "react";
+import mixpanel from "mixpanel-browser";
+
 import { useLocation, useNavigate } from "react-router-dom";
 const EmailVerification = () => {
-  const navigate = useNavigate()
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
+
+  const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.message || "";
   const openMail = () => {
-    window.open('mailto:');
+    window.open("mailto:");
+  };
+
+  const ToLogin = () => {
+    mixpanel.track("Email Verification");
+    navigate("/login");
+
   };
 
   return (
@@ -21,17 +34,20 @@ const EmailVerification = () => {
             {email}
           </span>
           . If you didn’t receive the email, check your spam folder.{" "}
-          <span onClick={openMail} className="text-[#3A3A3A] font-bold cursor-pointer">
+          <span
+            onClick={openMail}
+            className="text-[#3A3A3A] font-bold cursor-pointer"
+          >
             Click here
           </span>{" "}
           to open email
         </span>
         <div className="flex flex-col gap-2.5 pt-[50px]">
           <button
-            onClick={() => navigate("/login")}
+            onClick={ToLogin}
             className="w-[90%] mx-auto h-[53px] leading-6 text-white bg-[#3A3A3A] rounded-full text-[15px]"
           >
-           Proceed to sign in
+            Proceed to sign in
           </button>
         </div>
       </div>

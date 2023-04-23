@@ -1,13 +1,17 @@
 // Import necessary modules
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import mixpanel from "mixpanel-browser";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth} from "../firebase";
+import { auth } from "../firebase";
 
 // Define Login component
 const Login2 = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.message || "";
@@ -33,18 +37,30 @@ const Login2 = () => {
       await signInWithEmailAndPassword(auth, email, password).then(
         (userCredentials) => {
           console.log(userCredentials.user);
-        
+
           if (!userCredentials.user.emailVerified) {
+            mixpanel.identify(userCredentials.user.uid);
+            mixpanel.track("Login", {
+              "Verified User": false,
+            });
             setSucc(false);
             setErr(
               "Please verify your email or reset password to get verification link"
             );
             setIsLoading(false);
           } else if (!userCredentials.user.displayName) {
+            mixpanel.identify(userCredentials.user.uid);
+            mixpanel.track("Login", {
+              "Verified User": true,
+            });
             navigate("/signup-profile");
           } else {
             const user = userCredentials.user;
             console.log(user);
+            mixpanel.identify(user.uid);
+            mixpanel.track("Login", {
+              "Verified User": true,
+            });
             setSucc(true);
             setErr("");
             navigate("/preloader", { state: { message: "prepare" } });
@@ -57,7 +73,10 @@ const Login2 = () => {
       setIsLoading(false);
     }
   };
-
+  const forgotPassword = () => {
+   navigate("/forgetpassword")
+   mixpanel("Forgot Password")
+  }
   // Render the Login component
   return (
     <div className="w-screen h-screen flex">
@@ -125,7 +144,7 @@ const Login2 = () => {
             </span>
           </span>{" "}
           <p
-            onClick={() => navigate("/forgetpassword")}
+            onClick={forgotPassword}
             className="mr-auto pl-7 cursor-pointer text-left text-[14px] leading-7 font-nomral text-[#3A3A3A] w-[350px] "
           >
             Forgot Password

@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
+import mixpanel from "mixpanel-browser";
 
 const ForgetPassword = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -14,6 +19,7 @@ const ForgetPassword = () => {
     setIsLoading(true)
     sendPasswordResetEmail(auth, email)
       .then(() => {
+        mixpanel.track("Password Reset Clicked")
         navigate("/resetpasswordmessage", { state: { message: email } });
       })
       .catch((error) => {

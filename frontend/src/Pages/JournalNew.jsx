@@ -5,6 +5,7 @@ import Normal from "../assets/images/normal.png";
 import Sad from "../assets/images/sad.png";
 import Bad from "../assets/images/bad.png";
 import { useNavigate } from "react-router-dom";
+import mixpanel from "mixpanel-browser";
 
 import { AuthContext } from "../context/AuthContext";
 import { db } from "../firebase";
@@ -12,6 +13,10 @@ import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 const JournalNew = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const { currentUser } = useContext(AuthContext);
   const [source, setSource] = useState("");
   const navigate = useNavigate();
@@ -57,7 +62,8 @@ const JournalNew = () => {
       setSucc(true);
       setSource("");
       setJnls("");
-      navigate("/saam")
+      mixpanel.track("New Journel Entry")
+      navigate("/journal")
     } catch (error) {
       setErr(error.message);
       setSucc(false);

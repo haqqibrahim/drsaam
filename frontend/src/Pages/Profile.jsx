@@ -1,12 +1,18 @@
 import React, { useState, useContext } from "react";
 // import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { auth,db } from "../firebase";
+import { auth, db } from "../firebase";
 import { updateProfile } from "firebase/auth";
 import { updateDoc, doc } from "firebase/firestore";
+import mixpanel from "mixpanel-browser";
+
 const Profile = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const { currentUser } = useContext(AuthContext);
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [nickname, setNickname] = useState("");
   const [fullName, setFullName] = useState("");
@@ -14,9 +20,9 @@ const Profile = () => {
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
-    const submit = async (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     const DOB = `${day}/${month}/${year}`;
     await updateDoc(doc(db, "users", currentUser.uid), {
       nickname,
@@ -26,9 +32,10 @@ const Profile = () => {
     });
     await updateProfile(auth.currentUser, {
       displayName: nickname,
-      phoneNumber
-    })
-    alert("Your Profile has been updated")
+      phoneNumber,
+    });
+    mixpanel.track("Profile update")
+    alert("Your Profile has been updated");
   };
   return (
     <div className="w-screen h-screen flex">
@@ -37,7 +44,7 @@ const Profile = () => {
           Make changes to profile
         </p>
         <p className="pt-[10px] text-center text-[14px] leading-7 font-nomral text-[#3A3A3A] mx-auto w-[300px] h-[84px]">
-         Making changes are not bad, <br /> they are sign of growth.
+          Making changes are not bad, <br /> they are sign of growth.
         </p>
         <div className="flex flex-col gap-5 pt-[30px] mx-auto">
           <input
@@ -65,14 +72,18 @@ const Profile = () => {
               type="text"
               className="focus:border-[#EEEEEE] mx-auto text-center text-[#3A3A3A] text-[13px] leading-5 bg-[#EEEEEE] w-[30%] h-[53px] rounded-l-full p-4"
             />
-            <span className="text-[#3A3A3A] mx-auto font-extrabold my-auto">|</span>
+            <span className="text-[#3A3A3A] mx-auto font-extrabold my-auto">
+              |
+            </span>
             <input
               onChange={(e) => setMonth(e.target.value)}
               placeholder="Month"
               type="text"
               className="focus:border-[#EEEEEE] mx-auto text-center text-[#3A3A3A] text-[13px] leading-5 bg-[#EEEEEE] w-[30%] h-[53px] px-6"
             />
-            <span className="text-[#3A3A3A] mx-auto font-extrabold my-auto">|</span>
+            <span className="text-[#3A3A3A] mx-auto font-extrabold my-auto">
+              |
+            </span>
             <input
               onChange={(e) => setYear(e.target.value)}
               placeholder="Year"
@@ -81,21 +92,24 @@ const Profile = () => {
             />
           </div>
           {isLoading ? (
-              <button
-                className="w-[90%] h-[53px] text-white bg-[#3A3A3A] rounded-full mx-auto"
-                disabled
-              >
-                {" "}
-                <svg
-                  class="animate-spin mx-auto h-5 w-5 bg-white"
-                  viewBox="0 0 24 24"
-                ></svg>
-              </button>
-            ) : (
-              <button onClick={submit} className="w-[90%] mx-auto h-[53px] text-white bg-[#3A3A3A] rounded-full ">
-                Done
-              </button>
-            )}
+            <button
+              className="w-[90%] h-[53px] text-white bg-[#3A3A3A] rounded-full mx-auto"
+              disabled
+            >
+              {" "}
+              <svg
+                class="animate-spin mx-auto h-5 w-5 bg-white"
+                viewBox="0 0 24 24"
+              ></svg>
+            </button>
+          ) : (
+            <button
+              onClick={submit}
+              className="w-[90%] mx-auto h-[53px] text-white bg-[#3A3A3A] rounded-full "
+            >
+              Done
+            </button>
+          )}
         </div>
       </div>
     </div>

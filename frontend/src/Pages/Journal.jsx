@@ -6,6 +6,7 @@ import Happy from "../assets/images/normal.png";
 import Neutral from "../assets/images/mid.png";
 import Sad from "../assets/images/sad.png";
 import Awful from "../assets/images/bad.png";
+import mixpanel from "mixpanel-browser";
 
 import { TbSmartHome } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
@@ -13,6 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 const Journal = () => {
+  mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
+    debug: true,
+    ignore_dnt: true,
+  });
   const { currentUser } = useContext(AuthContext);
   const [jnls, setJnls] = useState([]);
   useEffect(() => {
@@ -30,6 +35,19 @@ const Journal = () => {
     currentUser.uid && getJournals();
   }, [currentUser.uid, setJnls]);
   const navigate = useNavigate();
+  const Preview = (data) => {
+    navigate("/journalpreview", { state: { message: data } });
+    mixpanel.track("Journal Preview");
+  };
+  const addJnl = () => {
+    navigate("/journalnew");
+    mixpanel.track("Add to Journal");
+  };
+
+  const saam = () => {
+    navigate("/saam");
+    mixpanel.track("Journal Home to Saam");
+  };
 
   return (
     <div className="relative bg-[#3A3A3A66]/40 w-screen mx-auto h-screen flex flex-col ">
@@ -85,9 +103,7 @@ const Journal = () => {
               <div key={index}>
                 <div className="w-[330px] h-[78px] rounded-[100px] bg-[#3A3A3A] flex mx-auto">
                   <span
-                    onClick={() =>
-                      navigate("/journalpreview", { state: { message: data } })
-                    }
+                    onClick={() => Preview(data)}
                     className="cursor-pointer flex space-x-3 mx-auto"
                   >
                     {emoji && (
@@ -115,7 +131,7 @@ const Journal = () => {
       </div>
       <div className="space-y-2 absolute inset-x-0 bottom-0 mb-[21px]">
         <span
-          onClick={() => navigate("/journalnew")}
+          onClick={addJnl}
           className=" cursor-pointer h-[50px] w-[50px] bg-[#3A3A3A] rounded-[100px] flex mx-auto"
         >
           <IoMdAdd
@@ -125,7 +141,7 @@ const Journal = () => {
         </span>
         <span className="cursor-pointer w-[80px] h-[80px] bg-white rounded-[100px] border-[10px] border-[#3A3A3A] mx-auto flex">
           <TbSmartHome
-            onClick={() => navigate("/saam")}
+            onClick={saam}
             className="fill-white m-auto"
             style={{ width: "24px", height: "24px" }}
           />
