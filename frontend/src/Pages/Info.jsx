@@ -179,6 +179,12 @@ const Info = () => {
             to='https://instagram.com/omariai_hq?igshid=YmMyMTA2M2Y='
             className='bg-[url(./assets/svgs/instagram.svg)] bg-no-repeat bg-center w-10 h-10'
           />
+          <Link
+            target='_blank'
+            rel='noopener noreferrer'
+            to='https://www.tiktok.com/@omariai_hq?_t=8bjsd83Favm&_r=1'
+            className='bg-[url(./assets/svgs/tiktok.svg)] bg-no-repeat bg-center w-10 h-10 scale-[2.3]'
+          />
         </div>
         <p className='mt-[150px] font-bold text-[12px] leading-[18px] text-[#848484] phones:mt-[140px]'>
           A product of Omari AI
