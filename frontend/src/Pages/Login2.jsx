@@ -1,11 +1,10 @@
 // Import necessary modules
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { doc, setDoc } from "firebase/firestore";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db} from "../firebase";
+import { auth} from "../firebase";
 
 // Define Login component
 const Login2 = () => {
@@ -48,7 +47,6 @@ const Login2 = () => {
             console.log(user);
             setSucc(true);
             setErr("");
-          setDoc(doc(db, "chats", user.uid), { message: [] });
             navigate("/preloader", { state: { message: "prepare" } });
           }
         }
@@ -73,13 +71,13 @@ const Login2 = () => {
         </p>
 
         {succ && (
-          <div className="text-center text-[14px] leading-7 font-nomral w-[350px] h-[84px] font-semibold text-green-400">
+          <div className="text-center mx-auto text-[14px] leading-7 font-nomral w-[350px] h-[84px] font-semibold text-green-400">
             Login Successful
           </div>
         )}
 
         {err && (
-          <div className="text-red-600 text-[14px] text-center leading-7 font-nomral w-[350px] h-[84px]d">
+          <div className="text-red-600 text-[14px] mx-auto text-center leading-7 font-nomral w-[350px] h-[84px]d">
             {err}
           </div>
         )}

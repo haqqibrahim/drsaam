@@ -9,10 +9,7 @@ const Saam = () => {
       <div className="pt-[80px] pb-[80px] flex m-auto">
         <Messages />
       </div>
-      
        <Footer />
-  
-    
     </div>
   );
 };

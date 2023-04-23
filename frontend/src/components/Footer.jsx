@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useRef,useContext, useState, useEffect } from "react";
 import { TbSmartHome } from "react-icons/tb";
 import { BiSend } from "react-icons/bi";
 import { IoPinSharp } from "react-icons/io5";
@@ -17,16 +17,21 @@ import { AuthContext } from "../context/AuthContext";
 
 import { v4 as uuid } from "uuid";
 
-import store from '../Store/store';
-import { setLoading } from '../Action/action';
-
-const Footer = (props) => {
+const Footer = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const [text, setText] = useState("");
 
   const send = async (e) => {
     e.preventDefault();
+    let content = text;
+    let role = "user";
+    await updateDoc(doc(db, "Memory", currentUser.uid), {
+      memory: arrayUnion({
+        role,
+        content,
+      }),
+    });
     await updateDoc(doc(db, "chats", currentUser.uid), {
       message: arrayUnion({
         id: uuid(),
@@ -35,8 +40,8 @@ const Footer = (props) => {
         date: Timestamp.now(),
       }),
     });
+
     setText("");
-    store.dispatch(setLoading(true))
     handleSubmit();
   };
 
@@ -44,19 +49,18 @@ const Footer = (props) => {
   const [jnl, setJnl] = useState([]);
 
   useEffect(() => {
-    const unSub = onSnapshot(doc(db, "chats", currentUser.uid), (doc) => {
-      doc.exists() && setMessages(doc.data().message);
+    const unSub = onSnapshot(doc(db, "Memory", currentUser.uid), (doc) => {
+      doc.exists() && setMessages(doc.data().memory);
       console.log(messages);
     });
     const unSub2 = onSnapshot(doc(db, "Journal", currentUser.uid), (doc) => {
       doc.exists() && setJnl(doc.data().journal);
-      console.log(jnl);
-      console.log(jnl[jnl.length - 1]);
+      // console.log(jnl);
     });
 
     return () => {
-      unSub();
       unSub2();
+      unSub();
     };
   }, [currentUser.uid]);
 
@@ -65,17 +69,24 @@ const Footer = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        
       },
       body: JSON.stringify({
         message: text,
         chats: messages,
-        sourceTag: jnl[0].source,
-        emojiRating: jnl[0].emoji,
+        sourceTag: jnl[jnl.length - 1].source,
+        emojiRating: jnl[jnl.length - 1].emoji,
       }),
     })
       .then((res) => res.json())
       .then(async (data) => {
+        let role = "assistant";
+        let content = data.message;
+        await updateDoc(doc(db, "Memory", currentUser.uid), {
+          memory: arrayUnion({
+            role,
+            content,
+          }),
+        });
         await updateDoc(doc(db, "chats", currentUser.uid), {
           message: arrayUnion({
             id: uuid(),
@@ -84,29 +95,42 @@ const Footer = (props) => {
             date: Timestamp.now(),
           }),
         });
-        store.dispatch(setLoading(false))
       });
-      
+  };
+  const handleKeyPress = async (event) => {
+    if (event.key === "Enter") {
+      // submit the form or input
+      let content = text;
+      let role = "user";
+      await updateDoc(doc(db, "Memory", currentUser.uid), {
+        memory: arrayUnion({
+          role,
+          content,
+        }),
+      });
+      await updateDoc(doc(db, "chats", currentUser.uid), {
+        message: arrayUnion({
+          id: uuid(),
+          text,
+          sender: "User",
+          date: Timestamp.now(),
+        }),
+      });
+
+      setText("");
+      handleSubmit();
     }
-    const handleKeyPress = async(event) => {
-      if (event.key === "Enter") {
-        // submit the form or input
-        await updateDoc(doc(db, "chats", currentUser.uid), {
-          message: arrayUnion({
-            id: uuid(),
-            text,
-            sender: "User",
-            date: Timestamp.now(),
-          }),
-        });
-        setText("");
-        store.dispatch(setLoading(true))
-        handleSubmit();
-      
-      }
-    };
+  };
+  const inputElement = useRef(null);
+
+useEffect(() => {
+  inputElement.current.onfocus = () => {
+    window.scrollTo(0, document.body.scrollHeight);
+  };
+});
+
   return (
-    <div className=" inset-x-0  bottom-0 fixed bg-white w-screen h-fit">
+    <div className="fixed inset-x-0  bottom-0 bg-white w-screen h-fit">
       <div className=" space-x-1  rounded-[100px]   w-[90%] flex m-auto h-[69px] bg-[#CBE0E6] p-1">
         <div className="h-[55px] ml-[0.5%] cursor-pointer flex w-[60px] rounded-[100px] bg-white my-auto">
           <TbSmartHome
@@ -124,6 +148,7 @@ const Footer = (props) => {
             type="text"
             onChange={(e) => setText(e.target.value)}
             value={text}
+            ref={inputElement}
             onKeyDown={handleKeyPress}
             placeholder="How can I help you?"
             className="w-[80%] pr-5 lg:w-[95%] pl-[0.4rem] m-auto leading-[22.5px]  placeholder:leading-[22.5px] text-[15px] placeholder:text-[15px] font-normal placeholder:font-normal text-[#3A3A3A]"
