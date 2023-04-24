@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useRef } from "react";
 import Mid from "../assets/images/mid.png";
 import Cool from "../assets/images/cool.png";
 import Normal from "../assets/images/normal.png";
@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 import { v4 as uuid } from "uuid";
 import { IoCloseOutline } from "react-icons/io5";
 import mixpanel from "mixpanel-browser";
-
+import { decryptData, encryptData } from "../Crypto";
 import { useLocation,useNavigate } from "react-router";
 import { db } from "../firebase";
 import { doc, getDoc, Timestamp, updateDoc } from "firebase/firestore";
@@ -20,10 +20,13 @@ const JournalEdit = () => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation();
-  const [data, setData] = useState(location.state?.message || "");
-  const [eMoji, seteMoji] = useState(data.emoji);
+  const data = useRef(location.state?.message || "");
+  const encryptionSecretKey = process.env.REACT_APP_ENCRYPTION_SECRET_KEY
+  const decryptedJournal = decryptData(data.current.journal, encryptionSecretKey)
+  const jnlsText = useRef(decryptedJournal)
+  const [eMoji, seteMoji] = useState(data.current.emoji);
   const [jnls, setJournal] = useState("");
-  const [source, setSource] = useState(data.source);
+  const [source, setSource] = useState(data.current.source);
   const [err, setErr] = useState("");
   const [succ, setSucc] = useState(false);
 
@@ -40,6 +43,7 @@ const JournalEdit = () => {
         for (let i = 0; i < jnlsArray.length; i++) {
           if (jnlsArray[i].id === data.id) {
             foundObj = jnlsArray[i];
+            console.log(foundObj)
             foundIndex = i;
             break;
           }
@@ -59,12 +63,13 @@ const JournalEdit = () => {
           hour: "numeric",
           minute: "numeric",
         });
-
+        const encryptionSecretKey = "my-secret-key"
+        const encryptedJournal = encryptData(jnls, encryptionSecretKey)
         const updatedJournal = {
           id: uuid(),
           source,
           emoji: eMoji,
-          journal: jnls,
+          journal: encryptedJournal,
           server_Time: Timestamp.now(),
           time: `${formattedTime} ${formattedDate}`,
         };
@@ -185,7 +190,7 @@ const JournalEdit = () => {
             onChange={(e) => setJournal(e.target.value)}
             placeholder="Write about your thoughts and feelings here to make up your journal"
           >
-            {data.journal}
+            {jnlsText.current}
           </textarea>
         </div>
         <button

@@ -6,7 +6,7 @@ import Sad from "../assets/images/sad.png";
 import Bad from "../assets/images/bad.png";
 import { useNavigate } from "react-router-dom";
 import mixpanel from "mixpanel-browser";
-
+import { encryptData } from "../Crypto";
 import { AuthContext } from "../context/AuthContext";
 import { db } from "../firebase";
 
@@ -48,18 +48,20 @@ const JournalNew = () => {
     });
 
     try {
+      const encryptionSecretKey = process.env.REACT_APP_ENCRYPTION_SECRET_KEY
+      const encryptedJournal = encryptData(journal, encryptionSecretKey)
       await updateDoc(doc(db, "Journal", currentUser.uid), {
         journal: arrayUnion({
           id: uuid(),
           source,
           emoji,
-          journal,
+          journal: encryptedJournal,
           server_Time: Timestamp.now(),
           time: `${formattedTime} ${formattedDate}`,
         }),
       });
-      setErr("");
       setSucc(true);
+      setErr("");  
       setSource("");
       setJnls("");
       mixpanel.track("New Journel Entry")

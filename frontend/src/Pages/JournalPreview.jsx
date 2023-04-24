@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { useNavigate, useLocation } from "react-router-dom";
 import Hand from "../assets/images/hand.png";
@@ -8,7 +8,7 @@ import Neutral from "../assets/images/mid.png";
 import Sad from "../assets/images/sad.png";
 import Awful from "../assets/images/bad.png";
 import mixpanel from "mixpanel-browser";
-
+import { decryptData } from "../Crypto";
 const JournalPreview = () => {
   mixpanel.init("9260992a007ae334bd303457fa0eda2d", {
     debug: true,
@@ -17,9 +17,12 @@ const JournalPreview = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [data, setData] = useState(location.state?.message || "");
+  const data = useRef(location.state?.message || "");
+  const encryptionSecretKey = process.env.REACT_APP_ENCRYPTION_SECRET_KEY
+  const decryptedJournal = decryptData(data.current.journal, encryptionSecretKey)
+  const jnls = useRef(decryptedJournal)
   let emoji;
-  switch (data.emoji) {
+  switch (data.current.emoji) {
     case "Hand":
       emoji = Hand;
       break;
@@ -42,7 +45,7 @@ const JournalPreview = () => {
       emoji = null;
   }
   const edit = (data) => {
-    navigate("/journaledit", { state: { message: data } });
+    navigate("/journaledit", { state: { message: data.current } });
     mixpanel.track("Edit a journal");
   };
   const saam = () => {
@@ -57,26 +60,26 @@ const JournalPreview = () => {
     <div className="relative bg-[#3A3A3A66]/40 w-full h-full max-h-full flex flex-col">
       <span className="flex flex-col mx-auto mt-4">
         <p className="text-center mx-auto w-[146px] h-[52px] text-white font-medium leading-[21px] text-[14px]">
-          {data.time}
+          {data.current.time}
         </p>
       </span>
 
       <div className="w-[389px] relative flex flex-col h-[711px] my-[20px] bg-white rounded-[24px] m-auto">
         <span className="absolute top-0 right-0 text-[#3A3A3A] mt-[55px] mr-5 leading-[24px] text-[16px]">
-          ~{data.emoji}
+          ~{data.current.emoji}
         </span>
         <img
           src={emoji}
-          alt={data.emoji}
+          alt={data.current.emoji}
           className="w-[45p] h-[45px] cursor-pointer mx-auto mt-5"
         />
         <span className="p-4  w-[351px] mt-[30px] mx-auto h-[421px] rounded-[24px] bg-[#E5E5E5]">
           <span className="flex flex-col">
             <span className="mx-auto text-[#3A3A3A] mt-5 leading-[21px] text-[14px] w-[134px] h-[45px] rounded-[24px] bg-white p-3 text-center">
-              {data.source}
+              {data.current.source}
             </span>
             <p className="text-center mt-5 text-[#3A3A3A] leading-[21px] text-[14px] w-[311px] h-[286px]">
-              {data.journal}
+              {jnls.current}
             </p>
           </span>
         </span>

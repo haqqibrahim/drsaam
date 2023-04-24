@@ -7,7 +7,7 @@ import Neutral from "../assets/images/mid.png";
 import Sad from "../assets/images/sad.png";
 import Awful from "../assets/images/bad.png";
 import mixpanel from "mixpanel-browser";
-
+import { decryptData } from "../Crypto";
 import { TbSmartHome } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -76,6 +76,9 @@ const Journal = () => {
           .slice(-4)
           .reverse()
           .map((data, index) => {
+            const encryptionSecretKey = process.env.REACT_APP_ENCRYPTION_SECRET_KEY
+            
+            const decyptedJournal = decryptData(data.journal, encryptionSecretKey)
             let emoji;
             switch (data.emoji) {
               case "Hand":
@@ -118,9 +121,9 @@ const Journal = () => {
                         {data.time}
                       </p>
                       <p className="text-white w-[240px] text-left h-[24px] font-medium leading-[24px] text-[14px] mt-[8px]">
-                        {data.journal.length > 28
-                          ? `${data.journal.slice(0, 28)}...`
-                          : data.journal}
+                        {decyptedJournal.length > 28
+                          ? `${decyptedJournal.slice(0, 28)}...`
+                          : decyptedJournal}
                       </p>
                     </span>
                   </span>

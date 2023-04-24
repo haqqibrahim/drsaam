@@ -9,7 +9,7 @@ import {
 import { auth, db } from "../firebase";
 import { doc, setDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import mixpanel from 'mixpanel-browser';
-
+import { encryptData } from "../Crypto";
 const Signup = () => {
   mixpanel.init("9260992a007ae334bd303457fa0eda2d", { debug: true, ignore_dnt: true });
 
@@ -75,13 +75,15 @@ const Signup = () => {
               hour: "numeric",
               minute: "numeric",
             });
-
+            const encryptionSecretKey = process.env.REACT_APP_ENCRYPTION_SECRET_KEY
+            const journal = "Your personal space"
+            const encryptedJournal = encryptData(journal, encryptionSecretKey)
             setDoc(doc(db, "Journal", user.uid), {
               journal: arrayUnion({
                 id: uuid(),
                 source: "Welcome",
                 emoji: "Terrific",
-                journal: "Your personal space",
+                journal: encryptedJournal,
                 server_Time: Timestamp.now(),
                 time: `${formattedTime} ${formattedDate}`,
               }),

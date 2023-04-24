@@ -72,7 +72,7 @@ const Footer = () => {
 
   const handleSubmit = () => {
     mixpanel.track("SAAM api call")
-    fetch("https://murmuring-gorge-56642.herokuapp.com/saam", {
+    fetch(process.env.REACT_APP_SAAM_API, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -25,7 +25,7 @@ const Home = () => {
         <p className="w-[72px] h-[28px] ml-[20px] lg:ml-[40px] text-[#3A3A3A] font-bold leading-7">
           Saam
         </p>
-        <span
+        <span onClick={() => navigate("/menu")} 
          
           className="cursor-pointer w-[70px]  mt-[10px] mr-0  lg:mr-[10px] h-[70px]  flex rounded-full  border-8 border-[#FFC0CB]"
         >
@@ -35,7 +35,7 @@ const Home = () => {
       <div className="m-auto  relative w-[330px] lg:w-[590px]  flex h-[166px] bg-[#FFC0CB] rounded-3xl">
         <div className=" flex flex-col m-auto">
           <span className="w-[301px] lg:w-[559px] h-[58px] lg:h-[63px] flex rounded-[100px] bg-white/50 m-auto">
-            <IoPinSharp onClick={() => navigate("/menu")}
+            <IoPinSharp 
               className="fill-[#3A3A3A] m-auto lg:ml-36 ml-6"
               style={{ width: "24px", height: "20px" }}
             />
