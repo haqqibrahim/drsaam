@@ -192,7 +192,9 @@ const Signup = () => {
              
               className="mr-auto ml-12 relative space-x-2 cursor-pointer  w-[90%] "
             >
-              <span className="text-left text-[14px] leading-7 font-nomral text-[#3A3A3A]">Terms and Condition</span>
+              <span className="text-left text-[14px] leading-7 font-nomral text-[#3A3A3A]"><a href="https://www.dropbox.com/scl/fi/hgs3vu18pr3xojpvhb0r5/_-Terms-and-Conditions-for-Omari-AI-s-SAAM.paper?dl=0&rlkey=qfvcnsxar99nyxcnyflyb2vjk">
+            Terms and Condition
+          </a></span>
               <input
                 type="checkbox"
                 required
