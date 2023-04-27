@@ -25,7 +25,7 @@ const Home = () => {
         <p className="w-[72px] h-[28px] ml-[20px] lg:ml-[40px] text-[#3A3A3A] font-bold leading-7">
           Saam
         </p>
-        <span onClick={() => navigate("/menu")} 
+        <span onClick={() => navigate("/menu")}  
          
           className="cursor-pointer w-[70px]  mt-[10px] mr-0  lg:mr-[10px] h-[70px]  flex rounded-full  border-8 border-[#FFC0CB]"
         >
