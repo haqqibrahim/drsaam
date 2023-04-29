@@ -57,15 +57,6 @@ exports.updateUser = async (req, res) => {
     return res.status(409).json({ messge: "User Does not exists!" });
   }
 
-  // Create User Obj
-  const userUpdate = new User({
-    userId,
-    fullName,
-    nickName,
-    phoneNumber,
-    email,
-    DOB,
-  });
 
   // Update user detailes in DB
   await User.updateOne(
