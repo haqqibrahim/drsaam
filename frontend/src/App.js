@@ -35,6 +35,7 @@ import JournalNew from "./Pages/JournalNew";
 import JournalPreview from "./Pages/JournalPreview";
 import JournalEdit from "./Pages/JournalEdit";
 import Profile from "./Pages/Profile";
+import GetStarted from "./Pages/GetStarted";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -84,6 +85,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Info />}></Route>
+        <Route exact path="/getstarted" element={<GetStarted />}></Route>
         <Route exact path="/Welcome" element={<Welcome />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/login2" element={<Login2 />}></Route>
