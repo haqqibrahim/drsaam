@@ -13,20 +13,20 @@ const Info = () => {
     debug: true,
     ignore_dnt: true,
   });
-  const [subSection, setSubSection] = useState("Journal");
+  const [subSection, setSubSection] = useState("WhatsApp");
   const buttonTexts = ["WhatsApp", "AI friend", "Integration"];
   const divContents = [
     {
-      section: "Journal",
+      section: "WhatsApp",
       headerText: "Unleash the Power of SAAM on WhatsApp",
       bodyContent: (
         <>
           Accessing Saam is just so easy.
           <br />
-          <br /> Simply click get started, and you'll be redirected to WhatsApp .
+          <br /> Simply click get started, and you'll be redirected to WhatsApp
+          .
           <br />
-          <br /> There you can talk to saam any time, any day,
-           Saam got you
+          <br /> There you can talk to saam any time, any day, Saam got you
         </>
       ),
     },
@@ -36,28 +36,27 @@ const Info = () => {
         "Meet Saam, an AI mental health friend, that can listen, support, and connect with you on a personal level",
       bodyContent: (
         <>
-          To access Saam, simply click get started. You will be taken to WhatsApp
+          To access Saam, click get started and instantly connect with your AI
+          friend on WhatsApp.
           <br />
           <br />
-          Instantly you get connected to Saam.
+          There you can chat with Saam all day long.
           <br />
-          <br /> You can tell Saam about your day, your relationships, your
-          challenges, and achievements, and the things that leave you anxious
-          and stressed.
+          <br />
         </>
       ),
     },
     {
       section: "Integration",
       headerText:
-        "Using Saam on WhatsApp, is great to help you get closer to your AI friend",
+        "Accessing your AI friend Saam has never been easier with our integration to WhatsApp. Say hello to Saam with just a few clicks, now available at your fingertips!",
       bodyContent: (
         <>
-          With Saam connected to WhatsApp, you can receive personalized insights and advice that can help you process your 
-          emotions and develop effective coping strategies to enhance your overall mental wellbeing.
+          Connect with your AI friend to develop effective coping strategies and
+          improve your overall wellbeing.
           <br />
-          <br /> By integrating Saam with WhatsApp, you can establish a secure and supportive environment to recognize patterns and triggers,
-           and receive personalized insights and advice to improve your mental health and wellbeing.
+          <br /> Recognize patterns, identify triggers, and get personalized
+          advice – all in a secure and supportive chat environment
         </>
       ),
     },
@@ -108,7 +107,17 @@ const Info = () => {
           mental wellbeing
         </p>
 
-        <div className="bg-[#121212] relative mt-[146px] rounded-[25px] p-[50px_0_135px] phones:mt-[140px] phones:p-[30px_30px_68px]">
+        <div className="flex flex-row w-[600px] h-[200px] mx-auto mt-8">
+          <p className="font-normal text-[100px] pt-2 text-[#121212] text-left phones:text-[84px] phones:leading-[126px] xs-phones:text-[15vw] xs-phones:leading-[80px]">
+            Saam.
+          </p>
+          <p className="font-normal mt-3 text-[100px] text-[#121212] text-left phones:text-[84px] phones:leading-[126px] xs-phones:text-[15vw] xs-phones:leading-[80px]">
+            +
+          </p>
+          <div className="bg-[url(./assets/pngs/icons8-whatsapp-144.png)] w-full h-full bg-no-repeat bg-center bg-contain "></div>
+        </div>
+
+        <div className="bg-[#121212] relative mt-[140px] rounded-[25px] p-[50px_0_135px] phones:mt-[140px] phones:p-[30px_30px_68px]">
           <header className="x-scroll flex items-center justify-center gap-x-[5%] gap-y-1 overflow-auto xs-phones:pb-4 xs-phones:justify-start">
             {buttonTexts.map((buttonText) => (
               <button
