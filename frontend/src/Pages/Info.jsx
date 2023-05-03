@@ -107,14 +107,14 @@ const Info = () => {
           mental wellbeing
         </p>
 
-        <div className="flex flex-row w-[600px] h-[200px] mx-auto mt-8">
-          <p className="font-normal text-[100px] pt-2 text-[#121212] text-left phones:text-[84px] phones:leading-[126px] xs-phones:text-[15vw] xs-phones:leading-[80px]">
+        <div className="lg:space-x-5 md:h-[400px] md:flex-row md:w-[200px] space-y-5 flex lg:flex-row flex-col w-fit h-[420px] lg:h-[200px] lg:w-[600px] mx-auto mt-8">
+          <p className="font-normal text-[100px] pt-2 text-[#121212] md:text-left text-center phones:text-[84px] phones:leading-[126px] xs-phones:text-[15vw] xs-phones:leading-[80px]">
             Saam.
           </p>
-          <p className="font-normal mt-3 text-[100px] text-[#121212] text-left phones:text-[84px] phones:leading-[126px] xs-phones:text-[15vw] xs-phones:leading-[80px]">
+          <p className="font-normal mt-3 text-[100px] text-[#121212] md:text-left text-center phones:text-[84px] phones:leading-[126px] xs-phones:text-[15vw] xs-phones:leading-[80px]">
             +
           </p>
-          <div className="bg-[url(./assets/pngs/icons8-whatsapp-144.png)] w-full h-full bg-no-repeat bg-center bg-contain "></div>
+          <div className="bg-center lg:bg-top  bg-[url(./assets/pngs/icons8-whatsapp-144.png)] w-full h-full bg-no-repeat"></div>
         </div>
 
         <div className="bg-[#121212] relative mt-[140px] rounded-[25px] p-[50px_0_135px] phones:mt-[140px] phones:p-[30px_30px_68px]">
