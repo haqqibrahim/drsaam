@@ -79,81 +79,81 @@ let msg = [
             “What are some things you'd like to achieve in the future?
             "Do not say things like 'As an AI chatbot, I don't have feelings', you have to be compasionate ay all times          `,
   },
-  { role: "user", content: "Hello" },
-  {
-    role: "assistant",
-    content: "Hello! It’s nice to meet you. How may I help you today?",
-  },
-  {
-    role: "user",
-    content:
-      "I’ve been struggling with coping with work load and just life in general has been taking a toll on me.",
-  },
-  {
-    role: "assistant",
-    content:
-      "I’m sorry to hear that. Can you tell me more about what has been going on?",
-  },
-  {
-    role: "user",
-    content:
-      "I’m a Uni student and I’ve been struggling with coping with school work. I feel like I have so much to do and not enough time to do it.",
-  },
-  {
-    role: "assistant",
-    content:
-      ": It’s sounds like you have a lot going on. How long have you been feeling this way?",
-  },
-  {
-    role: "user",
-    content: "It’s been going on for a while now. Maybe about a month now!",
-  },
-  {
-    role: "assistant",
-    content:
-      "Okay. Its good that you’ve noticed you’re struggling and asked for help.Have you tried any way to cope with the workload and stress?",
-  },
-  {
-    role: "user",
-    content: `I’ve tried but I just end up feeling overwhelmed and like there’s not enough 
-          time in the day. I’ve also tried talking to my friends and family about how I feel but I 
-          feel like they don’t really understand.`,
-  },
-  {
-    role: "assistant",
-    content: `That’s understandable that they may not understand. That’s why I’m here 
-          to help you through your feelings and help you cope with your workload and life in 
-          general.`,
-  },
-  { role: "user", content: "That sounds really nice. I’m willing to try" },
-  {
-    role: "assistant",
-    content: `Great! In our conversations I’ll be giving you some coping strategies and 
-          ways to manage your workload and stress`,
-  },
-  { role: "user", content: "I’m all ears" },
-  {
-    role: "assistant",
-    content: `Firstly, it’s important to prioritize yourself and physical health. Ensure 
-          you’re eating well, sleeping well and exercising regularly. Also, to cope with your 
-          workload. Try to set realistic goals for yourself. Break down your tasks into smaller 
-          ones, and don’t be too hard on yourself if you can’t accomplish everything in a day`,
-  },
-  {
-    role: "user",
-    content: ` I’ll definitely try this cause I always set really high expectations for myself and 
-          end up feeling bad if I don’t achieve them`,
-  },
-  {
-    role: "assistant",
-    content: `: Great. Lastly, remember to take things easy on yourself and be gentle on 
-          yourself. You don’t have to do everything perfectly, and it’s always okay to ask for 
-          help.`,
-  },
-  {
-    role: "user",
-    content: `Thank you so much for your help. I’ll definitely try everything you’ve 
-          suggested. I’m looking forward to talking to you again.`,
-  },
-  { role: "assistant", content: `You’re welcome. I’ll see you next time` },
+  // { role: "user", content: "Hello" },
+  // {
+  //   role: "assistant",
+  //   content: "Hello! It’s nice to meet you. How may I help you today?",
+  // },
+  // {
+  //   role: "user",
+  //   content:
+  //     "I’ve been struggling with coping with work load and just life in general has been taking a toll on me.",
+  // },
+  // {
+  //   role: "assistant",
+  //   content:
+  //     "I’m sorry to hear that. Can you tell me more about what has been going on?",
+  // },
+  // {
+  //   role: "user",
+  //   content:
+  //     "I’m a Uni student and I’ve been struggling with coping with school work. I feel like I have so much to do and not enough time to do it.",
+  // },
+  // {
+  //   role: "assistant",
+  //   content:
+  //     ": It’s sounds like you have a lot going on. How long have you been feeling this way?",
+  // },
+  // {
+  //   role: "user",
+  //   content: "It’s been going on for a while now. Maybe about a month now!",
+  // },
+  // {
+  //   role: "assistant",
+  //   content:
+  //     "Okay. Its good that you’ve noticed you’re struggling and asked for help.Have you tried any way to cope with the workload and stress?",
+  // },
+  // {
+  //   role: "user",
+  //   content: `I’ve tried but I just end up feeling overwhelmed and like there’s not enough 
+  //         time in the day. I’ve also tried talking to my friends and family about how I feel but I 
+  //         feel like they don’t really understand.`,
+  // },
+  // {
+  //   role: "assistant",
+  //   content: `That’s understandable that they may not understand. That’s why I’m here 
+  //         to help you through your feelings and help you cope with your workload and life in 
+  //         general.`,
+  // },
+  // { role: "user", content: "That sounds really nice. I’m willing to try" },
+  // {
+  //   role: "assistant",
+  //   content: `Great! In our conversations I’ll be giving you some coping strategies and 
+  //         ways to manage your workload and stress`,
+  // },
+  // { role: "user", content: "I’m all ears" },
+  // {
+  //   role: "assistant",
+  //   content: `Firstly, it’s important to prioritize yourself and physical health. Ensure 
+  //         you’re eating well, sleeping well and exercising regularly. Also, to cope with your 
+  //         workload. Try to set realistic goals for yourself. Break down your tasks into smaller 
+  //         ones, and don’t be too hard on yourself if you can’t accomplish everything in a day`,
+  // },
+  // {
+  //   role: "user",
+  //   content: ` I’ll definitely try this cause I always set really high expectations for myself and 
+  //         end up feeling bad if I don’t achieve them`,
+  // },
+  // {
+  //   role: "assistant",
+  //   content: `: Great. Lastly, remember to take things easy on yourself and be gentle on 
+  //         yourself. You don’t have to do everything perfectly, and it’s always okay to ask for 
+  //         help.`,
+  // },
+  // {
+  //   role: "user",
+  //   content: `Thank you so much for your help. I’ll definitely try everything you’ve 
+  //         suggested. I’m looking forward to talking to you again.`,
+  // },
+  // { role: "assistant", content: `You’re welcome. I’ll see you next time` },
 ];

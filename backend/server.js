@@ -8,10 +8,10 @@ const mongoose = require("mongoose")
 const PORT  = process.env.PORT || 5000
 
 
-const SaamRoute = require('./routes/saam')
-const UserRoute = require("./routes/UserRoute")
-const JournalRoute = require("./routes/JournalRoute")
-const SaamWARoute = require("./routes/SaamWARoute")
+const SaamRoute = require('./url/saam')
+const UserRoute = require("./url/UserRoute")
+const JournalRoute = require("./url/JournalRoute")
+const SaamWARoute = require("./url/SaamWARoute")
 
 // express app
 const app = express()
@@ -30,15 +30,15 @@ mongoose
   .catch((err) => console.log(err));
 
 
-// routes
+// url
 app.get("/", (req,res) => {
-  res.send("Hello Saam my AI")
+  res.send("Hello from Saam my AI")
 })
 
 app.use("/saam", SaamRoute)
 app.use("/user", UserRoute)
 app.use("/user", JournalRoute)
-app.use("/whatsapp", SaamWARoute)
+app.use("/ultramsgwebhook", SaamWARoute)
 
 
  app.listen(PORT, () => {
